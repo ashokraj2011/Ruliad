@@ -1,0 +1,16 @@
+{
+  "name": "ruliad-electron",
+  "version": "1.0.0",
+  "description": "Ruliad Navigator Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "electron": "^22.0.0",
+    "pg": "^8.10.0"
+  }
+}

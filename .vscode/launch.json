@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Electron Main",
+        "type": "pwa-node",
+        "request": "launch",
+        "program": "${workspaceFolder}/node_modules/.bin/electron",
+        "args": [ "." ],
+        "cwd": "${workspaceFolder}",
+        "runtimeExecutable": null,
+        "windows": {
+          "program": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+        },
+        "console": "integratedTerminal",
+        "outputCapture": "std"
+      },
+      {
+        "name": "Attach to Renderer",
+        "type": "pwa-chrome",
+        "request": "attach",
+        "port": 9222,
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  }
+  

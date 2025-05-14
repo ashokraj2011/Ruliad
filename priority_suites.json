@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Alts",
+    "entries": [
+      {
+        "environment": "prod",
+        "rule_name": "highRiskCheck",
+        "mid": "123456",
+        "expected_result": true,
+        "json_context": "\"{\"\"location\"\": \"\"US\"\""
+      },
+      {
+        "environment": "prod",
+        "rule_name": "highRiskCheck",
+        "mid": "789012",
+        "expected_result": false,
+        "json_context": "\"{\"\"location\"\": \"\"RU\"\""
+      },
+      {
+        "environment": "qa",
+        "rule_name": "lowRiskCheck",
+        "mid": "345678",
+        "expected_result": true,
+        "json_context": "\"{\"\"location\"\": \"\"IN\"\""
+      },
+      {
+        "environment": "dev",
+        "rule_name": "mediumRiskCheck",
+        "mid": "987654",
+        "expected_result": false,
+        "json_context": "\"{\"\"location\"\": \"\"CN\"\""
+      }
+    ]
+  }
+]

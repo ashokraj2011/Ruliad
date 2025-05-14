@@ -1,0 +1,13 @@
+{
+    "name": "ruliad-electron",
+    "version": "1.0.0",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron .",
+      "dev": "electron . --remote-debugging-port=9222"
+    },
+    "devDependencies": {
+      "electron": "^25.0.0",
+      "electron-reload": "^2.0.0"
+    }
+  }
