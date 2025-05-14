@@ -1,48 +1,17 @@
-# Dependencies
+# Dependency directories
 node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
-package-lock.json
-yarn.lock
 
 # Build output
 dist/
-out/
 build/
-release/
-
-# Electron-specific
-.electron-builder.env
 
 # Environment files
 .env
 .env.local
-.env.development
-.env.test
-.env.production
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# OS-specific files
+# OS specific files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-
-# Editor directories and files
-.idea/
-.vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
