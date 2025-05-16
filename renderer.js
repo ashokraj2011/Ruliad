@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   // Get the current environment
   const currentEnvironment = config.defaultEnvironment;
   const envConfig = config.environments[currentEnvironment];
-  
+
   // Initialize database for the current environment
   await db.initializeDatabase(currentEnvironment);
   
