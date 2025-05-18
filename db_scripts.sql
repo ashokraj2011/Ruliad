@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS requests (
     rule_name VARCHAR(255) NOT NULL,
     persona_type VARCHAR(100) NOT NULL,
     persona_id VARCHAR(100) NOT NULL,
+    json_context JSONB DEFAULT '{}', -- Added JSON context field
     status VARCHAR(50) DEFAULT 'active', -- New status column with default value
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by VARCHAR(100) NOT NULL,
@@ -39,14 +40,28 @@ CREATE TABLE IF NOT EXISTS run_history (
     created_by VARCHAR(100) NOT NULL
 );
 
--- Create index for faster lookups
-CREATE INDEX idx_requests_environment ON requests(environment);
-CREATE INDEX idx_requests_created_by ON requests(created_by);
-CREATE INDEX idx_requests_status ON requests(status); -- New index for status
-CREATE INDEX idx_priority_suites_created_by ON priority_suites(created_by);
-CREATE INDEX idx_priority_suites_status ON priority_suites(status); -- New index for status
-CREATE INDEX idx_run_history_run_type ON run_history(run_type);
-CREATE INDEX idx_run_history_reference_id ON run_history(reference_id);
-CREATE INDEX idx_run_history_environment ON run_history(environment);
-CREATE INDEX idx_run_history_created_by ON run_history(created_by);
+-- Create table for storing production runs
+CREATE TABLE IF NOT EXISTS prod_runs (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rule_name VARCHAR(255) NOT NULL,
+    context JSONB,
+    mid VARCHAR(100) NOT NULL,
+    result JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100) NOT NULL
+);
 
+-- Create index for faster lookups
+CREATE INDEX IF NOT EXISTS idx_requests_environment ON requests(environment);
+CREATE INDEX IF NOT EXISTS idx_requests_created_by ON requests(created_by);
+CREATE INDEX IF NOT EXISTS idx_requests_status ON requests(status); -- New index for status
+CREATE INDEX IF NOT EXISTS idx_priority_suites_created_by ON priority_suites(created_by);
+CREATE INDEX IF NOT EXISTS idx_priority_suites_status ON priority_suites(status); -- New index for status
+CREATE INDEX IF NOT EXISTS idx_run_history_run_type ON run_history(run_type);
+CREATE INDEX IF NOT EXISTS idx_run_history_reference_id ON run_history(reference_id);
+CREATE INDEX IF NOT EXISTS idx_run_history_environment ON run_history(environment);
+CREATE INDEX IF NOT EXISTS idx_run_history_created_by ON run_history(created_by);
+CREATE INDEX IF NOT EXISTS idx_prod_runs_date ON prod_runs(date);
+CREATE INDEX IF NOT EXISTS idx_prod_runs_rule_name ON prod_runs(rule_name);
+CREATE INDEX IF NOT EXISTS idx_prod_runs_mid ON prod_runs(mid);

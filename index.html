@@ -242,84 +242,200 @@
       padding: 8px 15px;
       cursor: pointer;
     }
-    
+    #sidebar {
+      width: 300px;               /* your default */
+      min-width: 200px;           /* how narrow it can go */
+      max-width: 400px;           /* how wide it can stretch */
+      resize: horizontal;         /* ← allow drag-to-resize */
+      overflow: auto;             /* needed to make resize grips show up */
+      /* …all your other existing styles… */
+    }
+
     .context-menu-item:hover {
       background: rgba(255, 255, 255, 0.1);
     }
+    .atom-icon:hover { animation: spin 4s linear infinite; }
+    .rule-icon:hover { animation: spin 2s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .atom-icon { width: 32px; height: 32px; margin-right: 6px; }
+    .atom-icon:hover { animation: spin 4s linear infinite; }
+    .rule-icon { width: 24px; height: 24px; margin-right: 6px; }
+    .rule-icon:hover { animation: spin 2s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
   </style>
 </head>
 <body>
   <div id="sidebar">
+    <button id="refresh-nonprod" class="control">🔄 Refresh Token Non-Prod</button>
+    <button id="refresh-prod" class="control">🔄 Refresh Token Prod</button>
+    <button id="adhoc-request" class="control">🔧 Adhoc Request</button>
     <button id="add-request" class="control">➕ Add Request</button>
-    <button id="add-suite" class="control">📂 Add Priority Suite</button>
     <div id="requests-tree" class="tree"></div>
     <hr />
+    <button id="add-suite" class="control">📂 Add Priority Suite</button>
     <div id="suites-tree" class="tree"></div>
-
-    <!-- Request Dialog -->
-    <dialog id="request-dialog">
-      <form id="request-form">
-        <h3>Add New Request</h3>
-        <label>Name: <input id="request-name" type="text" required /></label>
-        <label>Environment: 
-          <select id="request-env" required>
-            <option value="DEV">DEV</option>
-            <option value="UAT">UAT</option>
-            <option value="PRE_PROD">PRE_PROD</option>
-            <option value="PROD">PROD</option>
-            <option value="LOCAL">LOCAL</option>
-          </select>
-        </label>
-        <label>Rule Name: <input id="request-rule-name" type="text" required /></label>
-        <label>Persona Type: <input id="request-persona" type="text" required /></label>
-        <label>Persona ID: <input id="request-persona-id" type="text" required /></label>
-        <menu>
-          <button type="submit" class="control">Save</button>
-          <button type="button" id="cancel-request" class="control">Cancel</button>
-        </menu>
-      </form>
-    </dialog>
-
-    <!-- Suite Dialog -->
-    <dialog id="suite-dialog">
-      <form id="suite-form">
-        <h3>Add Priority Suite</h3>
-        <label>Name: <input id="suite-name" type="text" required /></label>
-        <label>CSV File: <input id="suite-file" readonly /></label>
-        <button type="button" id="browse-suite" class="control">Browse...</button>
-        <menu>
-          <button type="submit" class="control">Save</button>
-          <button type="button" id="cancel-suite" class="control">Cancel</button>
-        </menu>
-      </form>
-    </dialog>
-    
-    <!-- Run History Dialog -->
-    <dialog id="history-dialog">
-      <h3>Run History</h3>
-      <div id="history-content"></div>
-      <menu>
-        <button type="button" id="close-history" class="control">Close</button>
-      </menu>
-    </dialog>
+    <button id="open-settings" class="control">⚙️ Settings</button>
   </div>
+  <!-- Adhoc Request Dialog -->
+  <dialog id="adhoc-dialog" class="big-modal">
+    <form id="adhoc-form">
+      <h3>Adhoc Request</h3>
+      <label>Rule Name: <input id="adhoc-rule-name" type="text" required /></label>
+      <label>Environment:
+        <select id="adhoc-env">
+          <option value="DEV">DEV</option>
+          <option value="UAT">UAT</option>
+          <option value="PRE_PROD">PRE_PROD</option>
+          <option value="PROD">PROD</option>
+          <option value="LOCAL">LOCAL</option>
+        </select>
+      </label>
+      <label>Persona Type:
+        <select id="adhoc-persona">
+          <option value="MID">MID</option>
+          <option value="WID">WID</option>
+        </select>
+      </label>
+      <label>Persona ID: <input id="adhoc-persona-id" type="text" /></label>
+      <label>JSON Context: <textarea id="adhoc-json-context" rows="5" style="width:100%; background:var(--sidebar-bg); border:1px solid var(--border); color:var(--text); border-radius:4px; padding:8px;"></textarea></label>
+      <label>Status:
+        <select id="adhoc-status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </label>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+        <button type="button" id="call-adhoc" class="control">▶️ Call</button>
+        <button type="button" id="save-adhoc" class="control" style="display:none;">💾 Save</button>
+        <button type="button" id="close-adhoc" class="control">✖️ Close</button>
+      </div>
+      <hr />
+      <pre id="adhoc-output" style="display:none; height:200px; overflow:auto; background:var(--panel-bg); border:1px solid var(--border); padding:10px;"></pre>
+    </form>
+  </dialog>
   <div id="main">
     <h1>🧭 Ruliad Navigator</h1>
-    
+
     <div class="tabs">
       <div class="tab active" id="tab-details">Details</div>
       <div class="tab" id="tab-history">Run History</div>
     </div>
-    
+
     <div id="tab-content-details">
       <pre id="details"></pre>
     </div>
-    
+
     <div id="tab-content-history" style="display:none;">
       <h2>Recent Run History</h2>
       <div id="run-history-list"></div>
     </div>
   </div>
+  <!-- Request Dialog -->
+  <dialog id="request-dialog">
+    <form id="request-form">
+      <h3>Add New Request</h3>
+      <label>Rule Name: <input id="request-rule-name" type="text" required /></label>
+      <label>Name: <input id="request-name" type="text" required /></label>
+      <label>Environment:
+        <select id="request-env" required>
+          <option value="DEV">DEV</option>
+          <option value="UAT">UAT</option>
+          <option value="PRE_PROD">PRE_PROD</option>
+          <option value="PROD">PROD</option>
+          <option value="LOCAL">LOCAL</option>
+        </select>
+      </label>
+      <label>Persona Type:
+        <select id="request-persona" required>
+          <option value="MID">MID</option>
+          <option value="WID">WID</option>
+        </select>
+      </label>
+      <label>Persona ID: <input id="request-persona-id" type="text" required /></label>
+      <label>JSON Context: <textarea id="request-json-context" rows="5" placeholder="{}" style="width: 100%; background: var(--sidebar-bg); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 8px; margin-top: 4px;"></textarea></label>
+      <label>Status:
+        <select id="request-status" required>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </label>
+      <menu>
+        <button type="submit" class="control">Save</button>
+        <button type="button" id="cancel-request" class="control">Cancel</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Suite Dialog -->
+  <dialog id="suite-dialog">
+    <form id="suite-form">
+      <h3>Add Priority Suite</h3>
+      <label>Name: <input id="suite-name" type="text" required /></label>
+      <label>CSV File: <input id="suite-file" readonly /></label>
+      <button type="button" id="browse-suite" class="control">Browse...</button>
+      <menu>
+        <button type="submit" class="control">Save</button>
+        <button type="button" id="cancel-suite" class="control">Cancel</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Run History Dialog -->
+  <dialog id="history-dialog">
+    <h3>Run History</h3>
+    <div id="history-content"></div>
+    <menu>
+      <button type="button" id="close-history" class="control">Close</button>
+    </menu>
+  </dialog>
+
+  <!-- Settings Dialog -->
+  <dialog id="settings-dialog">
+    <form id="settings-form">
+      <h3>Settings</h3>
+      <label>Default Environment:
+        <select id="settings-env">
+          <option value="DEV">DEV</option>
+          <option value="UAT">UAT</option>
+          <option value="PRE_PROD">PRE_PROD</option>
+          <option value="PROD">PROD</option>
+          <option value="LOCAL">LOCAL</option>
+        </select>
+      </label>
+      <label>DB Host: <input id="db-host" type="text" required /></label>
+      <label>DB Port: <input id="db-port" type="number" required /></label>
+      <label>DB User: <input id="db-user" type="text" required /></label>
+      <label>DB Password: <input id="db-password" type="password" /></label>
+      <label>DB Name: <input id="db-name" type="text" required /></label>
+      <label>API Rule Engine: <input id="api-ruleengine" type="text" required /></label>
+      <label>API Rule Metadata: <input id="api-rulemetadata" type="text" required /></label>
+      <label>API GraphQL: <input id="api-graphql" type="text" required /></label>
+      <label>Token Refresh Non-Prod: <input id="token-nonprod" type="text" required /></label>
+      <label>Token Refresh Prod: <input id="token-prod" type="text" required /></label>
+      <menu>
+        <button type="submit" class="control">Save</button>
+        <button type="button" id="cancel-settings" class="control">Cancel</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Context Menu -->
+  <div id="context-menu" class="context-menu hidden">
+    <div class="context-menu-item" id="copy-node">Copy</div>
+    <div class="context-menu-item" id="paste-node">Paste</div>
+    <div class="context-menu-item" id="create-node">➕ Add Request</div>
+    <div class="context-menu-item" id="rename-node">✏️ Rename</div>
+    <div class="context-menu-item" id="delete-node">🗑️ Delete</div>
+    <div class="context-menu-item" id="show-history">📜 Show History</div>
+  </div>
+
+  <!-- Add a new context menu for environments -->
+  <div id="env-context-menu" class="context-menu hidden">
+    <div class="context-menu-item" id="paste-to-env">Paste</div>
+  </div>
+
   <script src="renderer.js"></script>
 </body>
 </html>

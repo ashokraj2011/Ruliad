@@ -1,0 +1,157 @@
+// renderer.js
+// Core logic for Ruliad Navigator: loading trees with animated atom & gear icons, leaf-click details panel, run & history actions
+
+const config = require('./config');
+const remote = require('@electron/remote');
+const { dialog } = remote;
+const fs = require('fs');
+const db = require('./db');
+
+// fallback helper for <dialog> if needed
+function openDialog(dlg) {
+  if (dlg.showModal) dlg.showModal();
+  else dlg.setAttribute('open', '');
+}
+
+// Global state
+let currentEnvironment = config.defaultEnvironment;
+let selectedItem = null;
+let selectedItemType = null;
+
+// Animated Atom SVG for environment nodes
+const atomSvgAnim = `
+<svg class="atom-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="32" r="6" fill="var(--accent)"/>
+  <ellipse cx="32" cy="32" rx="20" ry="6" stroke="var(--accent)" fill="none" stroke-width="2" transform="rotate(0 32 32)"/>
+  <ellipse cx="32" cy="32" rx="20" ry="6" stroke="var(--accent)" fill="none" stroke-width="2" transform="rotate(60 32 32)"/>
+  <ellipse cx="32" cy="32" rx="20" ry="6" stroke="var(--accent)" fill="none" stroke-width="2" transform="rotate(120 32 32)"/>
+</svg>`;
+
+// Animated Gear SVG for rule nodes
+const ruleSvgAnim = `
+<svg class="rule-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path fill="var(--accent)" d="M32 24a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm28 8l-6-2.4a20 20 0 0 0-3.6-8.4l3.6-6.4-7.2-7.2-6.4 3.6a20 20 0 0 0-8.4-3.6L40 4H24l2.4 6.4a20 20 0 0 0-8.4 3.6l-6.4-3.6-7.2 7.2 3.6 6.4a20 20 0 0 0-3.6 8.4L4 32v8l6.4 2.4a20 20 0 0 0 3.6 8.4l-3.6 6.4 7.2 7.2 6.4-3.6a20 20 0 0 0 8.4 3.6L24 60h16l-2.4-6.4a20 20 0 0 0 8.4-3.6l6.4 3.6 7.2-7.2-3.6-6.4a20 20 0 0 0 3.6-8.4L60 40z"/>
+</svg>`;
+
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await db.initializeDatabase(currentEnvironment);
+  } catch (e) {
+    dialog.showErrorBox('Database Error', e.message);
+  }
+
+  await loadRequests();
+  await loadPrioritySuites();
+
+  setupDelegatedTreeListeners();
+});
+
+/**
+ * Render tree of requests grouped by environment & rule
+ */
+async function loadRequests() {
+  const container = document.getElementById('requests-tree');
+  const envs = Object.keys(config.environments);
+  let html = '';
+
+  for (const env of envs) {
+    const reqs = await db.getAllRequests(env);
+    const byRule = {};
+    reqs.forEach(r => {
+      byRule[r.rule_name] = byRule[r.rule_name] || [];
+      byRule[r.rule_name].push(r);
+    });
+
+    html += `<div class="tree-node">` +
+        `<div class="tree-header" data-expanded="false">${atomSvgAnim}<span>${env} (${reqs.length})</span></div>` +
+        `<div class="tree-children hidden">`;
+
+    for (const [rule, list] of Object.entries(byRule)) {
+      html += `<div class="tree-node">` +
+          `<div class="tree-header" data-expanded="false">${ruleSvgAnim}<span>${rule} (${list.length})</span></div>` +
+          `<div class="tree-children hidden">`;
+
+      list.forEach(req => {
+        const cls = req.status === 'active' ? 'active' : 'inactive';
+        html += `<div class="tree-item-leaf" data-id="${req.id}" data-type="request">` +
+            `<span class="status-indicator ${cls}">●</span> ${req.name}` +
+            `</div>`;
+      });
+
+      html += `</div></div>`;
+    }
+
+    html += `</div></div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+/**
+ * Render tree of priority suites
+ */
+async function loadPrioritySuites() {
+  const container = document.getElementById('suites-tree');
+  const suites = await db.getAllPrioritySuites(currentEnvironment);
+  let html = '';
+
+  suites.forEach(s => {
+    const cls = s.status === 'active' ? 'active' : 'inactive';
+    html += `<div class="tree-item-leaf" data-id="${s.id}" data-type="suite">` +
+        `<span class="status-indicator ${cls}">●</span> ${s.name}` +
+        `</div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+/**
+ * Show details panel with Run & History buttons
+ */
+function showDetailsPanel(item, type) {
+  selectedItem = item.id;
+  selectedItemType = type;
+  const detailsEl = document.getElementById('details');
+  detailsEl.innerHTML = `
+    <pre>${JSON.stringify(item, null, 2)}</pre>
+    <div style="margin-top:12px;">
+      <button id="btn-run" class="control">▶️ Run</button>
+      <button id="btn-history" class="control">📜 History</button>
+    </div>
+    <div id="action-result" style="margin-top:16px;"></div>
+  `;
+
+  document.getElementById('btn-run').addEventListener('click', () => {
+    const result = { status:'ok', timestamp:new Date().toISOString(), item:`${type}:${item.id}` };
+    document.getElementById('action-result').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+  });
+
+  document.getElementById('btn-history').addEventListener('click', async () => {
+    const hist = await db.getRunHistory(currentEnvironment, type, item.id);
+    document.getElementById('action-result').innerHTML = `<pre>${JSON.stringify(hist, null, 2)}</pre>`;
+  });
+}
+
+/**
+ * Event delegation for tree clicks: expand/collapse and leaf selection
+ */
+function setupDelegatedTreeListeners() {
+  ['requests-tree', 'suites-tree'].forEach(id => {
+    const cont = document.getElementById(id);
+    cont?.addEventListener('click', async e => {
+      const leaf = e.target.closest('.tree-item-leaf');
+      if (leaf && cont.contains(leaf)) {
+        if (leaf.dataset.type === 'request') {
+          const res = await db.getDbPool('DEV').query('SELECT * FROM requests WHERE id=$1', [leaf.dataset.id]);
+          showDetailsPanel(res.rows[0], 'request');
+        } else {
+          const suite = (await db.getAllPrioritySuites(currentEnvironment)).find(s => s.id == leaf.dataset.id);
+          showDetailsPanel(suite, 'suite');
+        }
+        return;
+      }
+      const header = e.target.closest('.tree-header');
+      if (header) header.nextElementSibling.classList.toggle('hidden');
+    });
+  });
+}
