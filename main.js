@@ -30,17 +30,20 @@ function createWindow() {
 
   remoteMain.enable(win.webContents);
 
-  // Skip the login screen and load the index.html directly
-  win.loadFile(path.join(__dirname, 'index.html'));
-  
-  // Set username as 'admin' when the window is ready
-  win.webContents.on('dom-ready', () => {
-    win.webContents.executeJavaScript(`
-      localStorage.setItem('loggedInUser', 'admin');
-      console.log('Auto-login as admin');
-    `);
-  });
-  
+  // Add a slight delay before loading the file to prevent startup issues with dialogs
+  setTimeout(() => {
+    // Skip the login screen and load the index.html directly
+    win.loadFile(path.join(__dirname, 'index.html'));
+
+    // Set username as 'admin' when the window is ready
+    win.webContents.on('dom-ready', () => {
+      win.webContents.executeJavaScript(`
+        localStorage.setItem('loggedInUser', 'admin');
+        console.log('Auto-login as admin');
+      `);
+    });
+  }, 100); // Small delay to ensure proper initialization
+
   // Open DevTools for debugging
   win.webContents.openDevTools();
 }

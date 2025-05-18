@@ -1,0 +1,84 @@
+{
+  "environments": {
+    "DEV": {
+      "db": {
+        "host": "localhost",
+        "port": 5432,
+        "user": "postgres",
+        "password": "",
+        "database": "postgres"
+      },
+      "apis": {
+        "ruleEngine": "http://localhost:8080/ruleengine",
+        "ruleMetadata": "http://localhost:8081/metadata",
+        "graphql": "http://localhost:4000/graphql",
+        "queryGenerator": "http://localhost:8080/query-generator"
+      }
+    },
+    "UAT": {
+      "db": {
+        "host": "uat-db.example.com",
+        "port": 5432,
+        "user": "uat_user",
+        "password": "",
+        "database": "uat_db"
+      },
+      "apis": {
+        "ruleEngine": "https://uat-api.example.com/ruleengine",
+        "ruleMetadata": "https://uat-api.example.com/metadata",
+        "graphql": "https://uat-api.example.com/graphql",
+        "queryGenerator": "https://uat-api.example.com/query-generator"
+      }
+    },
+    "PRE_PROD": {
+      "db": {
+        "host": "preprod-db.example.com",
+        "port": 5432,
+        "user": "preprod_user",
+        "password": "",
+        "database": "preprod_db"
+      },
+      "apis": {
+        "ruleEngine": "https://preprod-api.example.com/ruleengine",
+        "ruleMetadata": "https://preprod-api.example.com/metadata",
+        "graphql": "https://preprod-api.example.com/graphql",
+        "queryGenerator": "https://preprod-api.example.com/query-generator"
+      }
+    },
+    "PROD": {
+      "db": {
+        "host": "prod-db.example.com",
+        "port": 5432,
+        "user": "prod_user",
+        "password": "",
+        "database": "prod_db"
+      },
+      "apis": {
+        "ruleEngine": "https://api.example.com/ruleengine",
+        "ruleMetadata": "https://api.example.com/metadata",
+        "graphql": "https://api.example.com/graphql",
+        "queryGenerator": "https://api.example.com/query-generator"
+      }
+    },
+    "LOCAL": {
+      "db": {
+        "host": "localhost",
+        "port": 5432,
+        "user": "local_user",
+        "password": "",
+        "database": "local_db"
+      },
+      "apis": {
+        "ruleEngine": "http://localhost:8080/ruleengine",
+        "ruleMetadata": "http://localhost:8081/metadata",
+        "graphql": "http://localhost:4000/graphql",
+        "queryGenerator": "http://localhost:8080/query-generator"
+      }
+    }
+  },
+  "defaultEnvironment": "DEV",
+  "tokenRefresh": {
+    "nonProd": "http://localhost:8080/auth/refresh",
+    "prod": "https://api.example.com/auth/refresh"
+  }
+}

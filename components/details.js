@@ -1,27 +1,67 @@
 // components/details.js
-// Shows details panel with Run & History actions
+
+function showDetailsPanel(item, type) {
+    const det = document.getElementById('details');
+
+    // Format JSON with syntax highlighting
+    const jsonString = JSON.stringify(item, null, 2);
+    det.innerHTML = formatJsonWithSyntaxHighlighting(jsonString);
+
+    // also populate the run form
+    const runEnvSelect = document.getElementById('run-env');
+    const environment = item.environment || runEnvSelect.value;
+
+    // Set environment first
+    runEnvSelect.value = environment;
+
+    // Set other form fields
+    document.getElementById('run-persona').value = item.personaType || 'MID';
+    document.getElementById('run-persona-id').value = item.personaId || '';
+    document.getElementById('run-json-context').value = JSON.stringify(item.jsonContext || {}, null, 2);
+
+    // Set rule name using the populateRuleNameDropdown function
+    const runRuleNameSelect = document.getElementById('run-rule-name');
+    const ruleName = item.ruleName || item.name || '';
+
+    // Import the populateRuleNameDropdown function
+    const { populateRuleNameDropdown } = require('../services/ruleMetadata');
+
+    // Populate the dropdown and select the rule name
+    populateRuleNameDropdown(runRuleNameSelect, environment, ruleName);
+}
 
 /**
- * showDetailsPanel: Insert JSON + Run/History buttons into #details
+ * Format JSON string with syntax highlighting
+ * @param {string} jsonString - The JSON string to format
+ * @returns {string} - HTML with syntax highlighting
  */
-function showDetailsPanel(item, type) {
-    const detailsEl = document.getElementById('details');
-    detailsEl.innerHTML = `
-    <pre>${JSON.stringify(item, null, 2)}</pre>
-    <div style="margin-top:12px;">
-      <button id="btn-run" class="control">▶️ Run</button>
-      <button id="btn-history" class="control">📜 History</button>
-    </div>
-    <div id="action-result" style="margin-top:16px;"></div>
-  `;
-    document.getElementById('btn-run').addEventListener('click', () => {
-        const res = { status: 'ok', timestamp: new Date().toISOString(), type, id: item.id };
-        document.getElementById('action-result').innerHTML = `<pre>${JSON.stringify(res, null, 2)}</pre>`;
-    });
-    document.getElementById('btn-history').addEventListener('click', async () => {
-        const hist = await require('../db').getRunHistory(require('../config').defaultEnvironment, type, item.id);
-        document.getElementById('action-result').innerHTML = `<pre>${JSON.stringify(hist, null, 2)}</pre>`;
-    });
+function formatJsonWithSyntaxHighlighting(jsonString) {
+    // Replace special characters to prevent XSS
+    const escapeHtml = (str) => {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    };
+
+    // Add syntax highlighting with regex
+    return escapeHtml(jsonString)
+        // Keys
+        .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span><span class="json-colon">:</span>')
+        // String values
+        .replace(/"([^"]*)"/g, '<span class="json-string">"$1"</span>')
+        // Numbers
+        .replace(/\b(\d+\.?\d*)\b/g, '<span class="json-number">$1</span>')
+        // Booleans
+        .replace(/\b(true|false)\b/g, '<span class="json-boolean">$1</span>')
+        // Null
+        .replace(/\bnull\b/g, '<span class="json-null">null</span>')
+        // Brackets and braces
+        .replace(/[{}\[\]]/g, '<span class="json-bracket">$&</span>')
+        // Commas
+        .replace(/,/g, '<span class="json-comma">,</span>');
 }
 
 module.exports = { showDetailsPanel };

@@ -48,22 +48,36 @@ window.addEventListener('DOMContentLoaded', async () => {
     require('./dialogs').setupDialogListeners();
 
     // Side-panel buttons
-    document.getElementById('refresh-nonprod')?.addEventListener('click', async () => {
+    document.getElementById('refresh-token')?.addEventListener('click', async () => {
         try {
-            const res = await fetch(config.tokenRefresh.nonProd, { method: 'POST' });
-            nonProdToken = await res.text();
-            alert('Non-Prod token refreshed');
-        } catch (err) {
-            dialog.showErrorBox('Token Error', err.message);
-        }
-    });
+            // Show loading indicator if available
+            if (typeof window.showLoading === 'function') {
+                window.showLoading();
+            }
 
-    document.getElementById('refresh-prod')?.addEventListener('click', async () => {
-        try {
-            const res = await fetch(config.tokenRefresh.prod, { method: 'POST' });
-            prodToken = await res.text();
-            alert('Prod token refreshed');
+            // Refresh both tokens in parallel
+            const [nonProdResponse, prodResponse] = await Promise.all([
+                fetch(config.tokenRefresh.nonProd, { method: 'POST' }),
+                fetch(config.tokenRefresh.prod, { method: 'POST' })
+            ]);
+
+            // Get the token values
+            nonProdToken = await nonProdResponse.text();
+            prodToken = await prodResponse.text();
+
+            // Hide loading indicator if available
+            if (typeof window.hideLoading === 'function') {
+                window.hideLoading();
+            }
+
+            // Show success notification
+            alert('All tokens refreshed successfully');
         } catch (err) {
+            // Hide loading indicator if available
+            if (typeof window.hideLoading === 'function') {
+                window.hideLoading();
+            }
+
             dialog.showErrorBox('Token Error', err.message);
         }
     });

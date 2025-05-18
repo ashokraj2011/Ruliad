@@ -1,0 +1,62 @@
+// components/dialogs.js
+
+function setupDialogListeners(){
+    // Add Request
+    const addReqBtn = document.getElementById('add-request');
+    const reqDlg    = document.getElementById('request-dialog');
+    const reqForm   = document.getElementById('request-form');
+    const cancelReq = document.getElementById('cancel-request');
+
+    addReqBtn.addEventListener('click',()=>{
+        reqForm.reset();
+        document.getElementById('request-env').value     = 'DEV';
+        document.getElementById('request-persona').value = 'MID';
+        document.getElementById('request-json-context').value = '{}';
+        document.getElementById('request-status').value  = 'active';
+        reqDlg.showModal();
+    });
+    cancelReq.addEventListener('click',()=>reqDlg.close());
+
+    // Adhoc Request
+    const adhocBtn   = document.getElementById('adhoc-request');
+    const adhocDlg   = document.getElementById('adhoc-dialog');
+    const adhocForm  = document.getElementById('adhoc-form');
+    const closeAdhoc = document.getElementById('close-adhoc');
+    const callAdhoc  = document.getElementById('call-adhoc');
+    const saveAdhoc  = document.getElementById('save-adhoc');
+    const outputPre  = document.getElementById('adhoc-output');
+
+    adhocBtn.addEventListener('click',()=>{
+        adhocForm.reset();
+        outputPre.style.display = 'none';
+        saveAdhoc.style.display = 'none';
+        adhocDlg.showModal();
+    });
+    closeAdhoc.addEventListener('click',()=>adhocDlg.close());
+
+    callAdhoc.addEventListener('click',()=>{
+        const ctx = document.getElementById('adhoc-json-context').value||'{}';
+        const res = { result:'mocked', context:JSON.parse(ctx), ts:new Date().toISOString() };
+        outputPre.textContent = JSON.stringify(res,null,2);
+        outputPre.style.display = 'block';
+        saveAdhoc.style.display = 'inline-block';
+    });
+
+    saveAdhoc.addEventListener('click',()=>{
+        if(!confirm('Save this as a new Request?')) return;
+        // copy into Add Request form
+        document.getElementById('request-rule-name').value = document.getElementById('adhoc-rule-name').value;
+        document.getElementById('request-env').value       = document.getElementById('adhoc-env').value;
+        document.getElementById('request-persona').value   = document.getElementById('adhoc-persona').value;
+        document.getElementById('request-json-context').value = document.getElementById('adhoc-json-context').value;
+        document.getElementById('request-status').value    = document.getElementById('adhoc-status').value;
+        // show Add Request
+        document.getElementById('request-dialog').showModal();
+        adhocDlg.close();
+        saveAdhoc.style.display='none';
+    });
+
+    // Priority Suite & Settings… add same pattern if needed
+}
+
+module.exports = { setupDialogListeners };

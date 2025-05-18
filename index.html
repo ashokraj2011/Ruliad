@@ -4,438 +4,730 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🧭 Ruliad Navigator</title>
+  <title>Fidelity Navigator</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modern-theme.css">
+
+  <!-- Add fix script to ensure dialogs can be closed -->
+  <script src="fix_settings.js"></script>
+
+  <!-- Original styles moved to modern-theme.css -->
   <style>
-    :root {
-      --bg: #1e1e2f;
-      --sidebar-bg: #252536;
-      --panel-bg: #2a2a3d;
-      --accent: #00acee;
-      --text: #e0e0e0;
-      --border: #444;
-      --btn-hover: #00bfff;
-      --dialog-bg: #2a2a3d;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      font-family: 'Roboto', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow: hidden;
-    }
-    #sidebar {
-      width: 300px;
-      background: var(--sidebar-bg);
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      border-right: 1px solid var(--border);
-    }
-    button.control {
-      background: var(--panel-bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-    }
-    button.control:hover {
-      background: var(--btn-hover);
-      transform: scale(1.02);
-    }
-    .tree {
-      flex: 1;
-      background: var(--panel-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 10px;
-      overflow-y: auto;
-    }
-    /* Tree-specific styling */
-    .tree-node { margin: 4px 0; }
-    .tree-header {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .tree-header:hover { background: rgba(255,255,255,0.1); }
-    .tree-header.selected { background: var(--accent); color: #fff; }
-    .tree-icon { width: 16px; height: 16px; margin-right: 8px; fill: var(--accent); }
-    .tree-children { padding-left: 24px; margin-top: 2px; }
+    /* Maintain a few critical styles that might be needed for backward compatibility */
     .hidden { display: none; }
-    .tree-item-leaf {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2px 4px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .tree-item-leaf:hover { background: rgba(255,255,255,0.1); }
-    .tree-item-leaf.selected { background: var(--accent); color: #fff; }
-    .leaf-icon { width: 12px; height: 12px; margin-right: 6px; fill: #0f0; }
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 15px 0;
-    }
-    #main {
-      flex: 1;
-      background: var(--panel-bg);
-      padding: 30px;
-      overflow-y: auto;
-    }
-    #main h1 {
-      margin: 0 0 20px;
-      font-size: 24px;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-    }
-    pre#details {
-      white-space: pre-wrap;
-      word-break: break-all;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 15px;
-      border-radius: 4px;
-      max-height: 70vh;
-      overflow: auto;
-    }
-    dialog {
-      background: var(--dialog-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 20px;
-      width: 320px;
-      color: var(--text);
-      font-size: 14px;
-      backdrop-filter: blur(4px);
-    }
-    dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
-    dialog h3 {
-      margin: 0 0 15px;
-      font-size: 18px;
-      color: var(--accent);
-    }
-    dialog label { display: block; margin-bottom: 12px; }
-    dialog input {
-      width: 100%;
-      padding: 8px;
-      background: var(--sidebar-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text);
-      margin-top: 4px;
-    }
-    /* Add styles for select dropdown to match input fields */
-    dialog select {
-      width: 100%;
-      padding: 8px;
-      background: var(--sidebar-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text);
-      margin-top: 4px;
-    }
-    dialog menu {
-      margin-top: 20px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-    /* New styles for tree action buttons */
-    .tree-action {
-      margin-left: 5px;
-      background: transparent;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      padding: 2px 5px;
-      border-radius: 3px;
-    }
-    .tree-action:hover {
-      background: rgba(255,255,255,0.1);
-    }
-    
-    /* Style for history view */
-    .history-item {
-      margin-bottom: 10px;
-      padding: 8px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-    .history-item .status-success {
-      color: #0f0;
-    }
-    .history-item .status-failure {
-      color: #f00;
-    }
-    .history-item .status-partial {
-      color: #ff0;
-    }
-    
-    /* Tabs styling */
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-    .tab {
-      padding: 10px 20px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      border-bottom: none;
-    }
-    .tab:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .tab.active {
-      background: var(--panel-bg);
-      border-color: var(--border);
-      border-bottom-color: transparent;
-      position: relative;
-      top: 1px;
-    }
-    
-    /* Status indicator styles */
-    .status-indicator {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin-right: 6px;
-      border-radius: 50%;
-      font-size: 10px;
-    }
-    
-    .status-indicator.active {
-      color: #0f0;
-    }
-    
-    .status-indicator.inactive {
-      color: #777;
-    }
-    
-    /* Context menu styles */
-    .context-menu {
-      position: absolute;
-      background: var(--dialog-bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 5px 0;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      min-width: 150px;
-    }
-    
-    .context-menu-item {
-      padding: 8px 15px;
-      cursor: pointer;
-    }
-    #sidebar {
-      width: 300px;               /* your default */
-      min-width: 200px;           /* how narrow it can go */
-      max-width: 400px;           /* how wide it can stretch */
-      resize: horizontal;         /* ← allow drag-to-resize */
-      overflow: auto;             /* needed to make resize grips show up */
-      /* …all your other existing styles… */
-    }
 
-    .context-menu-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .atom-icon:hover { animation: spin 4s linear infinite; }
-    .rule-icon:hover { animation: spin 2s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .atom-icon { width: 32px; height: 32px; margin-right: 6px; }
-    .atom-icon:hover { animation: spin 4s linear infinite; }
-    .rule-icon { width: 24px; height: 24px; margin-right: 6px; }
-    .rule-icon:hover { animation: spin 2s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-
+    /* Grid layout for panels */
+    #run-panel { grid-column: 1 / 2; grid-row: 1 / 2; } /* Left column, top */
+    #api-caller-panel { grid-column: 1 / 2; grid-row: 2 / 3; } /* Left column, bottom */
+    #details-panel { grid-column: 2 / 3; grid-row: 1 / 2; } /* Right column, top */
+    #history-panel { grid-column: 2 / 3; grid-row: 2 / 3; } /* Right column, bottom */
   </style>
 </head>
 <body>
-  <div id="sidebar">
-    <button id="refresh-nonprod" class="control">🔄 Refresh Token Non-Prod</button>
-    <button id="refresh-prod" class="control">🔄 Refresh Token Prod</button>
-    <button id="adhoc-request" class="control">🔧 Adhoc Request</button>
-    <button id="add-request" class="control">➕ Add Request</button>
-    <div id="requests-tree" class="tree"></div>
-    <hr />
-    <button id="add-suite" class="control">📂 Add Priority Suite</button>
-    <div id="suites-tree" class="tree"></div>
-    <button id="open-settings" class="control">⚙️ Settings</button>
-  </div>
-  <!-- Adhoc Request Dialog -->
-  <dialog id="adhoc-dialog" class="big-modal">
-    <form id="adhoc-form">
-      <h3>Adhoc Request</h3>
-      <label>Rule Name: <input id="adhoc-rule-name" type="text" required /></label>
-      <label>Environment:
-        <select id="adhoc-env">
-          <option value="DEV">DEV</option>
-          <option value="UAT">UAT</option>
-          <option value="PRE_PROD">PRE_PROD</option>
-          <option value="PROD">PROD</option>
-          <option value="LOCAL">LOCAL</option>
-        </select>
-      </label>
-      <label>Persona Type:
-        <select id="adhoc-persona">
-          <option value="MID">MID</option>
-          <option value="WID">WID</option>
-        </select>
-      </label>
-      <label>Persona ID: <input id="adhoc-persona-id" type="text" /></label>
-      <label>JSON Context: <textarea id="adhoc-json-context" rows="5" style="width:100%; background:var(--sidebar-bg); border:1px solid var(--border); color:var(--text); border-radius:4px; padding:8px;"></textarea></label>
-      <label>Status:
-        <select id="adhoc-status">
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </label>
-      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
-        <button type="button" id="call-adhoc" class="control">▶️ Call</button>
-        <button type="button" id="save-adhoc" class="control" style="display:none;">💾 Save</button>
-        <button type="button" id="close-adhoc" class="control">✖️ Close</button>
+
+<!-- Loading Indicator -->
+<div id="loading-indicator" class="loading-indicator">
+  <div class="loading-spinner"></div>
+</div>
+
+<div id="main-tabs" class="main-tabs">
+  <div class="tab active" data-tab="control-center">Control Center</div>
+  <div class="tab" data-tab="rule-search">Rule Search</div>
+  <div class="tab" data-tab="rule-research">Rule Research</div>
+  <div class="tab" data-tab="help">Help</div>
+</div>
+
+<div id="tab-content" class="tab-content-container">
+  <!-- Control Center Tab Content -->
+  <div id="control-center-tab" class="main-tab-content active">
+    <div id="sidebar">
+      <div id="search-container">
+        <input type="text" id="tree-search-input" placeholder="Search trees..." />
+        <button id="tree-search-button" class="control">🔍 Search</button>
+      </div>
+      <button id="refresh-token" class="control">🔄 Refresh Token</button>
+      <div id="requests-tree" class="tree">
+        <button id="add-request" class="floating-add-button" title="Add Request">+</button>
       </div>
       <hr />
-      <pre id="adhoc-output" style="display:none; height:200px; overflow:auto; background:var(--panel-bg); border:1px solid var(--border); padding:10px;"></pre>
-    </form>
-  </dialog>
-  <div id="main">
-    <h1>🧭 Ruliad Navigator</h1>
-
-    <div class="tabs">
-      <div class="tab active" id="tab-details">Details</div>
-      <div class="tab" id="tab-history">Run History</div>
+      <div id="api-calls-tree" class="tree">
+        <button id="add-api-call" class="floating-add-button" title="Add API Call">+</button>
+      </div>
+      <hr />
+      <div id="suites-tree" class="tree">
+        <button id="add-suite" class="floating-add-button" title="Add Priority Suite">+</button>
+      </div>
+      <button id="rule-analyzer" class="control">🔍 Rule Analyzer</button>
+      <button id="open-settings" class="control">⚙️ Settings</button>
     </div>
+    <div id="main">
+      <section id="run-panel" class="panel">
+        <h2>Run Rules ▶️</h2>
+        <div class="panel-content">
+          <form class="run-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <label>Environment:
+                <select id="run-env"><option>DEV</option><option>UAT</option><option>PRE_PROD</option><option>PROD</option><option>LOCAL</option></select>
+              </label>
+              <label>Rule Name:
+                <select id="run-rule-name">
+                  <option value="">Select a rule...</option>
+                </select>
+              </label>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <label>Persona Type:
+                <select id="run-persona"><option>MID</option><option>WID</option></select>
+              </label>
+              <label>Persona ID:<input id="run-persona-id"/></label>
+            </div>
+            <label>JSON Context:<textarea id="run-json-context" rows="3" placeholder="{}"></textarea></label>
+            <div style="display: flex; gap: 10px;">
+              <button id="run-button" class="control" type="button">▶️ Execute</button>
+              <button id="analyze-button" class="control" type="button">🔍 Analyze</button>
+            </div>
+          </form>
+        </div>
+      </section>
 
-    <div id="tab-content-details">
-      <pre id="details"></pre>
-    </div>
+      <!-- API Caller Panel -->
+      <section id="api-caller-panel" class="panel">
+        <h2>API Caller 📞</h2>
+        <div class="panel-content">
+          <form id="api-caller-form">
+            <!-- URL Bar with Method Selector -->
+            <div class="url-bar">
+              <select id="api-method" class="control">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+                <option value="PATCH">PATCH</option>
+                <option value="HEAD">HEAD</option>
+                <option value="OPTIONS">OPTIONS</option>
+              </select>
+              <input type="url" id="api-url" class="control" placeholder="https://api.example.com/endpoint" />
+            </div>
+            <div class="form-actions" style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 10px;">
+              <button type="submit" id="send-api-request-btn" class="control primary">Send Request</button>
+              <button type="button" id="save-api-request" class="control success">Save</button>
+            </div>
 
-    <div id="tab-content-history" style="display:none;">
-      <h2>Recent Run History</h2>
-      <div id="run-history-list"></div>
+            <!-- Request Tabs -->
+            <div class="tabs">
+              <div class="tab active" data-tab="headers">Headers</div>
+              <div class="tab" data-tab="body">Body</div>
+              <div class="tab" data-tab="auth">Auth</div>
+              <div class="tab" data-tab="params">Params</div>
+            </div>
+
+            <!-- Headers Tab Content -->
+            <div class="tab-content active" id="headers-tab">
+              <table id="api-headers-table">
+                <thead>
+                  <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Headers will be added here dynamically -->
+                </tbody>
+              </table>
+              <button type="button" id="add-header-btn" class="control">Add Header</button>
+            </div>
+
+            <!-- Body Tab Content -->
+            <div class="tab-content" id="body-tab">
+              <textarea id="api-request-body" class="control" placeholder="Request body (JSON, XML, etc.)"></textarea>
+            </div>
+
+            <!-- Auth Tab Content -->
+            <div class="tab-content" id="auth-tab">
+              <div class="auth-container">
+                <label>Auth Type:
+                  <select id="auth-type" class="control">
+                    <option value="none">No Auth</option>
+                    <option value="basic">Basic Auth</option>
+                    <option value="bearer">Bearer Token</option>
+                    <option value="api-key">API Key</option>
+                  </select>
+                </label>
+
+                <!-- Basic Auth Fields -->
+                <div id="basic-auth-fields" class="auth-fields hidden">
+                  <label>Username: <input type="text" id="basic-auth-username" class="control" /></label>
+                  <label>Password: <input type="password" id="basic-auth-password" class="control" /></label>
+                </div>
+
+                <!-- Bearer Token Fields -->
+                <div id="bearer-auth-fields" class="auth-fields hidden">
+                  <label>Token: <input type="text" id="bearer-token" class="control" /></label>
+                </div>
+
+                <!-- API Key Fields -->
+                <div id="api-key-fields" class="auth-fields hidden">
+                  <label>Key Name: <input type="text" id="api-key-name" class="control" /></label>
+                  <label>Key Value: <input type="text" id="api-key-value" class="control" /></label>
+                  <label>Add To:
+                    <select id="api-key-location" class="control">
+                      <option value="header">Header</option>
+                      <option value="query">Query Parameter</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Params Tab Content -->
+            <div class="tab-content" id="params-tab">
+              <table id="api-params-table">
+                <thead>
+                  <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Query parameters will be added here dynamically -->
+                </tbody>
+              </table>
+              <button type="button" id="add-param-btn" class="control">Add Parameter</button>
+            </div>
+
+            <!-- Response Section -->
+            <div class="response-container">
+              <div class="response-header">
+                <div class="response-status"></div>
+                <div class="response-time"></div>
+              </div>
+              <div class="response-tabs">
+                <div class="response-tab active" data-tab="response">Response</div>
+                <div class="response-tab" data-tab="headers">Headers</div>
+              </div>
+              <div class="response-body" id="api-response-area">// Send a request to see the response</div>
+            </div>
+
+          </form>
+        </div>
+      </section>
+
+      <!-- Details Panel -->
+      <section id="details-panel" class="panel">
+        <h2>Details</h2>
+        <div class="panel-content">
+          <pre id="details">Select a request or suite…</pre>
+        </div>
+      </section>
+
+      <!-- Run History Panel -->
+      <section id="history-panel" class="panel">
+        <h2>Run History 📜</h2>
+        <div class="panel-content">
+          <div class="history-list" id="history-list"></div>
+        </div>
+      </section>
     </div>
   </div>
-  <!-- Request Dialog -->
-  <dialog id="request-dialog">
-    <form id="request-form">
+
+  <!-- Rule Search Tab Content -->
+  <div id="rule-search-tab" class="main-tab-content">
+    <div class="google-search-container">
+      <div class="search-logo">
+        <h1>Rule Search</h1>
+      </div>
+      <div class="search-box-container">
+        <div class="search-box">
+          <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input type="text" id="rule-search-input" placeholder="Search for rules..." autofocus />
+          <div class="search-mic-icon">🎤</div>
+        </div>
+        <div class="search-buttons">
+          <button id="rule-search-button" class="search-btn">Search Rules</button>
+        </div>
+      </div>
+      <div class="search-filters">
+        <div class="filter active">All</div>
+        <div class="filter">Active Rules</div>
+        <div class="filter">Deprecated Rules</div>
+        <div class="filter">My Rules</div>
+      </div>
+      <div id="search-results" class="search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Rule Research Tab Content -->
+  <div id="rule-research-tab" class="main-tab-content">
+    <div class="chatgpt-container">
+      <div class="chat-messages" id="chat-messages">
+        <div class="system-message">
+          <p>Hello! I'm your Rule Research Assistant. Ask me anything about rules, and I'll help you find the information you need.</p>
+        </div>
+        <!-- Chat messages will appear here -->
+      </div>
+      <div class="chat-input-container">
+        <textarea id="chat-input" placeholder="Ask about rules..." rows="1"></textarea>
+        <button id="send-message" class="send-button">
+          <span>Send</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Tab Content -->
+  <div id="help-tab" class="main-tab-content">
+    <div class="help-container">
+      <h1>Fidelity Navigator Help Guide</h1>
+
+      <section class="help-section">
+        <h2>Getting Started</h2>
+        <p>Welcome to Fidelity Navigator, a comprehensive tool for managing and testing rules. This guide will help you understand how to use the various features of the application.</p>
+      </section>
+
+      <section class="help-section">
+        <h2>Control Center Tab</h2>
+        <p>The Control Center is the main dashboard for executing and managing rules.</p>
+
+        <h3>Sidebar</h3>
+        <ul>
+          <li><strong>Search Trees</strong>: Use the search box to find specific requests, API calls, or suites.</li>
+          <li><strong>Refresh Token</strong>: Click to refresh your authentication token.</li>
+          <li><strong>Requests Tree</strong>: View and manage your saved rule requests. (Add new request with <kbd>Alt+R</kbd>)</li>
+          <li><strong>API Calls Tree</strong>: View and manage your saved API calls. (Add new API call with <kbd>Alt+A</kbd>)</li>
+          <li><strong>Suites Tree</strong>: View and manage your priority suites. (Add new suite with <kbd>Alt+S</kbd>)</li>
+          <li><strong>Rule Analyzer</strong>: Open the Rule Analyzer tool for detailed rule analysis.</li>
+          <li><strong>Settings</strong>: Configure application settings. (Open with <kbd>Alt+O</kbd>)</li>
+        </ul>
+
+        <h3>Run Panel</h3>
+        <p>Execute rules with specific parameters:</p>
+        <ul>
+          <li><strong>Environment</strong>: Select the environment (DEV, UAT, PRE_PROD, PROD, LOCAL).</li>
+          <li><strong>Rule Name</strong>: Select the rule to execute.</li>
+          <li><strong>Persona Type</strong>: Select MID or WID.</li>
+          <li><strong>Persona ID</strong>: Enter the persona identifier.</li>
+          <li><strong>JSON Context</strong>: Enter any additional context in JSON format.</li>
+          <li><strong>Execute</strong>: Run the rule with the specified parameters. (Shortcut: <kbd>Alt+E</kbd>)</li>
+          <li><strong>Analyze</strong>: Analyze the rule execution. (Shortcut: <kbd>Alt+Z</kbd>)</li>
+        </ul>
+
+        <h3>API Caller Panel</h3>
+        <p>Make API calls directly from the application:</p>
+        <ul>
+          <li><strong>Method</strong>: Select the HTTP method (GET, POST, PUT, etc.).</li>
+          <li><strong>URL</strong>: Enter the API endpoint URL.</li>
+          <li><strong>Headers</strong>: Add HTTP headers for the request.</li>
+          <li><strong>Body</strong>: Enter the request body (for POST, PUT, etc.).</li>
+          <li><strong>Auth</strong>: Configure authentication for the request.</li>
+          <li><strong>Params</strong>: Add query parameters to the URL.</li>
+          <li><strong>Send Request</strong>: Execute the API call.</li>
+          <li><strong>Save</strong>: Save the API call for future use.</li>
+        </ul>
+
+        <h3>Details Panel</h3>
+        <p>View details of selected requests, API calls, or suites.</p>
+
+        <h3>Run History Panel</h3>
+        <p>View the history of rule executions and API calls.</p>
+      </section>
+
+      <section class="help-section">
+        <h2>Rule Search Tab</h2>
+        <p>Search for rules by name or description:</p>
+        <ul>
+          <li><strong>Search Box</strong>: Enter keywords to search for rules.</li>
+          <li><strong>Filters</strong>: Filter results by All, Active Rules, Deprecated Rules, or My Rules.</li>
+          <li><strong>Search Results</strong>: View matching rules and their descriptions.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h2>Rule Research Tab</h2>
+        <p>Get assistance with rule-related questions:</p>
+        <ul>
+          <li><strong>Chat Interface</strong>: Ask questions about rules and receive helpful responses.</li>
+          <li><strong>Input Box</strong>: Type your questions here.</li>
+          <li><strong>Send Button</strong>: Submit your question.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h2>Dialogs</h2>
+        <p>Various dialogs provide additional functionality:</p>
+        <ul>
+          <li><strong>Request Dialog</strong>: Create or edit rule requests.</li>
+          <li><strong>Suite Dialog</strong>: Create or edit priority suites.</li>
+          <li><strong>History Dialog</strong>: View detailed run history.</li>
+          <li><strong>Rule Definition Dialog</strong>: View rule definitions.</li>
+          <li><strong>Rule Analyzer Dialog</strong>: Analyze rule execution in detail.</li>
+          <li><strong>Rule Analysis Results Dialog</strong>: View analysis results.</li>
+          <li><strong>Settings Dialog</strong>: Configure application settings.</li>
+          <li><strong>API Call Dialog</strong>: Create or edit API calls.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h2>Keyboard Shortcuts</h2>
+        <p>The following keyboard shortcuts are available when no dialog is open and no input field is focused:</p>
+        <ul>
+          <li><kbd>Alt+R</kbd>: Add Request</li>
+          <li><kbd>Alt+A</kbd>: Add API Call</li>
+          <li><kbd>Alt+S</kbd>: Add Priority Suite</li>
+          <li><kbd>Alt+O</kbd>: Open Settings</li>
+          <li><kbd>Alt+E</kbd>: Execute Rule</li>
+          <li><kbd>Alt+Z</kbd>: Analyze Rule</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h2>Tips and Tricks</h2>
+        <ul>
+          <li>Use the search functionality to quickly find what you need.</li>
+          <li>Save frequently used requests and API calls for easy access.</li>
+          <li>Use the Rule Analyzer for detailed debugging of rule execution.</li>
+          <li>Check the Run History to review past executions.</li>
+          <li>Configure your environment settings correctly for proper functionality.</li>
+          <li>Use keyboard shortcuts (<kbd>Alt+R</kbd>, <kbd>Alt+A</kbd>, etc.) to speed up your workflow.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li><strong>Connection Issues</strong>: Check your network connection and ensure you have the correct environment settings.</li>
+          <li><strong>Authentication Errors</strong>: Try refreshing your token using the Refresh Token button.</li>
+          <li><strong>Database Errors</strong>: Verify your database settings in the Settings dialog.</li>
+          <li><strong>Rule Execution Failures</strong>: Check the rule parameters and JSON context for errors.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<!-- Request Dialog -->
+<dialog id="request-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
       <h3>Add New Request</h3>
-      <label>Rule Name: <input id="request-rule-name" type="text" required /></label>
-      <label>Name: <input id="request-name" type="text" required /></label>
-      <label>Environment:
-        <select id="request-env" required>
-          <option value="DEV">DEV</option>
-          <option value="UAT">UAT</option>
-          <option value="PRE_PROD">PRE_PROD</option>
-          <option value="PROD">PROD</option>
-          <option value="LOCAL">LOCAL</option>
-        </select>
-      </label>
-      <label>Persona Type:
-        <select id="request-persona" required>
-          <option value="MID">MID</option>
-          <option value="WID">WID</option>
-        </select>
-      </label>
-      <label>Persona ID: <input id="request-persona-id" type="text" required /></label>
-      <label>JSON Context: <textarea id="request-json-context" rows="5" placeholder="{}" style="width: 100%; background: var(--sidebar-bg); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 8px; margin-top: 4px;"></textarea></label>
-      <label>Status:
-        <select id="request-status" required>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </label>
-      <menu>
-        <button type="submit" class="control">Save</button>
-        <button type="button" id="cancel-request" class="control">Cancel</button>
-      </menu>
-    </form>
-  </dialog>
+    </header>
+    <div class="body">
+      <form id="request-form">
+        <label>Environment:
+          <select id="request-env" required>
+            <option value="DEV">DEV</option>
+            <option value="UAT">UAT</option>
+            <option value="PRE_PROD">PRE_PROD</option>
+            <option value="PROD">PROD</option>
+            <option value="LOCAL">LOCAL</option>
+          </select>
+        </label>
+        <label>Rule Name: 
+          <select id="request-rule-name" required>
+            <option value="">Select a rule...</option>
+          </select>
+        </label>
+        <label>Name: <input id="request-name" type="text" required /></label>
+        <label>Persona Type:
+          <select id="request-persona" required>
+            <option value="MID">MID</option>
+            <option value="WID">WID</option>
+          </select>
+        </label>
+        <label>Persona ID: <input id="request-persona-id" type="text" required /></label>
+        <label>JSON Context: <textarea id="request-json-context" rows="5" placeholder="{}"></textarea></label>
+        <label>Status:
+          <select id="request-status" required>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </label>
+      </form>
+    </div>
+    <footer>
+      <button type="button" id="cancel-request" class="secondary">Cancel</button>
+      <button type="submit" form="request-form" class="primary">Save</button>
+    </footer>
+  </div>
+</dialog>
 
-  <!-- Suite Dialog -->
-  <dialog id="suite-dialog">
-    <form id="suite-form">
+<!-- Suite Dialog -->
+<dialog id="suite-dialog">
+  <div class="dialog-card">
+    <header>
       <h3>Add Priority Suite</h3>
-      <label>Name: <input id="suite-name" type="text" required /></label>
-      <label>CSV File: <input id="suite-file" readonly /></label>
-      <button type="button" id="browse-suite" class="control">Browse...</button>
-      <menu>
-        <button type="submit" class="control">Save</button>
-        <button type="button" id="cancel-suite" class="control">Cancel</button>
-      </menu>
-    </form>
-  </dialog>
+    </header>
+    <div class="body">
+      <form id="suite-form">
+        <label>Name: <input id="suite-name" type="text" required /></label>
+        <label>CSV File: <input id="suite-file" readonly /></label>
+        <button type="button" id="browse-suite" class="control">Browse...</button>
+      </form>
+    </div>
+    <footer>
+      <button type="button" id="cancel-suite" class="secondary">Cancel</button>
+      <button type="submit" form="suite-form" class="primary">Save</button>
+    </footer>
+  </div>
+</dialog>
 
-  <!-- Run History Dialog -->
-  <dialog id="history-dialog">
-    <h3>Run History</h3>
-    <div id="history-content"></div>
-    <menu>
-      <button type="button" id="close-history" class="control">Close</button>
-    </menu>
-  </dialog>
+<!-- Run History Dialog -->
+<dialog id="history-dialog">
+  <div class="dialog-card">
+    <header>
+      <h3>Run History</h3>
+    </header>
+    <div class="body">
+      <div id="history-content"></div>
+    </div>
+    <footer>
+      <button type="button" id="close-history" class="secondary">Close</button>
+    </footer>
+  </div>
+</dialog>
 
-  <!-- Settings Dialog -->
-  <dialog id="settings-dialog">
-    <form id="settings-form">
+<!-- Rule Definition Dialog -->
+<dialog id="rule-definition-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
+      <h3>Rule Definition</h3>
+    </header>
+    <div class="body">
+      <div id="rule-definition-container" style="height: 500px; overflow: auto; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;">
+        <!-- Rule definition will be rendered here -->
+      </div>
+    </div>
+    <footer>
+      <button type="button" id="close-rule-definition" class="secondary">Close</button>
+    </footer>
+  </div>
+</dialog>
+
+<!-- Rule Analyzer Dialog -->
+<dialog id="rule-analyzer-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
+      <h3>Rule Analyzer</h3>
+    </header>
+    <div class="body">
+      <form id="rule-analyzer-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <label>Environment:
+            <select id="analyzer-env">
+              <option value="DEV">DEV</option>
+              <option value="UAT">UAT</option>
+              <option value="PRE_PROD">PRE_PROD</option>
+              <option value="PROD">PROD</option>
+              <option value="LOCAL">LOCAL</option>
+            </select>
+          </label>
+          <label>Rule Name: 
+            <select id="analyzer-rule-name" required>
+              <option value="">Select a rule...</option>
+            </select>
+          </label>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <label>Persona Type:
+            <select id="analyzer-persona">
+              <option value="MID">MID</option>
+              <option value="WID">WID</option>
+            </select>
+          </label>
+          <label>Persona ID: <input id="analyzer-persona-id" type="text" required /></label>
+        </div>
+        <label>Run Option:
+          <select id="analyzer-run-option">
+            <option value="normal">Normal</option>
+            <option value="debug">Debug</option>
+            <option value="trace">Trace</option>
+          </select>
+        </label>
+        <div class="button-group" style="grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 10px;">
+          <button type="button" id="analyzer-run-btn" class="primary">Run</button>
+          <button type="button" id="analyzer-analyze-btn" class="primary" disabled>Analyze</button>
+          <button type="button" id="analyzer-history-btn" class="secondary">History</button>
+        </div>
+        <pre id="analyzer-output" style="grid-column: 1 / -1; height: 300px; overflow: auto; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px; margin-top: 10px;"></pre>
+      </form>
+    </div>
+    <footer>
+      <button type="button" id="close-analyzer" class="secondary">Close</button>
+    </footer>
+  </div>
+</dialog>
+
+<!-- Rule Analysis Results Dialog -->
+<dialog id="rule-analysis-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
+      <h3>Rule Analysis Results</h3>
+    </header>
+    <div class="body">
+      <!-- Rule Result Section -->
+      <div class="analysis-section">
+        <h4>Rule Result</h4>
+        <textarea id="analysis-rule-result" style="width: 100%; height: 100px; resize: vertical; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;" readonly></textarea>
+      </div>
+
+      <!-- Data Used for Evaluation Section -->
+      <div class="analysis-section">
+        <h4>Data Used for Evaluation</h4>
+        <textarea id="analysis-evaluation-data" style="width: 100%; height: 100px; resize: vertical; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;" readonly></textarea>
+      </div>
+
+      <!-- Explanation Section -->
+      <div class="analysis-section">
+        <h4>Explanation</h4>
+        <textarea id="analysis-explanation" style="width: 100%; height: 100px; resize: vertical; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;" readonly></textarea>
+      </div>
+
+      <!-- History Section (Expandable) -->
+      <div class="analysis-section">
+        <div class="expandable-panel">
+          <div class="expandable-header" id="history-panel-header">
+            <h4>History</h4>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="expandable-content" id="history-panel-content" style="display: none;">
+            <div id="analysis-history" style="max-height: 200px; overflow: auto; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;">
+              <div class="loading-spinner" id="history-loading" style="display: none;"></div>
+              <div id="history-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <button type="button" id="close-analysis" class="secondary">Close</button>
+    </footer>
+  </div>
+</dialog>
+
+<!-- Rule History Dialog -->
+<dialog id="rule-history-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
+      <h3>Rule Execution History</h3>
+    </header>
+    <div class="body">
+      <div id="rule-history-content" style="height: 400px; overflow: auto; background: var(--panel-bg); border: 1px solid var(--border); padding: 10px;">
+        <!-- History items will be added here dynamically -->
+      </div>
+    </div>
+    <footer>
+      <button type="button" id="close-rule-history" class="secondary">Close</button>
+    </footer>
+  </div>
+</dialog>
+
+<!-- Settings Dialog -->
+<dialog id="settings-dialog" class="big-modal">
+  <div class="dialog-card">
+    <header>
       <h3>Settings</h3>
-      <label>Default Environment:
-        <select id="settings-env">
-          <option value="DEV">DEV</option>
-          <option value="UAT">UAT</option>
-          <option value="PRE_PROD">PRE_PROD</option>
-          <option value="PROD">PROD</option>
-          <option value="LOCAL">LOCAL</option>
-        </select>
-      </label>
-      <label>DB Host: <input id="db-host" type="text" required /></label>
-      <label>DB Port: <input id="db-port" type="number" required /></label>
-      <label>DB User: <input id="db-user" type="text" required /></label>
-      <label>DB Password: <input id="db-password" type="password" /></label>
-      <label>DB Name: <input id="db-name" type="text" required /></label>
-      <label>API Rule Engine: <input id="api-ruleengine" type="text" required /></label>
-      <label>API Rule Metadata: <input id="api-rulemetadata" type="text" required /></label>
-      <label>API GraphQL: <input id="api-graphql" type="text" required /></label>
-      <label>Token Refresh Non-Prod: <input id="token-nonprod" type="text" required /></label>
-      <label>Token Refresh Prod: <input id="token-prod" type="text" required /></label>
-      <menu>
-        <button type="submit" class="control">Save</button>
-        <button type="button" id="cancel-settings" class="control">Cancel</button>
-      </menu>
-    </form>
-  </dialog>
-
-  <!-- Context Menu -->
-  <div id="context-menu" class="context-menu hidden">
-    <div class="context-menu-item" id="copy-node">Copy</div>
-    <div class="context-menu-item" id="paste-node">Paste</div>
-    <div class="context-menu-item" id="create-node">➕ Add Request</div>
-    <div class="context-menu-item" id="rename-node">✏️ Rename</div>
-    <div class="context-menu-item" id="delete-node">🗑️ Delete</div>
-    <div class="context-menu-item" id="show-history">📜 Show History</div>
+    </header>
+    <div class="body">
+      <form id="settings-form">
+        <label>Default Environment:
+          <select id="settings-env">
+            <option value="DEV">DEV</option>
+            <option value="UAT">UAT</option>
+            <option value="PRE_PROD">PRE_PROD</option>
+            <option value="PROD">PROD</option>
+            <option value="LOCAL">LOCAL</option>
+          </select>
+        </label>
+        <label>DB Host: <input id="db-host" type="text" required /></label>
+        <label>DB Port: <input id="db-port" type="number" required /></label>
+        <label>DB User: <input id="db-user" type="text" required /></label>
+        <label>DB Password: <input id="db-password" type="password" /></label>
+        <label>DB Name: <input id="db-name" type="text" required /></label>
+        <label>API Rule Engine: <input id="api-ruleengine" type="text" required /></label>
+        <label>API Rule Metadata: <input id="api-rulemetadata" type="text" required /></label>
+        <label>API GraphQL: <input id="api-graphql" type="text" required /></label>
+        <label>Token Refresh Non-Prod: <input id="token-nonprod" type="text" required /></label>
+        <label>Token Refresh Prod: <input id="token-prod" type="text" required /></label>
+      </form>
+    </div>
+    <footer>
+      <button type="button" id="cancel-settings" class="secondary">Cancel</button>
+      <button type="submit" form="settings-form" class="primary">Save</button>
+    </footer>
   </div>
+</dialog>
 
-  <!-- Add a new context menu for environments -->
-  <div id="env-context-menu" class="context-menu hidden">
-    <div class="context-menu-item" id="paste-to-env">Paste</div>
+<!-- API Call Dialog -->
+<dialog id="api-call-dialog">
+  <div class="dialog-card">
+    <header>
+      <h3>Add API Call</h3>
+    </header>
+    <div class="body">
+      <form id="api-call-form">
+        <label>Name: <input id="api-call-name" type="text" required /></label>
+        <label>Environment:
+          <select id="api-call-env" required>
+            <option value="DEV">DEV</option>
+            <option value="UAT">UAT</option>
+            <option value="PRE_PROD">PRE_PROD</option>
+            <option value="PROD">PROD</option>
+            <option value="LOCAL">LOCAL</option>
+          </select>
+        </label>
+        <label>URL: <input id="api-call-url" type="url" required /></label>
+        <label>Method:
+          <select id="api-call-method" required>
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+          </select>
+        </label>
+        <label style="grid-column: 1 / -1;">Headers:</label>
+        <div style="grid-column: 1 / -1;">
+          <table id="api-call-headers-table">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button type="button" id="add-api-call-header-btn" class="control">Add Header</button>
+        </div>
+        <label style="grid-column: 1 / -1;">Body: <textarea id="api-call-body" rows="5"></textarea></label>
+        <label>Status:
+          <select id="api-call-status" required>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </label>
+      </form>
+    </div>
+    <footer>
+      <button type="button" id="cancel-api-call-dialog" class="secondary">Cancel</button>
+      <button type="submit" form="api-call-form" class="primary">Save</button>
+    </footer>
   </div>
+</dialog>
 
-  <script src="renderer.js"></script>
+
+<!-- Context menu styles moved to modern-theme.css -->
+
+<script src="renderer.js"></script>
 </body>
 </html>
