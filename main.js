@@ -32,16 +32,8 @@ function createWindow() {
 
   // Add a slight delay before loading the file to prevent startup issues with dialogs
   setTimeout(() => {
-    // Skip the login screen and load the index.html directly
-    win.loadFile(path.join(__dirname, 'index.html'));
-
-    // Set username as 'admin' when the window is ready
-    win.webContents.on('dom-ready', () => {
-      win.webContents.executeJavaScript(`
-        localStorage.setItem('loggedInUser', 'admin');
-        console.log('Auto-login as admin');
-      `);
-    });
+    // Load the login page first
+    win.loadFile(path.join(__dirname, 'login.html'));
   }, 100); // Small delay to ensure proper initialization
 
   // Open DevTools for debugging
@@ -74,4 +66,3 @@ ipcMain.handle('save-config', async (_, newConfig) => {
     throw err;
   }
 });
-

@@ -19,7 +19,7 @@ function setupDialogListeners() {
             if (reqDlg.open) reqDlg.close();
             reqForm.reset();
             document.getElementById('request-env').value        = 'DEV';
-            document.getElementById('request-persona').value    = 'MID';
+            document.getElementById('request-persona').value    = 'XID';
             document.getElementById('request-persona-id').value = '';
             document.getElementById('request-status').value     = 'active';
 
@@ -141,8 +141,8 @@ function setupDialogListeners() {
             const fs = require('fs');
             const entries = fs.readFileSync(suiteFile.value, 'utf8')
                 .trim().split('\n').slice(1).map(line => {
-                    const [rule_name, mid, expected] = line.split(',');
-                    return { rule_name, mid, expected_result: expected==='true', json_context:{} };
+                    const [rule_name, xid, expected] = line.split(',');
+                    return { rule_name, xid, expected_result: expected==='true', json_context:{} };
                 });
             try {
                 // Show loading indicator

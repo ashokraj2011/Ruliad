@@ -4,64 +4,320 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modern-theme.css">
   <style>
+    /* Additional styles specific to login page */
     body {
-      margin: 0;
+      display: flex;
+      flex-direction: row; /* Explicitly set horizontal layout */
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Conway side panel */
+    .conway-panel {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--bg-secondary);
+      transition: var(--theme-transition);
+    }
+
+    /* Question mark button for Conway info */
+    .conway-help-button {
+      position: absolute;
+      top: var(--spacing-lg);
+      right: var(--spacing-lg);
+      width: 48px; /* Increased size for better visibility */
+      height: 48px; /* Increased size for better visibility */
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px; /* Increased font size for better visibility */
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 102, 204, 0.5); /* Glowing effect */
+      z-index: 100; /* Higher z-index to ensure it's above other elements */
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite; /* Add pulsing animation */
+      border: 2px solid white; /* Add border for better visibility */
+    }
+
+    /* Pulsing animation for the help button */
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 102, 204, 0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 102, 204, 0.7); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 102, 204, 0.5); }
+    }
+
+    .conway-help-button:hover {
+      background-color: var(--accent-secondary);
+      transform: scale(1.1); /* Increased scale effect */
+      box-shadow: 0 0 20px rgba(0, 102, 204, 0.8); /* Stronger glow on hover */
+      animation: none; /* Stop the animation on hover */
+    }
+
+    .conway-panel canvas {
+      width: 100%;
+      height: 100%;
+      /* Enhanced styling for maximum visibility */
+      display: block;
+      background-color: rgba(220, 220, 220, 0.3); /* More visible background */
+      border: 2px solid rgba(0, 0, 0, 0.3); /* More prominent border */
+      position: relative; /* Ensure proper stacking context */
+      z-index: 5; /* Higher z-index to ensure visibility */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    /* Message to show if canvas is not visible */
+    .canvas-not-visible {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      text-align: center;
+      max-width: 80%;
+      display: none; /* Hidden by default */
+    }
+
+    /* Dark theme adjustments for the message */
+    body.dark-theme .canvas-not-visible {
+      background-color: rgba(30, 30, 30, 0.9);
+      color: white;
+    }
+
+    .conway-info {
+      position: fixed; /* Fixed positioning for reliable placement */
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%) translateY(20px); /* Center and add initial offset for animation */
+      background-color: var(--bg-primary);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl); /* Increased shadow for better visibility */
+      width: 90%; /* Use percentage width for better responsiveness */
+      max-width: 500px; /* Increased max-width for better readability */
+      max-height: 80vh;
+      overflow-y: auto;
+      font-size: 16px; /* Increased font size for better readability */
+      opacity: 0;
+      border: 2px solid var(--accent-primary); /* Colored border for better visibility */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: none; /* Hidden by default, shown when help button is clicked */
+      z-index: 9999; /* Maximum z-index to ensure it appears above everything */
+      color: var(--text-primary); /* Ensure text color matches theme */
+    }
+
+    .conway-info-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px; /* Increased size for better clickability */
+      height: 30px; /* Increased size for better clickability */
+      border-radius: 50%;
+      background-color: var(--bg-tertiary);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px; /* Increased font size for better visibility */
+      cursor: pointer;
+      transition: var(--theme-transition);
+      z-index: 1; /* Ensure it's above the content in the panel */
+    }
+
+    .conway-info-close:hover {
+      background-color: var(--bg-quaternary);
+      color: var(--text-primary);
+      transform: scale(1.1); /* Add a slight scale effect on hover */
+    }
+
+    .conway-info.visible {
+      opacity: 1; /* Fully visible */
+      transform: translate(-50%, -50%) translateY(0); /* Keep centered but remove the offset */
+      display: block; /* Ensure it's displayed when visible */
+      pointer-events: auto; /* Enable interactions with the panel */
+    }
+
+    .conway-info ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .conway-info li {
+      margin-bottom: 4px;
+    }
+
+    .conway-info h3 {
+      margin-top: 0;
+      color: var(--accent-primary);
+    }
+
+    /* Login container */
+    .login-wrapper {
+      flex: 0 0 400px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      font-family: 'Roboto', sans-serif;
-      background: #1e1e2f;
-      color: #e0e0e0;
-    }
-    .login-container {
-      background: #252536;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      width: 300px;
-      text-align: center;
-    }
-    .login-container h1 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #00acee;
-    }
-    .login-container input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #444;
-      border-radius: 4px;
-      background: #2a2a3d;
-      color: #e0e0e0;
-    }
-    .login-container button {
-      width: 100%;
-      padding: 10px;
-      background: #00acee;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .login-container button:hover {
-      background: #00bfff;
+      background-color: var(--bg-primary);
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      transition: var(--theme-transition);
     }
 
+    .login-container {
+      background-color: var(--bg-primary);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 320px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .login-container h1 {
+      margin-bottom: var(--spacing-xl);
+      font-size: 24px;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .login-container input {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .login-container button {
+      width: 100%;
+      margin-top: var(--spacing-md);
+    }
+
+    .theme-toggle-container {
+      position: absolute;
+      top: var(--spacing-lg);
+      right: var(--spacing-lg);
+    }
+
+    /* Dark theme adjustments */
+    body.dark-theme .login-wrapper {
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column; /* Stack elements vertically on small screens */
+      }
+
+      .login-wrapper {
+        flex: 0 0 auto; /* Allow height to be determined by content */
+        width: 100%; /* Take full width */
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Shadow on top instead of left */
+      }
+
+      .conway-panel {
+        flex: 1; /* Take remaining space */
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h1>Login</h1>
-    <input id="username" type="text" placeholder="Username" required />
-    <input id="password" type="password" placeholder="Password" required />
-    <button id="login-button">Login</button>
+  <div class="conway-panel">
+    <canvas id="conway-canvas"></canvas>
+    <div id="conway-help-button" class="conway-help-button" title="About Conway's Game of Life and Ruliad">?</div>
+    <div id="canvas-not-visible" class="canvas-not-visible">
+      <h3>Conway's Game of Life Not Visible</h3>
+      <p>Conway's Game of Life demonstrates how simple rules create complex patterns - a concept related to Stephen Wolfram's <strong>Ruliad</strong> theory.</p>
+      <p>The simulation should be running in the background, but it might not be visible.</p>
+      <p>Click the button below to reset the simulation:</p>
+      <button id="restart-from-message" class="control success">Reset Simulation</button>
+    </div>
+    <div id="conway-info" class="conway-info">
+      <div id="conway-info-close" class="conway-info-close" title="Close">×</div>
+      <h3>Conway's Game of Life</h3>
+      <p>This cellular automaton demonstrates how simple rules with initial conditions create complex patterns and emergent behavior.</p>
+      <p><strong>The Rules:</strong></p>
+      <ol>
+        <li>Any live cell with fewer than two live neighbors dies (underpopulation)</li>
+        <li>Any live cell with two or three live neighbors lives on</li>
+        <li>Any live cell with more than three live neighbors dies (overpopulation)</li>
+        <li>Any dead cell with exactly three live neighbors becomes a live cell (reproduction)</li>
+      </ol>
+      <p>From these simple rules, complex patterns emerge - from still lifes and oscillators to gliders and spaceships.</p>
+      <p>This connects to Stephen Wolfram's concept of the <strong>Ruliad</strong> - the complete collection of all possible rule systems and their behaviors, suggesting that our universe may be an emergent property of simple computational rules.</p>
+      <p>Click on the grid to toggle cells and create your own patterns!</p>
+      <div class="conway-controls" style="margin-top: 15px;">
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <button id="clear-board" class="control danger">Clear Board</button>
+          <button id="pause-resume" class="control primary">Pause</button>
+          <button id="restart-conway" class="control success">Reset Simulation</button>
+        </div>
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <button id="new-pattern" class="control primary">New Pattern</button>
+          <button id="start-simulation" class="control success">Start Simulation</button>
+        </div>
+        <div class="speed-controls" style="margin-top: 10px; display: flex; gap: 10px;">
+          <button id="slower-conway" class="control secondary">Slower</button>
+          <span id="speed-indicator" style="display: flex; align-items: center; justify-content: center; flex: 1; text-align: center;">Normal Speed</span>
+          <button id="faster-conway" class="control secondary">Faster</button>
+        </div>
+        <div style="margin-top: 10px; padding: 10px; background-color: rgba(0,0,0,0.05); border-radius: 5px;">
+          <p style="margin: 0; font-weight: bold;">Create your own pattern:</p>
+          <p style="margin: 5px 0; font-style: italic;">The simulation is initially paused so you can create your pattern.</p>
+          <ol style="margin: 5px 0 0 20px; padding: 0;">
+            <li>Click "Clear Board" to start with an empty grid</li>
+            <li>Click on cells to toggle them (alive/dead)</li>
+            <li>Click "Start Simulation" or "Resume" when your pattern is ready</li>
+            <li>Use "Pause" anytime to stop and edit your pattern</li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="login-wrapper">
+    <div class="theme-toggle-container">
+      <div id="logout-button" class="theme-toggle" title="Logout">
+        <img src="images/logout-icon.png" alt="Logout" style="width: 20px; height: 20px;">
+      </div>
+    </div>
+    <div class="login-container">
+      <h1>Login</h1>
+      <input id="username" type="text" placeholder="Username" required />
+      <input id="password" type="password" placeholder="Password" required />
+      <button id="login-button" class="control primary">Login</button>
+    </div>
+  </div>
+  <!-- Include Conway's Game of Life script -->
+  <script src="conway.js"></script>
+
   <script>
+    // Logout button functionality
+    const logoutButton = document.getElementById('logout-button');
+
+    // Add click event listener to logout button
+    logoutButton.addEventListener('click', () => {
+      // Clear user data from localStorage
+      localStorage.removeItem('loggedInUser');
+
+      // Redirect to login page (refresh the page)
+      window.location.reload();
+
+      // Show a message (optional)
+      alert('You have been logged out');
+    });
+
+    // Login functionality
     const loginButton = document.getElementById('login-button');
     loginButton.addEventListener('click', () => {
       const username = document.getElementById('username').value.trim();
@@ -74,6 +330,499 @@
         alert('Invalid username or password');
       }
     });
+
+    // Initialize Conway's Game of Life when the page loads
+    console.log('Setting up Conway\'s Game of Life...');
+
+    // Store the game instance globally for restart button
+    let conwayGameInstance = null;
+
+    // Function to initialize Conway's Game of Life
+    function setupConway() {
+      console.log('Initializing Conway\'s Game of Life...');
+      try {
+        // Check if canvas exists
+        const canvas = document.getElementById('conway-canvas');
+        if (!canvas) {
+          console.error('Conway canvas element not found!');
+          return;
+        }
+        console.log('Conway canvas found:', canvas);
+
+        // Check canvas dimensions
+        console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
+        console.log('Canvas parent dimensions:', 
+          canvas.parentElement.clientWidth, 'x', 
+          canvas.parentElement.clientHeight);
+
+        // Initialize with custom options - even larger cells and higher density for maximum visibility
+        conwayGameInstance = initConway('conway-canvas', {
+          cellSize: 30, // Much larger cells for better visibility
+          updateInterval: 300, // Slower for better visibility
+          initialDensity: 0.4, // Higher density for more active and visible patterns
+          fillStyle: 'rgba(0, 102, 204, 1)', // Fully opaque blue
+          strokeStyle: 'rgba(0, 0, 0, 0.8)', // Very dark stroke for maximum contrast
+          backgroundColor: 'rgba(240, 240, 240, 0.5)' // More opaque background
+        });
+
+        console.log('Conway game initialized successfully:', conwayGameInstance);
+
+        // Set the initial state of the pause/resume button to "Resume" since the simulation is paused
+        let pauseResumeButton = document.getElementById('pause-resume');
+        if (pauseResumeButton) {
+          pauseResumeButton.textContent = 'Resume';
+        }
+
+        // Pause the game when user interacts with login form
+        const loginInputs = document.querySelectorAll('.login-container input, .login-container button');
+        loginInputs.forEach(input => {
+          input.addEventListener('focus', () => {
+            console.log('Input focused, pausing Conway game');
+            if (conwayGameInstance) conwayGameInstance.stop();
+          });
+
+          input.addEventListener('blur', () => {
+            console.log('Input blurred, resuming Conway game');
+            if (conwayGameInstance) conwayGameInstance.start();
+          });
+        });
+
+        // Set up restart button
+        const restartButton = document.getElementById('restart-conway');
+        if (restartButton) {
+          restartButton.addEventListener('click', () => {
+            console.log('Restart button clicked, reinitializing Conway game');
+            if (conwayGameInstance) {
+              conwayGameInstance.stop();
+
+              // Reset the grid but don't start the simulation
+              conwayGameInstance.initGrid();
+              conwayGameInstance.draw();
+              console.log('Conway game restarted and paused');
+
+              // Update pause/resume button text to "Resume" since the simulation is paused
+              pauseResumeButton = document.getElementById('pause-resume');
+              if (pauseResumeButton) {
+                pauseResumeButton.textContent = 'Resume';
+              }
+            } else {
+              console.log('No existing Conway game instance, creating new one');
+              setupConway();
+            }
+          });
+        }
+
+        // Set up clear board button
+        const clearBoardButton = document.getElementById('clear-board');
+        if (clearBoardButton) {
+          clearBoardButton.addEventListener('click', () => {
+            console.log('Clear board button clicked');
+            if (conwayGameInstance) {
+              // Pause the simulation first to make it easier to create patterns
+              if (conwayGameInstance.isRunning) {
+                conwayGameInstance.stop();
+                console.log('Simulation paused for pattern creation');
+
+                // Update pause/resume button text
+                pauseResumeButton = document.getElementById('pause-resume');
+                if (pauseResumeButton) {
+                  pauseResumeButton.textContent = 'Resume';
+                }
+              }
+
+              // Clear the board
+              conwayGameInstance.clearBoard();
+              console.log('Board cleared');
+            }
+          });
+        }
+
+        // Set up pause/resume button
+        pauseResumeButton = document.getElementById('pause-resume');
+        if (pauseResumeButton) {
+          pauseResumeButton.addEventListener('click', () => {
+            if (conwayGameInstance) {
+              if (conwayGameInstance.isRunning) {
+                console.log('Pausing simulation');
+                conwayGameInstance.stop();
+                pauseResumeButton.textContent = 'Resume';
+              } else {
+                console.log('Resuming simulation');
+                conwayGameInstance.start();
+                pauseResumeButton.textContent = 'Pause';
+              }
+            }
+          });
+        }
+
+        // Set up start simulation button
+        const startSimulationButton = document.getElementById('start-simulation');
+        if (startSimulationButton) {
+          startSimulationButton.addEventListener('click', () => {
+            console.log('Start simulation button clicked');
+            if (conwayGameInstance) {
+              if (!conwayGameInstance.isRunning) {
+                console.log('Starting simulation');
+                conwayGameInstance.start();
+                pauseResumeButton.textContent = 'Pause';
+              } else {
+                console.log('Simulation already running');
+              }
+            }
+          });
+        }
+
+        // Set up new pattern button
+        const newPatternButton = document.getElementById('new-pattern');
+        if (newPatternButton) {
+          newPatternButton.addEventListener('click', () => {
+            console.log('New pattern button clicked, creating new pattern');
+            if (conwayGameInstance) {
+              // Create a new pattern with a different initial density
+              conwayGameInstance.stop();
+              // Randomize the initial density between 0.2 and 0.6
+              const newDensity = 0.2 + Math.random() * 0.4;
+              conwayGameInstance.options.initialDensity = newDensity;
+
+              // Reset the grid with the new density but don't start the simulation
+              conwayGameInstance.initGrid();
+              conwayGameInstance.draw();
+              console.log('New pattern created with density:', newDensity);
+
+              // Update pause/resume button text to "Resume" since the simulation is paused
+              pauseResumeButton = document.getElementById('pause-resume');
+              if (pauseResumeButton) {
+                pauseResumeButton.textContent = 'Resume';
+              }
+            }
+          });
+        }
+
+        // Set up speed control buttons
+        const slowerButton = document.getElementById('slower-conway');
+        const fasterButton = document.getElementById('faster-conway');
+        const speedIndicator = document.getElementById('speed-indicator');
+
+        // Function to update the speed indicator text
+        const updateSpeedIndicator = (interval) => {
+          if (interval >= 600) {
+            speedIndicator.textContent = 'Very Slow';
+          } else if (interval >= 400) {
+            speedIndicator.textContent = 'Slow';
+          } else if (interval >= 250) {
+            speedIndicator.textContent = 'Normal Speed';
+          } else if (interval >= 100) {
+            speedIndicator.textContent = 'Fast';
+          } else {
+            speedIndicator.textContent = 'Very Fast';
+          }
+        };
+
+        // Initialize speed indicator
+        if (speedIndicator) {
+          updateSpeedIndicator(conwayGameInstance.options.updateInterval);
+        }
+
+        // Set up slower button
+        if (slowerButton) {
+          slowerButton.addEventListener('click', () => {
+            if (conwayGameInstance) {
+              // Increase the update interval (slower)
+              const currentInterval = conwayGameInstance.options.updateInterval;
+              const newInterval = Math.min(1000, currentInterval * 1.5);
+
+              // Update the interval
+              conwayGameInstance.stop();
+              conwayGameInstance.options.updateInterval = newInterval;
+              conwayGameInstance.start();
+
+              // Update the speed indicator
+              updateSpeedIndicator(newInterval);
+
+              console.log('Slowed down Conway game, new interval:', newInterval);
+            }
+          });
+        }
+
+        // Set up faster button
+        if (fasterButton) {
+          fasterButton.addEventListener('click', () => {
+            if (conwayGameInstance) {
+              // Decrease the update interval (faster)
+              const currentInterval = conwayGameInstance.options.updateInterval;
+              const newInterval = Math.max(50, currentInterval / 1.5);
+
+              // Update the interval
+              conwayGameInstance.stop();
+              conwayGameInstance.options.updateInterval = newInterval;
+              conwayGameInstance.start();
+
+              // Update the speed indicator
+              updateSpeedIndicator(newInterval);
+
+              console.log('Sped up Conway game, new interval:', newInterval);
+            }
+          });
+        }
+
+        return conwayGameInstance;
+      } catch (error) {
+        console.error('Error initializing Conway\'s Game of Life:', error);
+        return null;
+      }
+    }
+
+    // Try to initialize immediately
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      console.log('Document already loaded, setting up Conway immediately');
+      setTimeout(setupConway, 100); // Small delay to ensure DOM is ready
+    } else {
+      console.log('Document not yet loaded, waiting for DOMContentLoaded');
+      document.addEventListener('DOMContentLoaded', setupConway);
+    }
+
+    // Also try after window load as a fallback
+    window.addEventListener('load', () => {
+      console.log('Window loaded, ensuring Conway is set up');
+      setupConway();
+
+      // Check if canvas is visible after a short delay
+      setTimeout(() => {
+        checkCanvasVisibility();
+      }, 2000); // Wait 2 seconds to check visibility
+    });
+
+    // Set up the question mark help button and info panel
+    const helpButton = document.getElementById('conway-help-button');
+    const infoPanel = document.getElementById('conway-info');
+    const closeButton = document.getElementById('conway-info-close');
+
+    // Log initial state for debugging
+    console.log('Initial elements:', { 
+      helpButton: !!helpButton, 
+      infoPanel: !!infoPanel,
+      closeButton: !!closeButton
+    });
+
+    if (infoPanel) {
+      console.log('Initial info panel style:', {
+        display: infoPanel.style.display,
+        opacity: window.getComputedStyle(infoPanel).opacity,
+        zIndex: window.getComputedStyle(infoPanel).zIndex,
+        visibility: window.getComputedStyle(infoPanel).visibility
+      });
+    }
+
+    // Direct function to show the info panel - simplified for reliability
+    function showInfoPanel() {
+      console.log('showInfoPanel called');
+
+      if (!infoPanel) {
+        console.error('Info panel element not found!');
+        return;
+      }
+
+      // First ensure display is set to block
+      infoPanel.style.display = 'block';
+
+      // Force a reflow before adding the class
+      void infoPanel.offsetHeight;
+
+      // Add visible class to trigger the transition
+      infoPanel.classList.add('visible');
+
+      console.log('Info panel should now be visible:', {
+        display: infoPanel.style.display,
+        hasVisibleClass: infoPanel.classList.contains('visible'),
+        opacity: window.getComputedStyle(infoPanel).opacity
+      });
+    }
+
+    // Direct function to hide the info panel
+    function hideInfoPanel() {
+      console.log('hideInfoPanel called');
+
+      if (!infoPanel) {
+        console.error('Info panel element not found!');
+        return;
+      }
+
+      // Remove the visible class
+      infoPanel.classList.remove('visible');
+
+      // After transition completes, set display to none
+      setTimeout(() => {
+        infoPanel.style.display = 'none';
+        console.log('Info panel hidden, display set to none');
+      }, 300);
+    }
+
+    // Set up event listeners if elements exist
+    if (helpButton && infoPanel) {
+      console.log('Setting up event listeners for help button and info panel');
+
+      // Help button click toggles the panel
+      helpButton.addEventListener('click', (e) => {
+        console.log('Help button clicked');
+        e.preventDefault(); // Prevent any default behavior
+        e.stopPropagation(); // Prevent event bubbling
+
+        // Simple toggle based on visible class
+        if (infoPanel.classList.contains('visible')) {
+          console.log('Panel has visible class, hiding it');
+          hideInfoPanel();
+        } else {
+          console.log('Panel does not have visible class, showing it');
+          showInfoPanel();
+        }
+      });
+
+      // Close button click hides the panel
+      if (closeButton) {
+        console.log('Setting up event listener for close button');
+        closeButton.addEventListener('click', (e) => {
+          console.log('Close button clicked');
+          e.preventDefault(); // Prevent any default behavior
+          e.stopPropagation(); // Prevent event bubbling
+          hideInfoPanel();
+        });
+      } else {
+        console.warn('Close button not found!');
+      }
+
+      // Initialize panel state - ensure it's hidden initially
+      infoPanel.style.display = 'none';
+      infoPanel.classList.remove('visible');
+      console.log('Info panel initialized to hidden state');
+
+      // Test the info panel visibility after a short delay
+      setTimeout(() => {
+        console.log('Testing info panel visibility...');
+        // Show the info panel briefly when the page loads to ensure it works
+        showInfoPanel();
+
+        // Hide it again after 1 second
+        setTimeout(() => {
+          hideInfoPanel();
+          console.log('Info panel visibility test complete');
+
+          // Add a click indicator to help users notice the question mark button
+          const indicator = document.createElement('div');
+          indicator.textContent = 'Click for info';
+          indicator.style.position = 'absolute';
+          indicator.style.top = 'calc(var(--spacing-lg) + 55px)';
+          indicator.style.right = 'var(--spacing-lg)';
+          indicator.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+          indicator.style.color = 'white';
+          indicator.style.padding = '5px 10px';
+          indicator.style.borderRadius = '4px';
+          indicator.style.fontSize = '14px';
+          indicator.style.zIndex = '99';
+          indicator.style.pointerEvents = 'none';
+          document.querySelector('.conway-panel').appendChild(indicator);
+
+          // Remove the indicator after 5 seconds
+          setTimeout(() => {
+            indicator.style.opacity = '0';
+            setTimeout(() => indicator.remove(), 500);
+          }, 5000);
+        }, 1000);
+      }, 500);
+
+    } else {
+      console.error('Help button or info panel not found:', { 
+        helpButton: !!helpButton, 
+        infoPanel: !!infoPanel 
+      });
+    }
+
+    // Function to check if canvas is visible
+    function checkCanvasVisibility() {
+      console.log('Checking canvas visibility...');
+      const canvas = document.getElementById('conway-canvas');
+      const notVisibleMessage = document.getElementById('canvas-not-visible');
+
+      if (!canvas) {
+        console.error('Canvas element not found during visibility check');
+        if (notVisibleMessage) {
+          notVisibleMessage.style.display = 'block';
+        }
+        return;
+      }
+
+      // Force canvas to be visible with explicit styling
+      canvas.style.display = 'block';
+      canvas.style.visibility = 'visible';
+      canvas.style.opacity = '1';
+
+      // Check if canvas has dimensions
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      console.log('Canvas dimensions in visibility check:', canvasWidth, 'x', canvasHeight);
+
+      // Check if canvas has content (check if any cells are drawn)
+      let hasContent = false;
+      try {
+        const ctx = canvas.getContext('2d');
+
+        // Draw a test pattern to ensure visibility
+        ctx.fillStyle = 'rgba(255, 0, 0, 1)'; // Bright red
+        ctx.fillRect(0, 0, 50, 50); // Draw a rectangle in the top-left corner
+
+        const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+        const data = imageData.data;
+
+        // Check if any pixel has non-zero alpha (is visible)
+        for (let i = 3; i < data.length; i += 4) {
+          if (data[i] > 0) {
+            hasContent = true;
+            break;
+          }
+        }
+
+        console.log('Canvas has content:', hasContent);
+      } catch (error) {
+        console.error('Error checking canvas content:', error);
+      }
+
+      // Show message if canvas is too small or has no content
+      if (canvasWidth < 50 || canvasHeight < 50 || !hasContent) {
+        console.log('Canvas is not properly visible, showing message');
+        if (notVisibleMessage) {
+          notVisibleMessage.style.display = 'block';
+          notVisibleMessage.style.zIndex = '100'; // Ensure message is on top
+          notVisibleMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.95)'; // More opaque background
+
+          // Add event listener to restart button in message
+          const restartFromMessageBtn = document.getElementById('restart-from-message');
+          if (restartFromMessageBtn) {
+            restartFromMessageBtn.addEventListener('click', () => {
+              console.log('Restart from message button clicked');
+              if (conwayGameInstance) {
+                conwayGameInstance.stop();
+                conwayGameInstance.reset();
+              } else {
+                setupConway();
+              }
+
+              // Force redraw after a short delay
+              setTimeout(() => {
+                if (conwayGameInstance) {
+                  conwayGameInstance.draw();
+                }
+              }, 100);
+
+              notVisibleMessage.style.display = 'none';
+            });
+          }
+        }
+      } else {
+        console.log('Canvas appears to be visible and has content');
+        if (notVisibleMessage) {
+          notVisibleMessage.style.display = 'none';
+        }
+      }
+    }
   </script>
 </body>
 </html>

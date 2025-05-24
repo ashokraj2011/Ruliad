@@ -460,7 +460,7 @@ function handleAnalyzeRule(ruleData) {
     populateRuleNameDropdown(analyzerRuleName, analyzerEnv.value, ruleData.ruleName || '');
 
     // Set default values for other fields
-    analyzerPersona.value = 'MID'; // Default to MID
+    analyzerPersona.value = 'XID'; // Default to XID
     analyzerPersonaId.value = ''; // Empty by default
     analyzerRunOption.value = 'normal'; // Default to normal
 
@@ -504,10 +504,10 @@ function renderRuleDefinition(ruleDefinition, container) {
 
             // Different colors for different operators
             if (parentOp === 'and') {
-                opBadge.style.backgroundColor = '#007896'; // Fidelity blue
+                opBadge.style.backgroundColor = '#007896'; // Primary blue
                 opBadge.style.boxShadow = '0 2px 4px rgba(0, 120, 150, 0.3)';
             } else {
-                opBadge.style.backgroundColor = '#569a32'; // Fidelity green
+                opBadge.style.backgroundColor = '#569a32'; // Secondary green
                 opBadge.style.boxShadow = '0 2px 4px rgba(86, 154, 50, 0.3)';
             }
 
@@ -722,7 +722,7 @@ function renderRuleDefinition(ruleDefinition, container) {
     const header = document.createElement('div');
     header.className = 'rule-header';
     header.style.padding = '15px 20px';
-    header.style.backgroundColor = '#007896'; // Fidelity blue
+    header.style.backgroundColor = '#007896'; // Primary blue
     header.style.color = 'white';
     header.style.fontSize = '20px';
     header.style.fontWeight = 'bold';
@@ -990,7 +990,7 @@ function handleEditLeaf(leafData) {
         // Populate form fields with data from the leaf node
         document.getElementById('request-name').value = itemData.name || '';
         document.getElementById('request-env').value = itemData.environment || 'DEV';
-        document.getElementById('request-persona').value = itemData.personaType || 'MID';
+        document.getElementById('request-persona').value = itemData.personaType || 'XID';
         document.getElementById('request-persona-id').value = itemData.personaId || '';
         document.getElementById('request-json-context').value = JSON.stringify(itemData.jsonContext || {}, null, 2);
         document.getElementById('request-status').value = itemData.status || 'active';
@@ -1051,7 +1051,7 @@ function handleAnalyzeLeaf(leafData) {
     // Get values from the item data
     const environment = itemData.environment || '';
     const ruleName = itemData.ruleName || '';
-    const personaType = itemData.personaType || 'MID';
+    const personaType = itemData.personaType || 'XID';
     const personaId = itemData.personaId || '';
     const jsonContext = itemData.jsonContext ? JSON.stringify(itemData.jsonContext) : '{}';
 
@@ -1073,7 +1073,7 @@ function handleRunSuite(leafData) {
  * Execute a rule and show the analysis results in the dialog
  * @param {string} environment - The environment to execute the rule in
  * @param {string} ruleName - The name of the rule to execute
- * @param {string} personaType - The persona type (MID, WID, etc.)
+ * @param {string} personaType - The persona type (XID, KID, etc.)
  * @param {string} personaId - The persona ID
  * @param {string} jsonContext - The JSON context as a string
  * @param {HTMLElement} ruleAnalysisDialog - The rule analysis dialog element

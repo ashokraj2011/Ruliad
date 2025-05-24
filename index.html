@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fidelity Navigator</title>
+  <title>Rule Navigator</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="modern-theme.css">
@@ -36,6 +36,9 @@
   <div class="tab" data-tab="rule-search">Rule Search</div>
   <div class="tab" data-tab="rule-research">Rule Research</div>
   <div class="tab" data-tab="help">Help</div>
+  <div id="logout-button" class="theme-toggle" title="Logout">
+    <img src="images/logout-icon.png" alt="Logout" style="width: 20px; height: 20px;">
+  </div>
 </div>
 
 <div id="tab-content" class="tab-content-container">
@@ -78,7 +81,7 @@
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <label>Persona Type:
-                <select id="run-persona"><option>MID</option><option>WID</option></select>
+                <select id="run-persona"><option>XID</option><option>KID</option></select>
               </label>
               <label>Persona ID:<input id="run-persona-id"/></label>
             </div>
@@ -287,11 +290,11 @@
   <!-- Help Tab Content -->
   <div id="help-tab" class="main-tab-content">
     <div class="help-container">
-      <h1>Fidelity Navigator Help Guide</h1>
+      <h1>Rule Navigator Help Guide</h1>
 
       <section class="help-section">
         <h2>Getting Started</h2>
-        <p>Welcome to Fidelity Navigator, a comprehensive tool for managing and testing rules. This guide will help you understand how to use the various features of the application.</p>
+        <p>Welcome to Rule Navigator, a comprehensive tool for managing and testing rules. This guide will help you understand how to use the various features of the application.</p>
       </section>
 
       <section class="help-section">
@@ -314,7 +317,7 @@
         <ul>
           <li><strong>Environment</strong>: Select the environment (DEV, UAT, PRE_PROD, PROD, LOCAL).</li>
           <li><strong>Rule Name</strong>: Select the rule to execute.</li>
-          <li><strong>Persona Type</strong>: Select MID or WID.</li>
+          <li><strong>Persona Type</strong>: Select XID or KID.</li>
           <li><strong>Persona ID</strong>: Enter the persona identifier.</li>
           <li><strong>JSON Context</strong>: Enter any additional context in JSON format.</li>
           <li><strong>Execute</strong>: Run the rule with the specified parameters. (Shortcut: <kbd>Alt+E</kbd>)</li>
@@ -390,6 +393,25 @@
       </section>
 
       <section class="help-section">
+        <h2>User Interface Features</h2>
+        <h3>Dark/Light Mode</h3>
+        <p>The application supports both dark and light themes for comfortable viewing in different environments:</p>
+        <ul>
+          <li>Click the theme toggle button (<span>🌓</span>) in the top navigation bar to switch between dark and light modes.</li>
+          <li>Your theme preference is automatically saved and will be remembered when you reopen the application.</li>
+          <li>Dark mode reduces eye strain in low-light environments and can save battery on some displays.</li>
+        </ul>
+
+        <h3>Customizable Layout</h3>
+        <p>You can rearrange panels to customize your workspace:</p>
+        <ul>
+          <li>Drag and drop panels by their headers to reposition them in the layout.</li>
+          <li>Your panel arrangement is automatically saved and will be restored when you reopen the application.</li>
+          <li>Organize your workspace to prioritize the panels you use most frequently.</li>
+        </ul>
+      </section>
+
+      <section class="help-section">
         <h2>Tips and Tricks</h2>
         <ul>
           <li>Use the search functionality to quickly find what you need.</li>
@@ -398,6 +420,8 @@
           <li>Check the Run History to review past executions.</li>
           <li>Configure your environment settings correctly for proper functionality.</li>
           <li>Use keyboard shortcuts (<kbd>Alt+R</kbd>, <kbd>Alt+A</kbd>, etc.) to speed up your workflow.</li>
+          <li>Switch to dark mode in low-light environments to reduce eye strain.</li>
+          <li>Customize your panel layout to match your workflow by dragging and dropping panels.</li>
         </ul>
       </section>
 
@@ -440,8 +464,8 @@
         <label>Name: <input id="request-name" type="text" required /></label>
         <label>Persona Type:
           <select id="request-persona" required>
-            <option value="MID">MID</option>
-            <option value="WID">WID</option>
+            <option value="XID">XID</option>
+            <option value="KID">KID</option>
           </select>
         </label>
         <label>Persona ID: <input id="request-persona-id" type="text" required /></label>
@@ -540,8 +564,8 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
           <label>Persona Type:
             <select id="analyzer-persona">
-              <option value="MID">MID</option>
-              <option value="WID">WID</option>
+              <option value="XID">XID</option>
+              <option value="KID">KID</option>
             </select>
           </label>
           <label>Persona ID: <input id="analyzer-persona-id" type="text" required /></label>

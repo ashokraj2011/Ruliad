@@ -222,7 +222,30 @@ function setupMainTabs() {
     });
   });
 
+  // Set up logout button
+  setupLogoutButton();
+
   console.log('Main tabs setup complete.');
+}
+
+// Function to set up logout button
+function setupLogoutButton() {
+  const logoutButton = document.getElementById('logout-button');
+
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      // Clear user data from localStorage
+      localStorage.removeItem('loggedInUser');
+
+      // Redirect to login page
+      window.location.href = 'login.html';
+
+      // Show a message (optional)
+      alert('You have been logged out');
+    });
+  }
+
+  console.log('Logout button setup complete.');
 }
 
 // Function to set up view toggle and collapse all functionality
@@ -231,8 +254,320 @@ function setupViewControls() {
 
   // Status filtering removed as per requirement
 
+  // Set up drag and drop for panels
+  setupPanelDragAndDrop();
 
   console.log('View controls setup complete.');
+}
+
+// Function to set up drag and drop for panels
+function setupPanelDragAndDrop() {
+  console.log('Setting up panel drag and drop...');
+
+  const panels = document.querySelectorAll('.panel');
+  const mainContainer = document.getElementById('main');
+
+  if (!panels.length || !mainContainer) {
+    console.error('Panels or main container not found');
+    return;
+  }
+
+  // Load panel positions from localStorage if available
+  loadPanelPositions();
+
+  panels.forEach(panel => {
+    const panelHeader = panel.querySelector('h2');
+
+    if (!panelHeader) return;
+
+    // Make panel draggable
+    panelHeader.addEventListener('mousedown', startDrag);
+    panelHeader.addEventListener('touchstart', (e) => {
+      // Prevent default behavior to avoid scrolling
+      e.preventDefault();
+
+      // Convert touch event to mouse-like event
+      const touch = e.touches[0];
+      const mouseEvent = {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+        button: 0
+      };
+      startDrag(mouseEvent);
+    }, { passive: false });
+
+    function startDrag(e) {
+      console.log('Starting drag operation');
+
+      // Only handle left mouse button for mouse events
+      if (e.button !== undefined && e.button !== 0) return;
+
+      e.preventDefault();
+
+      const panelRect = panel.getBoundingClientRect();
+      const mainRect = mainContainer.getBoundingClientRect();
+
+      // Calculate offset of mouse/touch position relative to panel
+      const offsetX = e.clientX - panelRect.left;
+      const offsetY = e.clientY - panelRect.top;
+
+      // Add dragging class to panel
+      panel.classList.add('dragging');
+
+      // Create placeholder
+      const placeholder = document.createElement('div');
+      placeholder.className = 'panel-placeholder';
+      placeholder.style.width = `${panelRect.width}px`;
+      placeholder.style.height = `${panelRect.height}px`;
+      placeholder.style.gridColumn = panel.style.gridColumn || '';
+      placeholder.style.gridRow = panel.style.gridRow || '';
+
+      // Store original position
+      const originalPosition = Array.from(mainContainer.children).indexOf(panel);
+
+      // Insert placeholder
+      mainContainer.insertBefore(placeholder, panel);
+
+      // Set panel to absolute position for dragging
+      panel.style.position = 'absolute';
+      panel.style.zIndex = '1000';
+      panel.style.width = `${panelRect.width}px`;
+      panel.style.height = `${panelRect.height}px`;
+
+      // Position panel at current position
+      positionPanel(e.clientX - offsetX, e.clientY - offsetY);
+
+      // Mouse/touch move handler
+      function onMove(e) {
+        // Prevent default behavior for touch events to avoid scrolling
+        if (e.touches) {
+          e.preventDefault();
+          console.log('Touch move event detected');
+        } else {
+          console.log('Mouse move event detected');
+        }
+
+        // Get clientX/Y from mouse or touch event
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        console.log(`Moving panel to position: (${clientX - offsetX}, ${clientY - offsetY})`);
+
+        positionPanel(clientX - offsetX, clientY - offsetY);
+
+        // Find closest panel or placeholder
+        const targetPanel = findClosestPanel(clientX, clientY);
+
+        if (targetPanel) {
+          console.log(`Found target panel: ${targetPanel.id || 'unnamed panel'}`);
+
+          if (targetPanel !== panel && targetPanel !== placeholder) {
+            console.log('Target panel is valid for swapping');
+
+            // Only swap with actual panels, not placeholders
+            if (targetPanel.classList.contains('panel')) {
+              console.log('Swapping panels');
+
+              // Get the current position of the target panel
+              const targetIndex = Array.from(mainContainer.children).indexOf(targetPanel);
+              console.log(`Target panel is at index ${targetIndex}`);
+
+              // Swap the panels - move the target panel to the placeholder's position
+              mainContainer.insertBefore(targetPanel, placeholder);
+              console.log('Panels swapped successfully');
+            } else {
+              console.log('Target is not a panel, skipping swap');
+            }
+          } else {
+            console.log('Target panel is the dragged panel or placeholder, skipping swap');
+          }
+        } else {
+          console.log('No target panel found');
+        }
+      }
+
+      // Mouse/touch end handler
+      function onEnd() {
+        console.log('Ending drag operation');
+
+        // Remove event listeners
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('mouseup', onEnd);
+        document.removeEventListener('touchend', onEnd);
+
+        console.log('Event listeners removed');
+
+        // Remove dragging class
+        panel.classList.remove('dragging');
+
+        // Reset panel position to normal flow
+        panel.style.position = '';
+        panel.style.top = '';
+        panel.style.left = '';
+        panel.style.zIndex = '';
+        panel.style.width = '';
+        panel.style.height = '';
+
+        // Handle the placeholder and panel positioning
+        if (placeholder.parentNode) {
+          console.log('Finalizing panel swap');
+
+          // Get the current position of the placeholder in the grid
+          const placeholderIndex = Array.from(mainContainer.children).indexOf(placeholder);
+          console.log(`Placeholder is at index ${placeholderIndex}`);
+
+          // If the panel is not already in the DOM (it was removed for absolute positioning)
+          // we need to add it back at the placeholder's position
+          if (!panel.parentNode || panel.parentNode !== mainContainer) {
+            console.log('Panel is not in the main container, inserting at placeholder position');
+            mainContainer.insertBefore(panel, placeholder);
+            console.log('Panel inserted at placeholder position');
+          } else {
+            console.log('Panel is already in the main container, preserving its position');
+          }
+
+          // Remove the placeholder
+          placeholder.parentNode.removeChild(placeholder);
+          console.log('Placeholder removed, panel swap preserved');
+        } else {
+          console.log('Warning: Placeholder has no parent node');
+        }
+
+        // Save panel positions
+        savePanelPositions();
+
+        console.log('Panel swap completed successfully');
+
+        // Log the final positions of all panels for debugging
+        const finalPanels = document.querySelectorAll('.panel');
+        console.log(`Final panel arrangement: ${finalPanels.length} panels`);
+        finalPanels.forEach((p, i) => {
+          console.log(`Panel ${p.id || 'unnamed'} is at index ${i}`);
+        });
+      }
+
+      // Position panel at specified coordinates
+      function positionPanel(x, y) {
+        // Keep panel within main container bounds
+        const maxX = mainRect.right - panelRect.width;
+        const maxY = mainRect.bottom - panelRect.height;
+
+        const boundedX = Math.max(mainRect.left, Math.min(x, maxX));
+        const boundedY = Math.max(mainRect.top, Math.min(y, maxY));
+
+        panel.style.left = `${boundedX}px`;
+        panel.style.top = `${boundedY}px`;
+      }
+
+      // Find closest panel to specified coordinates
+      function findClosestPanel(x, y) {
+        console.log(`Finding closest panel to coordinates: (${x}, ${y})`);
+
+        let closestDistance = Infinity;
+        let closestPanel = null;
+
+        // Only consider actual panels, not the placeholder
+        const allPanels = [...document.querySelectorAll('.panel')];
+        console.log(`Found ${allPanels.length} panels to consider`);
+
+        allPanels.forEach(p => {
+          if (p === panel) {
+            console.log(`Skipping panel being dragged: ${p.id || 'unnamed panel'}`);
+            return; // Skip the panel being dragged
+          }
+
+          const rect = p.getBoundingClientRect();
+
+          // Check if the point (x, y) is inside the panel
+          const isInside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+
+          if (isInside) {
+            console.log(`Point is inside panel ${p.id || 'unnamed panel'}`);
+            // If the point is inside the panel, set it as the closest with distance 0
+            closestPanel = p;
+            closestDistance = 0;
+            console.log(`Panel ${p.id || 'unnamed panel'} is directly under the cursor`);
+            return; // Exit the loop early
+          }
+
+          // If not inside, calculate distance to center
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          const distance = Math.sqrt(
+            Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
+          );
+
+          console.log(`Panel ${p.id || 'unnamed panel'} distance: ${distance}, width threshold: ${rect.width}`);
+
+          // Only consider panels that are close enough (within a threshold)
+          if (distance < closestDistance && distance < rect.width) {
+            closestDistance = distance;
+            closestPanel = p;
+            console.log(`New closest panel: ${p.id || 'unnamed panel'} with distance ${distance}`);
+          }
+        });
+
+        return closestPanel;
+      }
+
+      // Add event listeners for both mouse and touch events
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('mouseup', onEnd);
+      document.addEventListener('touchend', onEnd);
+    }
+  });
+
+  console.log('Panel drag and drop setup complete.');
+}
+
+// Function to save panel positions to localStorage
+function savePanelPositions() {
+  const panels = document.querySelectorAll('.panel');
+  const positions = {};
+
+  panels.forEach(panel => {
+    const id = panel.id;
+    if (id) {
+      const index = Array.from(panel.parentNode.children).indexOf(panel);
+      positions[id] = index;
+    }
+  });
+
+  localStorage.setItem('panelPositions', JSON.stringify(positions));
+  console.log('Panel positions saved:', positions);
+}
+
+// Function to load panel positions from localStorage
+function loadPanelPositions() {
+  const savedPositions = localStorage.getItem('panelPositions');
+  if (!savedPositions) return;
+
+  try {
+    const positions = JSON.parse(savedPositions);
+    const mainContainer = document.getElementById('main');
+
+    // Sort panels based on saved positions
+    const panelsArray = Array.from(mainContainer.children);
+
+    // Sort the array based on saved positions
+    panelsArray.sort((a, b) => {
+      const aPos = positions[a.id] !== undefined ? positions[a.id] : 999;
+      const bPos = positions[b.id] !== undefined ? positions[b.id] : 999;
+      return aPos - bPos;
+    });
+
+    // Reappend panels in the sorted order
+    panelsArray.forEach(panel => {
+      mainContainer.appendChild(panel);
+    });
+
+    console.log('Panel positions loaded:', positions);
+  } catch (error) {
+    console.error('Error loading panel positions:', error);
+  }
 }
 
 // Function to set up Rule Search functionality

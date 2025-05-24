@@ -3,13 +3,13 @@
     "name": "ff",
     "environment": "UAT",
     "ruleName": "ff",
-    "personaType": "MID"
+    "personaType": "XID"
   },
   {
     "name": "CCRE_RULE_1",
     "environment": "LOCAL",
     "ruleName": "CCRE_RULE_1",
-    "personaType": "MID"
+    "personaType": "XID"
   },
   {
     "name": "as",

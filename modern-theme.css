@@ -1,27 +1,31 @@
-/* modern-theme.css - Modern UI theme inspired by Bruno and Postman */
+/* modern-theme.css - Modern UI theme inspired by t.css */
 
 :root {
-  /* Fidelity.com inspired color palette */
+  /* Modern color palette - Light Theme (default) */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f8f8;
-  --bg-tertiary: #f0f0f0;
-  --bg-quaternary: #e8e8e8;
+  --bg-secondary: #f9f9f9;
+  --bg-tertiary: #f2f2f2;
+  --bg-quaternary: #eaeaea;
 
-  --accent-primary: #007896; /* Fidelity blue */
-  --accent-secondary: #569a32; /* Fidelity green */
+  --accent-primary: #0066cc; /* Primary blue */
+  --accent-secondary: #004d99; /* Secondary darker blue */
+  --accent-tertiary: #3399ff; /* Lighter blue for highlights */
 
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-muted: #888888;
+  --text-primary: #222222;
+  --text-secondary: #555555;
+  --text-muted: #777777;
 
-  --border-color: #dddddd;
-  --border-light: #eeeeee;
+  --border-color: #d0d0d0;
+  --border-light: #e6e6e6;
 
-  --panel-bg: #f5f5f5; /* Background for panels and code blocks */
+  --panel-bg: #f7f7f7; /* Background for panels and code blocks */
 
-  --success-color: #569a32; /* Fidelity green */
-  --warning-color: #f59e0b;
-  --error-color: #c41230; /* Fidelity red */
+  --success-color: #00a651; /* Success green */
+  --warning-color: #f7b500;
+  --error-color: #e41e26; /* Error red */
+
+  /* Theme transition */
+  --theme-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -29,37 +33,99 @@
   --spacing-md: 12px;
   --spacing-lg: 16px;
   --spacing-xl: 24px;
+  --spacing-xxl: 32px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.12);
 
   /* Border radius */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #252525;
+  --bg-quaternary: #2c2c2c;
+
+  --accent-primary: #3399ff; /* Brighter blue for dark mode */
+  --accent-secondary: #66b3ff; /* Lighter blue for dark mode */
+  --accent-tertiary: #0077cc; /* Darker blue for dark mode */
+
+  --text-primary: #f5f5f5;
+  --text-secondary: #d0d0d0;
+  --text-muted: #a0a0a0;
+
+  --border-color: #3d3d3d;
+  --border-light: #4d4d4d;
+
+  --panel-bg: #1a1a1a;
+
+  --success-color: #00cc66; /* Brighter green for dark mode */
+  --warning-color: #ffcc00;
+  --error-color: #ff3333; /* Brighter red for dark mode */
+
+  /* Shadows for dark theme */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Base styles */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', Arial, Helvetica, sans-serif; /* Using Inter for a more modern look */
+  font-family: 'Inter', Arial, Helvetica, sans-serif; /* Using Inter as primary font */
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  transition: var(--theme-transition);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: auto;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 18px;
+  transition: var(--theme-transition);
+  box-shadow: var(--shadow-sm);
+  margin-right: 10px;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-quaternary);
+  transform: scale(1.05);
 }
 
 /* Sidebar */
 #sidebar {
-  background-color: #f0f0f0; /* Light gray background like Fidelity's sidebar */
-  border-right: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  background-color: #f0f0f0; /* Light gray background for sidebar */
+  border-right: 1px solid #e0e0e0; /* Lighter border */
   width: 280px;
   min-width: 200px;
   max-width: 400px;
@@ -68,7 +134,15 @@ body {
   display: flex;
   flex-direction: column;
   padding: var(--spacing-lg);
-  box-shadow: inset -2px 0 5px -2px rgba(0, 0, 0, 0.1); /* Subtle inset shadow like Fidelity */
+  box-shadow: inset -2px 0 5px -2px rgba(0, 0, 0, 0.1); /* Subtle inset shadow */
+  transition: var(--theme-transition);
+}
+
+/* Dark theme sidebar */
+body.dark-theme #sidebar {
+  background-color: var(--bg-secondary);
+  border-right-color: var(--border-color);
+  box-shadow: inset -2px 0 5px -2px rgba(0, 0, 0, 0.3);
 }
 
 /* Search container */
@@ -87,12 +161,24 @@ body {
   padding: var(--spacing-md);
   font-size: 14px;
   transition: all 0.2s ease;
+  color: var(--text-primary);
 }
 
 #tree-search-input:focus {
   border-color: var(--accent-primary);
   outline: none;
   box-shadow: 0 0 0 2px rgba(2, 102, 102, 0.2);
+}
+
+/* Dark theme search input */
+body.dark-theme #tree-search-input {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.dark-theme #tree-search-input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.2);
 }
 
 #tree-search-button {
@@ -102,7 +188,7 @@ body {
 
 /* Highlight search results */
 .search-highlight {
-  background-color: rgba(117, 176, 0, 0.2);
+  background-color: rgba(255, 122, 0, 0.2);
   border-radius: 2px;
 }
 
@@ -117,41 +203,35 @@ button.control {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 10px 16px;
+  padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--theme-transition);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
-  letter-spacing: 0.5px;
-  height: 40px;
+  letter-spacing: 0.01em;
+  height: 36px;
   min-width: 100px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-transform: none;
 }
 
-button.control::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  transition: background-color 0.2s ease;
+button.control:hover {
+  background-color: var(--bg-quaternary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
-button.control:hover::after {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-button.control:active::after {
-  background-color: rgba(0, 0, 0, 0.1);
+button.control:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 button.primary {
@@ -160,12 +240,12 @@ button.primary {
   border: none;
 }
 
-button.primary:hover::after {
-  background-color: rgba(255, 255, 255, 0.1);
+button.primary:hover {
+  background-color: var(--accent-secondary);
 }
 
-button.primary:active::after {
-  background-color: rgba(0, 0, 0, 0.1);
+button.primary:active {
+  background-color: var(--accent-tertiary);
 }
 
 button.secondary {
@@ -174,18 +254,22 @@ button.secondary {
   color: var(--text-primary);
 }
 
+button.secondary:hover {
+  background-color: var(--bg-tertiary);
+}
+
 button.success {
   background-color: var(--success-color);
   color: white;
   border: none;
 }
 
-button.success:hover::after {
-  background-color: rgba(255, 255, 255, 0.1);
+button.success:hover {
+  background-color: color-mix(in srgb, var(--success-color) 90%, black);
 }
 
-button.success:active::after {
-  background-color: rgba(0, 0, 0, 0.1);
+button.success:active {
+  background-color: color-mix(in srgb, var(--success-color) 80%, black);
 }
 
 button.danger {
@@ -194,12 +278,12 @@ button.danger {
   border: none;
 }
 
-button.danger:hover::after {
-  background-color: rgba(255, 255, 255, 0.1);
+button.danger:hover {
+  background-color: color-mix(in srgb, var(--error-color) 90%, black);
 }
 
-button.danger:active::after {
-  background-color: rgba(0, 0, 0, 0.1);
+button.danger:active {
+  background-color: color-mix(in srgb, var(--error-color) 80%, black);
 }
 
 /* Icon-only buttons */
@@ -214,6 +298,21 @@ button.icon-button {
 .button-group {
   display: flex;
   gap: var(--spacing-sm);
+}
+
+/* Send Request button - orange */
+#send-api-request-btn {
+  background-color: #ff8c00; /* Orange color */
+  color: white;
+  border: none;
+}
+
+#send-api-request-btn:hover {
+  background-color: #e67e00; /* Darker orange for hover */
+}
+
+#send-api-request-btn:active {
+  background-color: #cc7000; /* Even darker orange for active state */
 }
 
 /* Tree view - Directory Explorer Style */
@@ -279,16 +378,16 @@ button.icon-button {
   position: absolute;
   bottom: 16px;
   right: 16px;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   padding: 0;
-  border-radius: 20px;
-  background-color: var(--accent-primary);
+  border-radius: 16px;
+  background-color: var(--success-color);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: normal;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -380,6 +479,11 @@ button.icon-button {
   border-left: 1px dotted #999;
 }
 
+/* Dark theme tree node styles */
+body.dark-theme .tree-children::before {
+  border-left-color: #666;
+}
+
 .tree-children > .tree-item-leaf::before, 
 .tree-children > .tree-node > .tree-header::before {
   content: "";
@@ -389,6 +493,12 @@ button.icon-button {
   height: 0;
   border-top: 1px dotted #999;
   top: 50%;
+}
+
+/* Dark theme horizontal connecting lines */
+body.dark-theme .tree-children > .tree-item-leaf::before,
+body.dark-theme .tree-children > .tree-node > .tree-header::before {
+  border-top-color: #666;
 }
 
 .tree-header {
@@ -402,6 +512,7 @@ button.icon-button {
   border-left: 3px solid transparent;
   margin: 2px 0;
   position: relative;
+  color: var(--text-primary);
 }
 
 .tree-header:hover {
@@ -424,6 +535,7 @@ button.icon-button {
   align-items: center;
   margin: 2px 0;
   position: relative;
+  color: var(--text-primary);
 }
 
 .tree-item-leaf:hover {
@@ -438,6 +550,25 @@ button.icon-button {
   color: var(--text-primary);
 }
 
+/* Dark theme tree item hover and selected states */
+body.dark-theme .tree-header,
+body.dark-theme .tree-item-leaf {
+  color: #ffffff; /* Ensure high contrast for tree text in dark mode */
+}
+
+body.dark-theme .tree-header:hover,
+body.dark-theme .tree-item-leaf:hover {
+  background-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-theme .tree-header.selected,
+body.dark-theme .tree-item-leaf.selected {
+  background-color: #2c5a7c;
+  color: #ffffff;
+}
+
+
 /* Icon styles for tree items */
 .folder-icon, .file-icon {
   width: 16px;
@@ -446,11 +577,22 @@ button.icon-button {
   flex-shrink: 0;
 }
 
+/* Ensure SVG icons are visible in dark mode */
+body.dark-theme .tree-header svg path,
+body.dark-theme .tree-item-leaf svg path {
+  stroke: var(--text-primary);
+}
+
+body.dark-theme .tree-header svg,
+body.dark-theme .tree-item-leaf svg {
+  filter: brightness(1.2);
+}
+
 /* Main tabs */
 .main-tabs {
   display: flex;
-  background: linear-gradient(to bottom, #037373, var(--accent-primary));
-  border-bottom: 1px solid #015555;
+  background-color: var(--success-color);
+  border-bottom: 1px solid color-mix(in srgb, var(--success-color) 80%, black);
   padding: 0 var(--spacing-lg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -470,7 +612,7 @@ button.icon-button {
 
 .main-tabs .tab.active {
   color: white;
-  border-bottom: 4px solid var(--accent-secondary);
+  border-bottom: 4px solid color-mix(in srgb, var(--success-color) 70%, black);
   background-color: rgba(255, 255, 255, 0.1);
   font-weight: 700;
 }
@@ -478,7 +620,7 @@ button.icon-button {
 .main-tabs .tab:hover:not(.active) {
   color: white;
   background-color: rgba(255, 255, 255, 0.15);
-  border-bottom-color: rgba(117, 176, 0, 0.5);
+  border-bottom-color: color-mix(in srgb, var(--success-color) 90%, white);
 }
 
 .tab-content-container {
@@ -523,38 +665,79 @@ button.icon-button {
   grid-template-rows: 1fr 1fr;
   gap: var(--spacing-lg);
   padding: var(--spacing-xl);
-  background-color: #f5f5f5; /* Light gray background like Fidelity's main content area */
+  background-color: var(--bg-tertiary);
   overflow: auto;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05); /* Subtle inset shadow like Fidelity */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05); /* Subtle inset shadow */
+  transition: var(--theme-transition);
+}
+
+/* Panel placeholder for drag and drop */
+.panel-placeholder {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  opacity: 0.6;
+  transition: var(--theme-transition);
 }
 
 /* Panels */
 .panel {
-  background-color: white;
+  background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s ease;
+  box-shadow: var(--shadow-md);
+  transition: var(--theme-transition);
+  position: relative;
 }
 
 .panel:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.panel.dragging {
+  opacity: 0.9;
+  transform: scale(1.02) translateY(-4px);
+  z-index: 100;
+  box-shadow: var(--shadow-xl);
 }
 
 .panel h2 {
   margin: 0;
-  font-size: 18px;
-  color: var(--accent-primary);
+  font-size: 16px;
+  color: var(--text-primary);
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-tertiary));
+  cursor: move; /* Indicate draggable */
+  user-select: none; /* Prevent text selection during drag */
+  position: relative;
+}
+
+.panel h2::before {
+  content: "⋮⋮";
+  font-size: 14px;
+  margin-right: 8px;
+  color: var(--accent-primary);
+  cursor: move;
+}
+
+/* Dark theme panels */
+body.dark-theme .panel {
   background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .panel h2 {
+  background: linear-gradient(to bottom, var(--bg-tertiary), var(--bg-quaternary));
+  border-bottom-color: var(--border-color);
 }
 
 .panel-content {
@@ -564,22 +747,29 @@ button.icon-button {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: var(--theme-transition);
 }
 
 /* Form elements */
 input, select, textarea {
-  background-color: white;
-  border: 1px solid #cccccc;
-  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
   color: var(--text-primary);
-  padding: var(--spacing-md);
+  padding: 8px 12px;
   font-size: 14px;
   font-family: inherit;
-  transition: all 0.2s ease;
+  transition: var(--theme-transition);
   width: 100%;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-  height: 40px; /* Consistent height for inputs and selects */
+  box-shadow: var(--shadow-sm);
+  height: 36px; /* Consistent height with buttons */
   box-sizing: border-box;
+}
+
+input:hover, select:hover, textarea:hover {
+  border-color: color-mix(in srgb, var(--border-color) 80%, var(--accent-primary));
 }
 
 textarea {
@@ -588,20 +778,37 @@ textarea {
   resize: vertical;
   line-height: 1.5;
   font-family: 'Fira Code', monospace;
+  padding: 12px;
 }
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--accent-primary);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(2, 102, 102, 0.2);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
 }
 
 select {
   appearance: none; /* Remove default styling */
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 8px center;
   padding-right: 30px; /* Space for the arrow */
+  cursor: pointer;
+}
+
+/* Dark theme form elements */
+body.dark-theme input, 
+body.dark-theme select, 
+body.dark-theme textarea {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.dark-theme input:focus, 
+body.dark-theme select:focus, 
+body.dark-theme textarea:focus {
+  box-shadow: 0 0 0 2px rgba(51, 153, 255, 0.3);
 }
 
 label {
@@ -667,31 +874,52 @@ label {
 
 .tabs {
   display: flex;
-  border-bottom: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: 0 var(--spacing-sm);
 }
 
 .tab {
   padding: var(--spacing-md) var(--spacing-lg);
   cursor: pointer;
-  border-bottom: 3px solid transparent; /* Slightly thicker border for tabs */
+  border-bottom: 2px solid transparent;
   color: var(--text-secondary);
-  transition: all 0.2s ease;
-  font-weight: 500; /* Slightly bolder tabs like Fidelity */
-  text-transform: uppercase; /* Fidelity often uses uppercase for tabs */
-  font-size: 13px; /* Slightly smaller font size for tabs */
-  letter-spacing: 0.5px; /* Slight letter spacing for better readability */
+  transition: var(--theme-transition);
+  font-weight: 500;
+  text-transform: none; /* Remove uppercase for more modern look */
+  font-size: 14px; /* Slightly larger font size for better readability */
+  letter-spacing: 0.01em; /* Reduced letter spacing */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .tab.active {
   border-bottom-color: var(--accent-primary);
-  color: var(--accent-primary); /* Active tab uses accent color like Fidelity */
-  font-weight: 600; /* Bolder active tab */
+  color: var(--accent-primary);
+  font-weight: 600;
+  background-color: var(--bg-primary);
 }
 
 .tab:hover:not(.active) {
   color: var(--accent-primary);
-  background-color: rgba(2, 102, 102, 0.05); /* Very subtle hover background */
+  background-color: rgba(0, 102, 204, 0.05); /* Subtle hover background with new accent color */
+}
+
+/* Dark theme tabs */
+body.dark-theme .tabs {
+  background-color: var(--bg-tertiary);
+}
+
+body.dark-theme .tab:hover:not(.active) {
+  background-color: rgba(51, 153, 255, 0.1);
+}
+
+body.dark-theme .tab.active {
+  background-color: var(--bg-secondary);
 }
 
 .tab-content {
@@ -781,61 +1009,61 @@ label {
   flex-direction: column;
   gap: var(--spacing-md);
   flex-grow: 1;
-  border: 1px solid #e0e0e0; /* Lighter border like Fidelity */
-  border-radius: 3px; /* Fidelity uses less rounded corners */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 3px; /* Less rounded corners */
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow like Fidelity */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .response-header {
   display: flex;
   align-items: center;
   padding: var(--spacing-md);
-  background-color: #f8f8f8; /* Light gray background like Fidelity */
-  border-bottom: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  background-color: #f8f8f8; /* Light gray background */
+  border-bottom: 1px solid #e0e0e0; /* Lighter border */
 }
 
 .response-status {
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 2px; /* Less rounded corners like Fidelity */
-  font-weight: 600; /* Bolder status like Fidelity */
+  border-radius: 2px; /* Less rounded corners */
+  font-weight: 600; /* Bolder status */
   margin-right: var(--spacing-md);
-  text-transform: uppercase; /* Uppercase text like Fidelity */
-  font-size: 12px; /* Smaller font size like Fidelity */
+  text-transform: uppercase; /* Uppercase text */
+  font-size: 12px; /* Smaller font size */
   letter-spacing: 0.5px; /* Slight letter spacing for better readability */
 }
 
 .status-success {
-  background-color: rgba(117, 176, 0, 0.1); /* Fidelity green with low opacity */
+  background-color: rgba(255, 122, 0, 0.1); /* Success orange with low opacity */
   color: var(--success-color);
-  border: 1px solid rgba(117, 176, 0, 0.3); /* Border like Fidelity */
+  border: 1px solid rgba(255, 122, 0, 0.3); /* Subtle border */
 }
 
 .status-error {
-  background-color: rgba(196, 18, 48, 0.1); /* Fidelity red with low opacity */
+  background-color: rgba(196, 18, 48, 0.1); /* Error red with low opacity */
   color: var(--error-color);
-  border: 1px solid rgba(196, 18, 48, 0.3); /* Border like Fidelity */
+  border: 1px solid rgba(196, 18, 48, 0.3); /* Subtle border */
 }
 
 .status-warning {
   background-color: rgba(245, 158, 11, 0.1); /* Warning color with low opacity */
   color: var(--warning-color);
-  border: 1px solid rgba(245, 158, 11, 0.3); /* Border like Fidelity */
+  border: 1px solid rgba(245, 158, 11, 0.3); /* Subtle border */
 }
 
 .response-time {
   color: var(--text-secondary);
   font-size: 12px;
   margin-left: auto;
-  font-weight: 500; /* Slightly bolder text like Fidelity */
+  font-weight: 500; /* Slightly bolder text */
 }
 
 .response-tabs {
   display: flex;
-  background-color: #f8f8f8; /* Light gray background like Fidelity */
-  border-bottom: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  background-color: #f8f8f8; /* Light gray background */
+  border-bottom: 1px solid #e0e0e0; /* Lighter border */
 }
 
 .response-tab {
@@ -844,15 +1072,15 @@ label {
   border-bottom: 3px solid transparent; /* Slightly thicker border for tabs */
   color: var(--text-secondary);
   transition: all 0.2s ease;
-  font-weight: 500; /* Slightly bolder tabs like Fidelity */
-  text-transform: uppercase; /* Fidelity often uses uppercase for tabs */
+  font-weight: 500; /* Slightly bolder tabs */
+  text-transform: uppercase; /* Uppercase for tabs */
   font-size: 12px; /* Slightly smaller font size for tabs */
   letter-spacing: 0.5px; /* Slight letter spacing for better readability */
 }
 
 .response-tab.active {
-  border-bottom-color: var(--accent-primary); /* Fidelity green */
-  color: var(--accent-primary); /* Fidelity green */
+  border-bottom-color: var(--accent-primary); /* Accent color */
+  color: var(--accent-primary); /* Accent color */
   font-weight: 600; /* Bolder active tab */
 }
 
@@ -860,21 +1088,21 @@ label {
   flex-grow: 1;
   overflow: auto;
   padding: var(--spacing-md);
-  background-color: white; /* White background like Fidelity */
-  font-family: 'Courier New', monospace; /* More common monospace font like Fidelity */
+  background-color: white; /* White background */
+  font-family: 'Courier New', monospace; /* Common monospace font */
   white-space: pre-wrap;
   font-size: 14px;
-  border-top: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  border-top: 1px solid #e0e0e0; /* Lighter border */
 }
 
 /* Context menu */
 .context-menu {
   position: fixed;
   z-index: 1000;
-  background-color: white; /* White background like Fidelity */
-  border: 1px solid #e0e0e0; /* Lighter border like Fidelity */
-  border-radius: 3px; /* Fidelity uses less rounded corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow like Fidelity */
+  background-color: white; /* White background */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 3px; /* Less rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow */
   overflow: hidden;
 }
 
@@ -888,8 +1116,8 @@ label {
 }
 
 .context-menu-item:hover {
-  background-color: rgba(2, 102, 102, 0.05); /* Very subtle hover background */
-  border-left-color: var(--accent-primary); /* Left border highlight like Fidelity */
+  background-color: rgba(255, 122, 0, 0.05); /* Very subtle hover background */
+  border-left-color: var(--accent-primary); /* Left border highlight */
   color: var(--accent-primary); /* Text color change on hover */
 }
 
@@ -899,14 +1127,14 @@ label {
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
   padding: var(--spacing-md) var(--spacing-lg);
-  background-color: white; /* White background like Fidelity */
-  border-left: 4px solid var(--accent-primary); /* Fidelity green */
-  border-radius: 3px; /* Fidelity uses less rounded corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow like Fidelity */
+  background-color: white; /* White background */
+  border-left: 4px solid var(--accent-primary); /* Accent color */
+  border-radius: 3px; /* Less rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow */
   color: var(--text-primary);
   z-index: 1000;
   animation: fadeOut 3s forwards;
-  font-weight: 500; /* Slightly bolder text like Fidelity */
+  font-weight: 500; /* Slightly bolder text */
 }
 
 @keyframes fadeOut {
@@ -917,12 +1145,12 @@ label {
 
 /* Rule Analyzer styles */
 .history-item {
-  background-color: white; /* White background like Fidelity */
-  border: 1px solid #e0e0e0; /* Lighter border like Fidelity */
-  border-radius: 3px; /* Fidelity uses less rounded corners */
+  background-color: white; /* White background */
+  border: 1px solid #e0e0e0; /* Lighter border */
+  border-radius: 3px; /* Less rounded corners */
   margin-bottom: var(--spacing-md);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow like Fidelity */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .history-item-header {
@@ -930,47 +1158,47 @@ label {
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-sm) var(--spacing-md);
-  background-color: #f8f8f8; /* Light gray background like Fidelity */
-  border-bottom: 1px solid #e0e0e0; /* Lighter border like Fidelity */
+  background-color: #f8f8f8; /* Light gray background */
+  border-bottom: 1px solid #e0e0e0; /* Lighter border */
 }
 
 .history-item-header .timestamp {
   font-size: 12px;
   color: var(--text-secondary);
-  font-weight: 500; /* Slightly bolder text like Fidelity */
+  font-weight: 500; /* Slightly bolder text */
 }
 
 .history-item-header .status {
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 2px; /* Less rounded corners like Fidelity */
-  font-size: 11px; /* Smaller font size like Fidelity */
-  font-weight: 600; /* Bolder status like Fidelity */
-  text-transform: uppercase; /* Uppercase text like Fidelity */
+  border-radius: 2px; /* Less rounded corners */
+  font-size: 11px; /* Smaller font size */
+  font-weight: 600; /* Bolder status */
+  text-transform: uppercase; /* Uppercase text */
   letter-spacing: 0.5px; /* Slight letter spacing for better readability */
 }
 
 .history-item-header .status.success {
-  background-color: rgba(117, 176, 0, 0.1); /* Fidelity green with low opacity */
+  background-color: rgba(255, 122, 0, 0.1); /* Success orange with low opacity */
   color: var(--success-color);
-  border: 1px solid rgba(117, 176, 0, 0.3); /* Border like Fidelity */
+  border: 1px solid rgba(255, 122, 0, 0.3); /* Subtle border */
 }
 
 .history-item-header .status.error {
-  background-color: rgba(196, 18, 48, 0.1); /* Fidelity red with low opacity */
+  background-color: rgba(196, 18, 48, 0.1); /* Error red with low opacity */
   color: var(--error-color);
-  border: 1px solid rgba(196, 18, 48, 0.3); /* Border like Fidelity */
+  border: 1px solid rgba(196, 18, 48, 0.3); /* Subtle border */
 }
 
 .history-item pre {
   padding: var(--spacing-md);
   margin: 0;
-  font-family: 'Courier New', monospace; /* More common monospace font like Fidelity */
+  font-family: 'Courier New', monospace; /* Common monospace font */
   font-size: 12px;
   white-space: pre-wrap;
   overflow: auto;
   max-height: 200px;
-  background-color: white; /* White background like Fidelity */
-  border-top: 1px solid #f0f0f0; /* Very light border like Fidelity */
+  background-color: white; /* White background */
+  border-top: 1px solid #f0f0f0; /* Very light border */
 }
 
 .big-modal {
@@ -1439,13 +1667,13 @@ kbd {
 
 #run-json-context:focus, #request-json-context:focus {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px rgba(2, 102, 102, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
 /* Add a subtle JSON syntax highlighting effect */
 #run-json-context::selection, #request-json-context::selection {
-  background-color: rgba(2, 102, 102, 0.2);
+  background-color: rgba(255, 122, 0, 0.2);
 }
 
 /* Loading Indicator */

@@ -660,7 +660,7 @@ async function saveProdRun(environment, data) {
 
     const query = `
       INSERT INTO prod_runs 
-        (rule_name, context, mid, result, environment, created_by)
+        (rule_name, context, xid, result, environment, created_by)
       VALUES 
         ($1, $2, $3, $4, $5, $6)
       RETURNING id`;
@@ -668,7 +668,7 @@ async function saveProdRun(environment, data) {
     const values = [
       data.ruleName,
       data.context || {},
-      data.mid,
+      data.xid,
       data.result || {},
       environment, // Store the environment as metadata
       data.createdBy
@@ -702,9 +702,9 @@ async function getProdRuns(environment, filters = {}) {
       paramIndex++;
     }
 
-    if (filters.mid) {
-      query += ' AND mid = $' + paramIndex;
-      values.push(filters.mid);
+    if (filters.xid) {
+      query += ' AND xid = $' + paramIndex;
+      values.push(filters.xid);
       paramIndex++;
     }
 
