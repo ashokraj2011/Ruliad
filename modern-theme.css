@@ -1814,8 +1814,8 @@ dialog::backdrop {
 
 .dialog-card > header {
   padding: var(--spacing-lg) var(--spacing-xl);
-  background-color: var(--accent-primary);
-  border-bottom: 1px solid #015555;
+  background-color: var(--success-color);
+  border-bottom: 1px solid #007a3d; /* Darker shade of green to complement --success-color */
   color: white;
   display: flex;
   align-items: center;

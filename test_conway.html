@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conway's Game of Life Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    #canvas-container {
+      border: 2px solid #333;
+      margin: 20px 0;
+    }
+    
+    #controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      padding: 8px 16px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #3a80d2;
+    }
+    
+    #log {
+      width: 100%;
+      max-width: 600px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: auto;
+      font-family: monospace;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Conway's Game of Life Test</h1>
+  <p>Click on cells to toggle them. Use the controls to start/pause the simulation.</p>
+  
+  <div id="controls">
+    <button id="start-pause">Start</button>
+    <button id="clear">Clear</button>
+    <button id="random">Random Pattern</button>
+  </div>
+  
+  <div id="canvas-container">
+    <canvas id="conway-canvas" width="600" height="400"></canvas>
+  </div>
+  
+  <h3>Log:</h3>
+  <div id="log"></div>
+  
+  <script src="conway.js"></script>
+  <script>
+    // Custom logger to display messages in the log div
+    function log(message) {
+      const logDiv = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+      logDiv.scrollTop = logDiv.scrollHeight;
+      console.log(message);
+    }
+    
+    // Initialize Conway's Game of Life
+    const conwayGame = initConway('conway-canvas', {
+      cellSize: 20,
+      updateInterval: 300,
+      initialDensity: 0.3
+    });
+    
+    // Set up controls
+    const startPauseButton = document.getElementById('start-pause');
+    const clearButton = document.getElementById('clear');
+    const randomButton = document.getElementById('random');
+    
+    // Start/Pause button
+    startPauseButton.addEventListener('click', () => {
+      if (conwayGame.isRunning) {
+        conwayGame.stop();
+        startPauseButton.textContent = 'Start';
+        log('Simulation paused');
+      } else {
+        conwayGame.start();
+        startPauseButton.textContent = 'Pause';
+        log('Simulation started');
+      }
+    });
+    
+    // Clear button
+    clearButton.addEventListener('click', () => {
+      conwayGame.stop();
+      conwayGame.clearBoard();
+      startPauseButton.textContent = 'Start';
+      log('Board cleared');
+    });
+    
+    // Random pattern button
+    randomButton.addEventListener('click', () => {
+      conwayGame.stop();
+      conwayGame.options.initialDensity = 0.2 + Math.random() * 0.4;
+      conwayGame.initGrid();
+      startPauseButton.textContent = 'Start';
+      log(`New random pattern created with density: ${conwayGame.options.initialDensity.toFixed(2)}`);
+    });
+    
+    // Log initial state
+    log('Conway\'s Game of Life initialized');
+    log('Click on cells to toggle them');
+  </script>
+</body>
+</html>

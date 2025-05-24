@@ -21,6 +21,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
     height: 800,
+    fullscreen: true, // Start in full screen mode
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
