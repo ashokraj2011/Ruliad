@@ -9,6 +9,7 @@
  * @return {HTMLCanvasElement} Canvas element with the game
  */
 function createGameOfLifeCanvas(width, height, accent = '#00acee') {
+
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
