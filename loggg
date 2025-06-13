@@ -1,0 +1,253 @@
+package demo.logctx;
+
+public enum LogLevel {
+    INFO, WARN, ERROR, METRIC
+}
+
+
+
+package demo.logctx;
+
+public enum ErrorCode {
+    DATA_FETCH_FAIL,
+    RULE_PARSE_ERROR,
+    TIMEOUT
+    // add more domain-specific codes here
+}
+
+
+package demo.logctx;
+
+import java.time.Instant;
+import java.util.Map;
+
+public record LogEntry(
+        Instant ts,
+        LogLevel level,
+        String  rule,
+        ErrorCode code,
+        String  msg,
+        Map<String, Object> metric
+) { }
+
+
+
+package demo.logctx;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentMap;
+
+/**
+ * One instance per request / customer.
+ * Reach it anywhere via LogContext.current().
+ */
+public final class LogContext implements AutoCloseable {
+
+    /* -------------  static propagation helpers ------------- */
+    private static final InheritableThreadLocal<LogContext> TL = new InheritableThreadLocal<>();
+    private static final ConcurrentMap<String, LogContext> BY_REQ = new ConcurrentHashMap<>();
+
+    /** Attach (or create) the context for a request and make it current. */
+    public static LogContext attach(String reqId, String custId) {
+        LogContext ctx = BY_REQ.computeIfAbsent(reqId, id -> new LogContext(reqId, custId));
+        TL.set(ctx);
+        return ctx;
+    }
+
+    /** The context active on the current thread, or null if none. */
+    public static LogContext current() {
+        return TL.get();
+    }
+
+    /** Clears the thread-local slot (important on thread pools). */
+    @Override public void close() {
+        TL.remove();
+    }
+    /* -------------------------------------------------------- */
+
+    /* -------------  instance data ------------- */
+    private final String requestId;
+    private final String customerId;
+    private final Instant startTs = Instant.now();
+    private final ConcurrentLinkedQueue<LogEntry> entries = new ConcurrentLinkedQueue<>();
+
+    private LogContext(String reqId, String custId) {
+        this.requestId = reqId;
+        this.customerId = custId;
+    }
+
+    /* -------- convenience log helpers -------- */
+    public void info(String rule, String msg) {
+        log(LogLevel.INFO, rule, null, msg, null);
+    }
+
+    public void warn(String rule, String msg) {
+        log(LogLevel.WARN, rule, null, msg, null);
+    }
+
+    public void error(String rule, ErrorCode code, String msg) {
+        log(LogLevel.ERROR, rule, code, msg, null);
+    }
+
+    public void metric(String rule, Map<String, Object> metric) {
+        log(LogLevel.METRIC, rule, null, null, metric);
+    }
+
+    public List<LogEntry> entries(LogLevel... levels) {
+        Set<LogLevel> filter = Set.of(levels);
+        return entries.stream()
+                      .filter(e -> filter.contains(e.level()))
+                      .toList();
+    }
+
+    /* -------- raw logger -------- */
+    public void log(LogLevel lvl,
+                    String rule,
+                    ErrorCode code,
+                    String msg,
+                    Map<String, Object> metric) {
+
+        entries.add(new LogEntry(
+                Instant.now(),
+                lvl,
+                rule,
+                code,
+                msg,
+                metric == null ? Map.of() : Map.copyOf(metric)
+        ));
+    }
+
+    /* -------- JSON export -------- */
+    public JsonNode toJson() {
+        ObjectMapper om = new ObjectMapper();
+        ObjectNode root = om.createObjectNode();
+        root.put("requestId", requestId);
+        root.put("customerId", customerId);
+        root.put("startTs", startTs.toString());
+
+        ArrayNode arr = om.createArrayNode();
+        entries.forEach(e -> arr.add(om.valueToTree(e)));
+        root.set("entries", arr);
+        return root;
+    }
+
+    /** Flush, print, and clear (optional helper). */
+    public void flushAndPrint() {
+        System.out.println(toJson().toPrettyString());
+        entries.clear();
+    }
+}
+
+
+package demo.logctx;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * Wraps any Executor so the current LogContext propagates into pool threads.
+ */
+public final class ContextAwareExecutor implements Executor {
+
+    private final Executor delegate;
+
+    public ContextAwareExecutor(Executor delegate) {
+        this.delegate = delegate;
+    }
+
+    @Override
+    public void execute(Runnable task) {
+        LogContext captured = LogContext.current();      // may be null
+        delegate.execute(() -> {
+            if (captured != null) LogContext.attach(captured.requestId, captured.customerId);
+            try {
+                task.run();
+            } finally {
+                if (captured != null) LogContext.current().close();
+            }
+        });
+    }
+
+    /* convenient factory to get a cached pool already wrapped */
+    public static ExecutorService newCached() {
+        return Executors.newCachedThreadPool(r -> {
+            Thread t = new Thread(r);
+            t.setName("rule-worker-" + t.getId());
+            return t;
+        });
+    }
+}
+
+
+package demo.logctx;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class RuleEngineDemo {
+
+    private final ExecutorService pool = ContextAwareExecutor.newCached();
+
+    public static void main(String[] args) throws Exception {
+        new RuleEngineDemo().processRequest(
+                "REQ-123",
+                "CUST-42",
+                List.of(new Rule("ageCheck", 18),
+                        new Rule("balanceCheck", 1000),
+                        new Rule("residencyCheck", 365)));
+    }
+
+    public void processRequest(String requestId,
+                               String customerId,
+                               List<Rule> rules) throws Exception {
+
+        /* 1️⃣ attach context ONCE – no method signature changes below */
+        try (LogContext ctx = LogContext.attach(requestId, customerId)) {
+
+            /* 2️⃣ launch one task per rule (any existing evaluateRule stays untouched) */
+            for (Rule r : rules) {
+                pool.submit(() -> evaluateRule(r));
+            }
+
+            /* 3️⃣ wait (demo only – replace with your existing wait logic) */
+            pool.shutdown();
+            pool.awaitTermination(10, TimeUnit.SECONDS);
+
+            /* 4️⃣ emit JSON */
+            ctx.flushAndPrint();
+        }
+    }
+
+    /* unchanged business function – no context parameter */
+    private boolean evaluateRule(Rule rule) {
+        LogContext ctx = LogContext.current();          // always non-null here
+
+        long t0 = System.nanoTime();
+        try {
+            ctx.info(rule.name(), "start");
+            // fake compute:
+            boolean ok = Math.random() > 0.3;
+            if (!ok) {
+                ctx.error(rule.name(), ErrorCode.RULE_PARSE_ERROR, "Rule failed");
+            }
+            return ok;
+        } finally {
+            ctx.metric(rule.name(),
+                       Map.of("elapsedMs",
+                              TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t0)));
+        }
+    }
+}
