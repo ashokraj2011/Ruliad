@@ -1,0 +1,378 @@
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
+/**
+ * CCRE Rule JSON -> Compiled Form compiler.
+ *
+ * Usage:
+ *   1) From a file:
+ *        java CcreRuleCompiler /path/to/rule.json
+ *
+ *   2) Or edit main() to use a hardcoded JSON string.
+ *
+ * Output:
+ *   Prints compiled JSON to stdout.
+ *
+ * Notes:
+ * - evaluation_group leaf => AND of its predicates (or ATOM if single predicate).
+ * - logical nodes (op=and/or) compile to expr_nodes with child node ids.
+ * - fetch_group keys:
+ *     session      => FG_SESSION_<namespace>
+ *     non-session  => FG_<datasource>_<namespace>_EG<evaluation_group>
+ * - execution_plan:
+ *     phase_0_free_eval = all session fetch groups
+ *     default_fetch_order_after_free_eval = remaining groups sorted by (#predicates desc, id asc)
+ */
+public class CcreRuleCompiler {
+
+    // ---------- Compiler output structures ----------
+    static class FetchGroup {
+        public String datasource;
+        public String namespace;
+        public String evaluation_group; // only for non-session
+        public String cost_tier;         // FREE / EXPENSIVE (extend as needed)
+        public List<String> requires;    // placeholder
+        public List<String> fields;      // populated during compilation
+    }
+
+    static class PredicateDef {
+        public String field;
+        public String fetch_group;
+        public String op;
+        public Object value;
+        public String short_circuit_role; // optional: "gate" for session predicates
+    }
+
+    static class ExprNode {
+        public String type;             // AND / OR / ATOM
+        public List<String> terms;      // for AND/OR; can contain N# or P#
+        public String term;             // for ATOM
+        public String simplify_hint;    // optional
+    }
+
+    static class CompilerState {
+        int predCounter = 0;
+        int nodeCounter = 0;
+
+        // preserve insertion order for readability/diffability
+        Map<String, FetchGroup> fetchGroups = new LinkedHashMap<>();
+        Map<String, PredicateDef> predicates = new LinkedHashMap<>();
+        Map<String, ExprNode> exprNodes = new LinkedHashMap<>();
+        Map<String, List<String>> dependencyIndex = new LinkedHashMap<>();
+    }
+
+    // ---------- Normalization helpers ----------
+    static String normalizeOp(String op) {
+        if (op == null) throw new IllegalArgumentException("Missing op");
+        String o = op.trim().toLowerCase(Locale.ROOT);
+        if ("and".equals(o)) return "AND";
+        if ("or".equals(o)) return "OR";
+        throw new IllegalArgumentException("Unsupported op: " + op);
+    }
+
+    static String normalizeComp(String comp) {
+        if (comp == null) throw new IllegalArgumentException("Missing comp");
+        String c = comp.trim().toLowerCase(Locale.ROOT);
+
+        // common variants
+        if (c.equals("equal to") || c.equals("equals") || c.equals("equal_to")) return "equal_to";
+        if (c.equals("isempty") || c.equals("is empty") || c.equals("is_empty")) return "is_empty";
+        if (c.equals("greater than") || c.equals("greater_than")) return "greater_than";
+        if (c.equals("has any of") || c.equals("has_any_of")) return "has_any_of";
+
+        // fallback
+        return c.replace(" ", "_");
+    }
+
+    static boolean isSessionDatasource(String datasource) {
+        return datasource != null && datasource.equalsIgnoreCase("session");
+    }
+
+    static String fetchGroupId(JsonNode fieldNode) {
+        String ds = requiredText(fieldNode, "datasource");
+        String ns = requiredText(fieldNode, "namespace");
+        String eg = fieldNode.hasNonNull("evaluation_group") ? fieldNode.get("evaluation_group").asText() : null;
+
+        if (isSessionDatasource(ds)) {
+            return "FG_SESSION_" + ns;
+        }
+        if (eg == null || eg.isBlank()) {
+            // If you ever allow non-session without evaluation_group, decide your policy here
+            eg = "NA";
+        }
+        return "FG_" + ds + "_" + ns + "_EG" + eg;
+    }
+
+    static FetchGroup makeFetchGroup(JsonNode fieldNode) {
+        FetchGroup fg = new FetchGroup();
+        fg.datasource = requiredText(fieldNode, "datasource");
+        fg.namespace = requiredText(fieldNode, "namespace");
+
+        if (!isSessionDatasource(fg.datasource)) {
+            fg.evaluation_group = fieldNode.hasNonNull("evaluation_group") ? fieldNode.get("evaluation_group").asText() : null;
+        }
+
+        fg.cost_tier = isSessionDatasource(fg.datasource) ? "FREE" : "EXPENSIVE";
+        fg.requires = isSessionDatasource(fg.datasource) ? List.of() : List.of("customer_id_or_context_key"); // placeholder
+        fg.fields = new ArrayList<>();
+        return fg;
+    }
+
+    // ---------- Json helpers ----------
+    static String requiredText(JsonNode node, String field) {
+        if (!node.hasNonNull(field)) {
+            throw new IllegalArgumentException("Missing required field '" + field + "' in: " + node);
+        }
+        return node.get(field).asText();
+    }
+
+    static Object jsonValueToJava(ObjectMapper mapper, JsonNode node) {
+        // Converts JsonNode to a plain Java object (String/Number/Boolean/List/Map/null)
+        if (node == null || node.isNull()) return null;
+        if (node.isTextual()) return node.asText();
+        if (node.isBoolean()) return node.asBoolean();
+        if (node.isInt()) return node.asInt();
+        if (node.isLong()) return node.asLong();
+        if (node.isFloatingPointNumber()) return node.asDouble();
+        if (node.isArray()) {
+            List<Object> out = new ArrayList<>();
+            for (JsonNode n : node) out.add(jsonValueToJava(mapper, n));
+            return out;
+        }
+        if (node.isObject()) {
+            return mapper.convertValue(node, Map.class);
+        }
+        return mapper.convertValue(node, Object.class);
+    }
+
+    // ---------- Core compile ----------
+    static String newPredicateId(CompilerState st) {
+        st.predCounter++;
+        return "P" + st.predCounter;
+    }
+
+    static String newNodeId(CompilerState st) {
+        st.nodeCounter++;
+        return "N" + st.nodeCounter;
+    }
+
+    static void addDependency(CompilerState st, String fgId, String predId) {
+        st.dependencyIndex.computeIfAbsent(fgId, k -> new ArrayList<>()).add(predId);
+    }
+
+    static void registerFetchGroupAndField(CompilerState st, String fgId, JsonNode fieldNode, String fieldName) {
+        st.fetchGroups.computeIfAbsent(fgId, k -> makeFetchGroup(fieldNode));
+        FetchGroup fg = st.fetchGroups.get(fgId);
+        if (!fg.fields.contains(fieldName)) fg.fields.add(fieldName);
+    }
+
+    /**
+     * Compiles a node and returns an ExprNode id (N#).
+     *
+     * Supported node shapes:
+     *  1) {"op":"and|or","terms":[...]}
+     *  2) {"evaluation_group":[ {"field":{...}}, {"field":{...}} ... ]}
+     */
+    static String compileExpr(CompilerState st, ObjectMapper mapper, JsonNode node) {
+        if (node == null || node.isNull()) {
+            throw new IllegalArgumentException("Null node encountered");
+        }
+
+        // Case 1: logical node
+        if (node.hasNonNull("op")) {
+            String type = normalizeOp(node.get("op").asText());
+            JsonNode termsNode = node.get("terms");
+            if (termsNode == null || !termsNode.isArray() || termsNode.size() == 0) {
+                throw new IllegalArgumentException("Invalid/missing terms for op node: " + node);
+            }
+
+            List<String> compiledTerms = new ArrayList<>();
+            for (JsonNode t : termsNode) {
+                compiledTerms.add(compileExpr(st, mapper, t));
+            }
+
+            String nid = newNodeId(st);
+            ExprNode en = new ExprNode();
+            en.type = type;
+            en.terms = compiledTerms;
+            if (compiledTerms.size() == 1) {
+                en.simplify_hint = "Replace " + nid + " with " + compiledTerms.get(0) + " (single child)";
+            }
+            st.exprNodes.put(nid, en);
+            return nid;
+        }
+
+        // Case 2: evaluation_group leaf
+        if (node.has("evaluation_group")) {
+            JsonNode egArr = node.get("evaluation_group");
+            if (egArr == null || !egArr.isArray() || egArr.size() == 0) {
+                throw new IllegalArgumentException("Invalid evaluation_group node: " + node);
+            }
+
+            List<String> predIds = new ArrayList<>();
+            for (JsonNode item : egArr) {
+                if (!item.hasNonNull("field") || !item.get("field").isObject()) {
+                    throw new IllegalArgumentException("Expected {\"field\":{...}} inside evaluation_group: " + item);
+                }
+                JsonNode fieldNode = item.get("field");
+
+                String fieldName = requiredText(fieldNode, "name");
+                String comp = requiredText(fieldNode, "comp");
+                JsonNode valueNode = fieldNode.get("value"); // may be missing/null/array
+                Object value = jsonValueToJava(mapper, valueNode);
+
+                String fgId = fetchGroupId(fieldNode);
+                registerFetchGroupAndField(st, fgId, fieldNode, fieldName);
+
+                String pid = newPredicateId(st);
+                PredicateDef pd = new PredicateDef();
+                pd.field = fieldName;
+                pd.fetch_group = fgId;
+                pd.op = normalizeComp(comp);
+                pd.value = value;
+
+                // Optional: tag session predicates as "gate"
+                if (isSessionDatasource(requiredText(fieldNode, "datasource"))) {
+                    pd.short_circuit_role = "gate";
+                }
+
+                st.predicates.put(pid, pd);
+                addDependency(st, fgId, pid);
+                predIds.add(pid);
+            }
+
+            String nid = newNodeId(st);
+            ExprNode en = new ExprNode();
+
+            if (predIds.size() == 1) {
+                en.type = "ATOM";
+                en.term = predIds.get(0);
+            } else {
+                // evaluation_group semantics: AND all predicates in that group
+                en.type = "AND";
+                en.terms = predIds;
+            }
+
+            st.exprNodes.put(nid, en);
+            return nid;
+        }
+
+        throw new IllegalArgumentException("Unrecognized node shape: " + node);
+    }
+
+    static Map<String, Object> buildExecutionPlan(CompilerState st) {
+        List<String> sessionFgs = new ArrayList<>();
+        List<String> nonSessionFgs = new ArrayList<>();
+
+        for (Map.Entry<String, FetchGroup> e : st.fetchGroups.entrySet()) {
+            if (isSessionDatasource(e.getValue().datasource)) sessionFgs.add(e.getKey());
+            else nonSessionFgs.add(e.getKey());
+        }
+
+        // Sort non-session by number of predicates descending, then id asc
+        nonSessionFgs.sort((a, b) -> {
+            int ca = st.dependencyIndex.getOrDefault(a, List.of()).size();
+            int cb = st.dependencyIndex.getOrDefault(b, List.of()).size();
+            int cmp = Integer.compare(cb, ca);
+            return (cmp != 0) ? cmp : a.compareTo(b);
+        });
+
+        Map<String, Object> plan = new LinkedHashMap<>();
+        plan.put("strategy", "lazy_fetch_with_short_circuit");
+        plan.put("phase_0_free_eval", sessionFgs);
+        plan.put("default_fetch_order_after_free_eval", nonSessionFgs);
+
+        plan.put("why_this_order", List.of(
+                "Always evaluate session (FREE) predicates first; they can short-circuit AND rules to FALSE with 0 external calls.",
+                "Then fetch groups that unlock the most predicates (basic proxy for decision power).",
+                "Replace this heuristic with telemetry-based expected value (P(false)/cost for AND, P(true)/cost for OR) when you have logs."
+        ));
+        return plan;
+    }
+
+    public static JsonNode compileRule(ObjectMapper mapper, JsonNode ruleJson) {
+        CompilerState st = new CompilerState();
+
+        String rootId = compileExpr(st, mapper, ruleJson);
+
+        Map<String, Object> compiled = new LinkedHashMap<>();
+        compiled.put("compiled_version", "1.0");
+        compiled.put("source_rule_version", ruleJson.hasNonNull("version") ? ruleJson.get("version").asText() : null);
+        compiled.put("tri_state", List.of("TRUE", "FALSE", "UNKNOWN"));
+
+        compiled.put("fetch_groups", st.fetchGroups);
+        compiled.put("predicates", st.predicates);
+        compiled.put("expr_nodes", st.exprNodes);
+        compiled.put("dependency_index", st.dependencyIndex);
+
+        compiled.put("root", rootId);
+        compiled.put("execution_plan", buildExecutionPlan(st));
+
+        return mapper.valueToTree(compiled);
+    }
+
+    public static void main(String[] args) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+
+        JsonNode rule;
+        if (args.length >= 1) {
+            rule = mapper.readTree(new File(args[0]));
+        } else {
+            // If no file passed, read from stdin (optional):
+            // rule = mapper.readTree(System.in);
+
+            // Or paste JSON here:
+            String json = """
+            {
+              "op": "and",
+              "terms": [
+                {
+                  "op": "and",
+                  "terms": [
+                    {
+                      "evaluation_group": [
+                        { "field": { "name": "flow_id", "datasource": "CASGraphQL", "namespace": "audienceSegments", "evaluation_group": "1", "comp": "equal to", "value": "1000000" } },
+                        { "field": { "name": "variant_id", "datasource": "CASGraphQL", "namespace": "audienceSegments", "evaluation_group": "1", "comp": "isEmpty", "value": "" } }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "evaluation_group": [
+                    { "field": { "name": "daily_balance", "datasource": "CASGraphQL", "namespace": "customer", "evaluation_group": "2", "comp": "equal to", "value": "1000" } }
+                  ]
+                },
+                {
+                  "op": "and",
+                  "terms": [
+                    {
+                      "evaluation_group": [
+                        { "field": { "name": "age", "datasource": "CASGraphQL", "namespace": "customer", "evaluation_group": "2", "comp": "greater than", "value": "40" } },
+                        { "field": { "name": "wealth_tier", "datasource": "CASGraphQL", "namespace": "customer", "evaluation_group": "2", "comp": "has any of",
+                          "value": ["Advisory Services Team (AST)", "ADVISORY SERVICES TEAM (AST)", "Executive Services"] } }
+                      ]
+                    },
+                    {
+                      "evaluation_group": [
+                        { "field": { "name": "status", "datasource": "session", "namespace": "customer", "evaluation_group": "2", "comp": "equal to", "value": "active" } }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "version": "2"
+            }
+            """;
+            rule = mapper.readTree(json);
+        }
+
+        JsonNode compiled = compileRule(mapper, rule);
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(compiled));
+    }
+}
