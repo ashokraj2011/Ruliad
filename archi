@@ -1,0 +1,120 @@
+2.3  Model & Data Monitoring Reports
+🎬  WHAT TO SAY
+
+
+"SageMaker Model Monitor runs two separate monitoring schedules hourly against the deployed endpoint."
+
+"The Data Quality Monitor computes baseline statistics from the training set — means, standard deviations, missing value rates — and compares every hour of live traffic against those baselines. Any feature that drifts beyond the constraint threshold generates a violation."
+
+"The Model Quality Monitor compares predictions against ground truth labels when they become available, tracking accuracy, AUC, precision, recall and F1 against minimum thresholds we've set."
+
+[NAVIGATE] SageMaker Console → Endpoints → liver-disease-endpoint → Monitoring → Data quality
+[SHOW] The monitoring schedule status — show it's active and hourly.
+[SHOW] The baseline statistics output from S3 — open the statistics.json file and show one feature's mean/std.
+[SHOW] Run generate_monitoring_report() output from the notebook — show the metrics table.
+
+"The evaluation results from the pipeline show XGBoost achieved AUC of 1.0 on the test set — an unusually high score that in practice would prompt investigation for data leakage before production deployment."
+2.4  CI/CD Pipeline DAG — Success & Failed States
+🎬  WHAT TO SAY
+
+
+"The CI/CD pipeline triggers automatically on every push to the main branch via AWS CodePipeline. The build stage runs unit tests, then triggers the SageMaker Pipeline execution."
+
+"Let me show you both states. First, the successful execution:"
+
+[SHOW] The DAG output from your notebook — the fully green run:
+
+✅  LiverDiseasePreprocessing    [Succeeded]
+    └─► ✅  TrainXGBoost         [Succeeded]
+    └─► ✅  TrainRandomForest    [Succeeded]
+    └─► ✅  EvaluateModels       [Succeeded]
+    └─► ✅  CheckAccuracy        [Succeeded]  ↳ Condition outcome: TRUE
+    └─► ✅  RegisterModel        [NotStarted — run internally]
+
+"The CheckAccuracy condition step only registers the model if test accuracy meets the threshold of 0.75. This is the quality gate — no model below threshold can reach the registry or endpoint."
+
+"Now the failed state — this was captured during development when the XGBoost training script had an entry point error:"
+
+[SHOW] The red DAG output — the TrainXGBoost failure run:
+
+❌  TrainXGBoost  [Failed]
+    ⚠  Failure: ExecuteUserScriptError exit code: 1
+    ── FAILURE REPORT ──
+    Step: TrainXGBoost
+    Reason: argparse unrecognized argument --eval_metric
+
+"The DAG clearly identifies which step failed, the exact reason, and the training job ARN for CloudWatch log retrieval. Downstream steps — EvaluateModels, CheckAccuracy, RegisterModel — are all blocked until the upstream is fixed."
+
+[NAVIGATE] SageMaker Console → Pipelines → LiverDiseasePipeline → Executions — show both runs
+2.5  Model Registry
+🎬  WHAT TO SAY
+
+
+"Every successful pipeline run registers the winning model — XGBoost in this case — into the Model Registry under the group 'LiverDiseaseModelGroup'. Each registration creates a new versioned model package."
+
+"The registry enforces a three-state approval workflow: PendingManualApproval, Approved, and Rejected. Only Approved models can be deployed to production endpoints. This is the human-in-the-loop governance layer."
+
+[NAVIGATE] SageMaker Console → Model Registry → LiverDiseaseModelGroup
+[SHOW] The list of model versions. Point out version numbers, creation timestamps, and approval status.
+[SHOW] Click into the latest version. Show the model artifacts S3 URI, the inference container image, and the evaluation metrics attached to the package.
+
+"In the code, model approval is automated once training succeeds — sm_client.update_model_package() sets ModelApprovalStatus to Approved. In a stricter production environment you'd require a human reviewer to approve in the console before deployment proceeds."
+2.6  Batch Inference & Endpoint Invocation
+🎬  WHAT TO SAY
+
+
+"The system supports two inference modes. Real-time inference through the deployed endpoint, and offline batch inference through SageMaker Batch Transform."
+
+"For the real-time endpoint, I'll call it live now with a high-risk patient profile:"
+
+[RUN LIVE] Switch to the Streamlit app or notebook. Call the endpoint with a high-risk patient. Show the response.
+payload = '65,1,3.5,1.2,450,120,95,5.5,2.8,0.7,0.34,1.26,2'
+response = runtime.invoke_endpoint(EndpointName='liver-disease-endpoint', ContentType='text/csv', Body=payload)
+# Response: 0.9823  →  liver_disease  (98.2% confidence)
+
+"For batch inference, the Batch Transform job processed the full test set of 6,138 records in under two minutes. Each row gets a probability score written back to S3."
+
+[SHOW] S3 Console → liver-disease/batch-output/ → open the output file
+[SHOW] First 10 lines of the output — raw probability scores between 0 and 1.
+[SHOW] The Batch Transform job in SageMaker Console — show completed status, duration, input/output paths.
+
+"An important detail: batch transform requires features only — no label column. The code automatically strips the label column before sending data to the transform job, which was a key bug we caught and fixed during development."
+
+
+
+SECTION 3 — Challenges & Future Improvements
+
+
+3.1  Challenges Encountered During Development
+The following issues were encountered and resolved during development. Each is a realistic representation of production MLOps challenges.
+
+Challenge 1 — XGBoost Container Entry Point Failures
+The SageMaker XGBoost framework container runs custom scripts with python -m module_name rather than python script.py. This means argparse behaves differently and any hyperparameter passed via the hyperparameters dict must be explicitly declared with add_argument(). Missing declarations cause a silent exit code: 1 with no traceback.
+Resolution: Switched to the built-in XGBoost algorithm container which reads the CSV directly and accepts hyperparameters natively — eliminating the custom script entirely.
+Challenge 2 — Stale Pipeline Definitions
+SageMaker Pipelines caches the pipeline definition server-side. Calling pipeline.upsert() is supposed to update the definition, but in practice the next execution still used the old cached version. This caused multiple wasted training runs after code fixes.
+Resolution: Added sm_client.delete_pipeline() before upsert() to force a clean recreation on every build.
+Challenge 3 — Feature Column Mismatch in Batch Transform
+The test CSV from preprocessing includes the label in column 0. The model was trained on 13 features only. Sending 14 columns to the batch container caused: 'num_feature (13) vs num_col (14)'.
+Resolution: Added automatic label-column stripping before upload — reading the test CSV, slicing with iloc[:, 1:], and uploading the features-only version to a separate S3 prefix.
+Challenge 4 — IAM Permissions in Lab Environment
+The SageMaker execution role in the lab environment lacks cloudwatch:PutDashboard and sns:CreateTopic permissions. These are standard restrictions in shared lab accounts.
+Resolution: Wrapped all optional IAM operations in try/except blocks with clear manual instructions. CloudWatch alarms (put_metric_alarm) worked; dashboard creation did not.
+Challenge 5 — CSV Encoding
+The Kaggle dataset uses ISO-8859-1 (Latin-1) encoding with non-breaking spaces (0xa0) in column names. Python's default UTF-8 reader raised UnicodeDecodeError immediately.
+Resolution: Added encoding='latin-1' to all pd.read_csv() calls and stripped \xa0 characters from column names with str.replace().
+3.2  Future Improvements
+Model Quality
+Investigate AUC=1.0 result — likely indicates data leakage (same patients in train/test) or label noise. Implement strict patient-level train/test split to prevent records from the same patient appearing in both sets.
+Add SHAP explainability to the endpoint response — return top contributing features alongside the prediction score for clinical interpretability.
+Implement threshold calibration — optimize the 0.5 decision boundary for clinical context where false negatives (missed disease) are more costly than false positives.
+Add ensemble model — combine XGBoost and Random Forest predictions with a meta-learner for improved robustness.
+Pipeline & Infrastructure
+Add A/B testing endpoint variant — route 10% of traffic to the Random Forest model to monitor real-world performance differences.
+Implement auto-retraining trigger — when Model Monitor detects drift above threshold, automatically kick off a new pipeline execution.
+Add data validation step — use SageMaker Clarify or Great Expectations to assert feature distributions at ingestion time before training begins.
+Multi-region deployment — replicate endpoint to eu-west-1 for GDPR compliance and latency reduction for European users.
+Monitoring & Observability
+Enable ground truth collection — build a feedback loop where clinician confirmations are uploaded as ground truth labels, enabling real model quality monitoring rather than simulated.
+Add Clarify bias detection — run SageMaker Clarify on predictions grouped by age and gender to detect disparate impact across demographic groups.
+Implement custom CloudWatch metrics — emit business-level metrics (disease detection rate, false negative rate by risk tier) in addition to infrastructure metrics.
