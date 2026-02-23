@@ -1,0 +1,45 @@
+ Smita (Minutes 7:00 – 10:00)
+I am Smita, and I am presenting the CI/CD pipeline, model registry, and inference workflows.
+The CI/CD pipeline automates testing, training, evaluation, registration, and deployment.
+CodeBuild performs dependency installation and unit testing.
+The SageMaker Pipeline is triggered after successful build validation.
+The pipeline executes five defined steps in a DAG structure.
+In a successful pipeline execution, preprocessing, parallel training, evaluation, and conditional checks all succeed.
+The ConditionStep evaluates whether model accuracy meets or exceeds 0.75.
+If the condition evaluates to TRUE, the model is registered in the Model Registry.
+The model package is then automatically approved and deployed to an endpoint.
+In a failed execution scenario, if a training step fails, downstream steps do not start.
+The DAG clearly displays the failure state and provides debugging information.
+The SageMaker Model Registry ensures version control and governance.
+Each registered model is versioned and tracked.
+Approval status transitions from PendingManualApproval to Approved before deployment.
+Real-time inference is performed using a SageMaker endpoint deployed on ml.m5.large instance type.
+The endpoint accepts 13 comma-separated feature values in text/csv format.
+The output is a probability score between 0 and 1.
+A threshold of 0.5 determines the final binary classification.
+Batch inference is implemented using SageMaker Batch Transform.
+The input file must exclude the label column and contain only feature values.
+The output predictions are stored in the batch-output S3 prefix.
+This validates large-scale inference capability.
+Future improvements include implementing patient-level data splitting to prevent potential leakage.
+AUC equal to 1.0 indicates possible data leakage risk and requires further investigation.
+Scalability improvements include enabling auto-scaling policies and multi-region deployment.
+Bias mitigation requires subgroup analysis by gender and age_group.
+Ethical risk mitigation includes adjusting thresholds to reduce false negatives.
+This system must always be used under clinical supervision and not as an autonomous diagnostic tool.
+This concludes the complete end-to-end demonstration of our liver disease classification ML system built on Amazon SageMaker.
+Thank you.
+CI/CD DAG – Successful & Failed State (1 minute)
+Our CI/CD pipeline includes:
+•	CodeBuild for testing
+•	SageMaker Pipeline execution
+•	Evaluation
+•	Conditional accuracy gate
+•	Model registration
+•	Auto approval
+•	Deployment
+Successful DAG
+All 5 steps succeed
+ConditionStep outcome = TRUE
+Model registered
+Failed DAG
