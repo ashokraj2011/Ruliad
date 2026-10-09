@@ -1,0 +1,11 @@
+version: 1
+capabilities:
+  ruliad:
+    name: rule play ground
+    kind: delivery
+    parent: null
+    repository: ruliad
+    jira:
+      projectKey: k
+    teams:
+      - k
