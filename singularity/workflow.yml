@@ -126,14 +126,6 @@ ledger:
   enabled: true
   branch: state
   remote: origin
-  publication: warn
-  behind: warn
-  enforcement: shadow
-  signing: off
-  trustTier: T0
-  maxRetries: 4
-  pinTransport: refs
-  retentionDays: 2555
 
 templatesRoot: singularity/templates
 
@@ -480,23 +472,33 @@ approvalAuthorities:
   product-approvers:
     label: Product approvers
     allowAnyGitIdentity: false
-    members: []
+    members:
+      - name: Ashok Raj
+        email: 88361104+ashokraj2011@users.noreply.github.com
   architecture-reviewers:
     label: Architecture reviewers
     allowAnyGitIdentity: false
-    members: []
+    members:
+      - name: Ashok Raj
+        email: 88361104+ashokraj2011@users.noreply.github.com
   engineering-reviewers:
     label: Engineering reviewers
     allowAnyGitIdentity: false
-    members: []
+    members:
+      - name: Ashok Raj
+        email: 88361104+ashokraj2011@users.noreply.github.com
   quality-reviewers:
     label: Quality reviewers
     allowAnyGitIdentity: false
-    members: []
+    members:
+      - name: Ashok Raj
+        email: 88361104+ashokraj2011@users.noreply.github.com
   design-reviewers:
     label: Design reviewers
     allowAnyGitIdentity: false
-    members: []
+    members:
+      - name: Ashok Raj
+        email: 88361104+ashokraj2011@users.noreply.github.com
 
 # Typed artifact sets [SPK:REQ-110]. The primary member is the human-facing document; supporting
 # members are individually hashed and catalogued. `tasks.md` is advisory and can never gate a

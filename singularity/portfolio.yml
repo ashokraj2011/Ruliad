@@ -78,13 +78,13 @@ applicabilityPolicies:
     question: Does this initiative change a shared domain model or cross-domain contract?
 
 approvalAuthorities:
-  initiative-owners: { members: [] }
-  executive-approvers: { members: [] }
-  product-approvers: { members: [] }
-  architecture-reviewers: { members: [] }
-  security-reviewers: { members: [] }
-  risk-reviewers: { members: [] }
-  operations-reviewers: { members: [] }
+  initiative-owners: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  executive-approvers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  product-approvers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  architecture-reviewers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  security-reviewers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  risk-reviewers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
+  operations-reviewers: {members: [{name: Ashok Raj, email: 88361104+ashokraj2011@users.noreply.github.com}]}
 
 # Add participating repositories with stable aliases. An empty registry is
 # valid until an initiative story plan references a repository. Application
@@ -99,7 +99,16 @@ approvalAuthorities:
 #     clone: { mode: blobless-sparse, filter: "blob:none", sparseCone: [apps/mobile, packages/contracts], fallback: refuse }
 #     jira: { projectKey: MOB }
 #     metadata: { appId: APP-1001, name: Mobile application, owner: Digital }
-repositories: {}
+repositories:
+  ruliad:
+    url: https://github.com/ashokraj2011/Ruliad.git
+    defaultBranch: check
+    required: true
+    clone:
+      mode: blobless
+      filter: blob:none
+      sparseCone: []
+      fallback: refuse
 
 repositoryMetadata:
   requiredKeys: []
