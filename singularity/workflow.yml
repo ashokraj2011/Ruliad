@@ -475,30 +475,35 @@ approvalAuthorities:
     members:
       - name: Ashok Raj
         email: 88361104+ashokraj2011@users.noreply.github.com
+        githubLogin: ashokraj2011
   architecture-reviewers:
     label: Architecture reviewers
     allowAnyGitIdentity: false
     members:
       - name: Ashok Raj
         email: 88361104+ashokraj2011@users.noreply.github.com
+        githubLogin: ashokraj2011
   engineering-reviewers:
     label: Engineering reviewers
     allowAnyGitIdentity: false
     members:
       - name: Ashok Raj
         email: 88361104+ashokraj2011@users.noreply.github.com
+        githubLogin: ashokraj2011
   quality-reviewers:
     label: Quality reviewers
     allowAnyGitIdentity: false
     members:
       - name: Ashok Raj
         email: 88361104+ashokraj2011@users.noreply.github.com
+        githubLogin: ashokraj2011
   design-reviewers:
     label: Design reviewers
     allowAnyGitIdentity: false
     members:
       - name: Ashok Raj
         email: 88361104+ashokraj2011@users.noreply.github.com
+        githubLogin: ashokraj2011
 
 # Typed artifact sets [SPK:REQ-110]. The primary member is the human-facing document; supporting
 # members are individually hashed and catalogued. `tasks.md` is advisory and can never gate a
