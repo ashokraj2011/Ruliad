@@ -1,0 +1,30 @@
+{
+  "kind": "world-model-composition-candidate",
+  "schemaVersion": 1,
+  "sections": [
+    {
+      "markdown": "No registered deterministic producer supplied rule-definition for biz.rules@4 within the pinned scope. [F:FACT-6242549f4c409e7f]",
+      "sectionId": "registered-rules"
+    },
+    {
+      "markdown": "",
+      "sectionId": "conditions-and-outcomes"
+    },
+    {
+      "markdown": "",
+      "sectionId": "rule-locations"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied business-meaning for biz.rules@4 within the pinned scope. [F:FACT-d0f9fe2b4d4a5434]",
+      "sectionId": "conflicts-and-unavailable-meaning"
+    }
+  ],
+  "title": "Business rules",
+  "tldrMarkdown": "No registered deterministic producer supplied rule-definition for biz.rules@4 within the pinned scope. [F:FACT-6242549f4c409e7f]\n\nNo registered deterministic producer supplied business-meaning for biz.rules@4 within the pinned scope. [F:FACT-d0f9fe2b4d4a5434]",
+  "usedFactIds": [
+    "FACT-6242549f4c409e7f",
+    "FACT-d0f9fe2b4d4a5434"
+  ],
+  "view": "biz.rules",
+  "viewVersion": 4
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "world-model-composition-candidate",
+  "schemaVersion": 1,
+  "sections": [
+    {
+      "markdown": "The bounded exact first-parent Git diff could not be read; changed-symbol extraction is unavailable. [F:FACT-96629aa432fe27bf]\n\nThe bounded exact first-parent Git diff could not be read; structural-impact extraction is unavailable. [F:FACT-c1bc92a6b6173a8f]",
+      "sectionId": "changed-structure"
+    },
+    {
+      "markdown": "components/index.js imports the in-scope module components/SuiteForm.js. [F:FACT-097559391ea10912]\n\ncomponents/index.js imports the in-scope module components/SuiteItem.js. [F:FACT-15077d9773c577c1]\n\nmain.js imports the in-scope module config.js. [F:FACT-24e1afdfda380afd]\n\ncomponents/index.js imports the in-scope module components/RequestForm.js. [F:FACT-3a4e38d8c33ad999]\n\ncomponents/index.js imports the in-scope module components/RequestItem.js. [F:FACT-3e1167d8e331f4e6]\n\nrenderer.js imports the in-scope module components/index.js. [F:FACT-450d3275fe33350c]\n\ndb.js imports the in-scope module config.js. [F:FACT-4ccfa0276c7357a8]\n\nrenderer.js imports the in-scope module db.js. [F:FACT-631c166c5185b28e]\n\nrenderer.js imports the in-scope module config.js. [F:FACT-eb8ed20c44785902]",
+      "sectionId": "dependency-impact"
+    },
+    {
+      "markdown": "The bounded exact first-parent Git diff could not be read; contract-change extraction is unavailable. [F:FACT-a2fd88ef2de3e50b]",
+      "sectionId": "affected-contracts"
+    },
+    {
+      "markdown": "The bounded exact first-parent Git diff could not be read; test-impact extraction is unavailable. [F:FACT-597f6653f12a88ee]",
+      "sectionId": "test-impact"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied runtime-frequency for dev.impact@4 within the pinned scope. [F:FACT-9d9fdc8c0d7c573c]",
+      "sectionId": "unavailable-analysis"
+    }
+  ],
+  "title": "Development impact",
+  "tldrMarkdown": "No registered deterministic producer supplied runtime-frequency for dev.impact@4 within the pinned scope. [F:FACT-9d9fdc8c0d7c573c]",
+  "usedFactIds": [
+    "FACT-097559391ea10912",
+    "FACT-15077d9773c577c1",
+    "FACT-24e1afdfda380afd",
+    "FACT-3a4e38d8c33ad999",
+    "FACT-3e1167d8e331f4e6",
+    "FACT-450d3275fe33350c",
+    "FACT-4ccfa0276c7357a8",
+    "FACT-597f6653f12a88ee",
+    "FACT-631c166c5185b28e",
+    "FACT-96629aa432fe27bf",
+    "FACT-9d9fdc8c0d7c573c",
+    "FACT-a2fd88ef2de3e50b",
+    "FACT-c1bc92a6b6173a8f",
+    "FACT-eb8ed20c44785902"
+  ],
+  "view": "dev.impact",
+  "viewVersion": 4
+}

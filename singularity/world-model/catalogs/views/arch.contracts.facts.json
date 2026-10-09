@@ -1,0 +1,178 @@
+{
+  "facts": [
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:2b668ed65f7fd3c0fb55495ee769b6345e186c6390e77c2d311e99ed9a5c3d97",
+      "factType": "interface",
+      "id": "FACT-561334ac8f598367",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied interface for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:interface",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:89a6bae0e7fbe8c8f21b9c4953f65a54d0bc4e6e669fedde3983e4ace37e6802",
+      "factType": "implementation",
+      "id": "FACT-a2f6f6e7e3d3e0f4",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied implementation for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:implementation",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:f61b6f56ab28291e401ed048db13038fa858c7e8b60e8dd8a2b9538e81f8cb04",
+      "factType": "schema-contract",
+      "id": "FACT-a565a2f6c3b442d9",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied schema-contract for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:schema-contract",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:650454081d572aeb9b0ebd59b5e1faddbbc4d2ab42539682d31c557fdb8c8e88",
+      "factType": "protocol-field",
+      "id": "FACT-d650cbc80ea8e84e",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied protocol-field for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:protocol-field",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:167898bfbb15bdac618532084c0157cb978da34299f93ad86407cb810db8b39d",
+      "factType": "consumer-dependency",
+      "id": "FACT-d9b57f47fb7ff890",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied consumer-dependency for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:consumer-dependency",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:de091f445ca62e594e4c99aa7d765bdff33b861fa998672e8a88bde198c277a7",
+      "factType": "signature",
+      "id": "FACT-e77aee5d7a429dee",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied signature for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:signature",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:9ca9453d45f5ac23bacc85696c21945fa08fe2e3d69f9056de5cbb01af271c1d",
+      "factType": "runtime-guarantee",
+      "id": "FACT-f5731569f8e9ccff",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_RUNTIME_EVIDENCE",
+        "detail": "No registered deterministic producer supplied runtime-guarantee for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:runtime-guarantee",
+        "kind": "analysis"
+      }
+    }
+  ],
+  "kind": "world-model-view-fact-ledger",
+  "ledgerSha256": "sha256:46c477e975eaf93f9733e151e72422b0283e00f1e15c52d2c8499ba3c55024b7",
+  "materialContradictionFactIds": [],
+  "requiredFactIds": [
+    "FACT-561334ac8f598367",
+    "FACT-a2f6f6e7e3d3e0f4",
+    "FACT-a565a2f6c3b442d9",
+    "FACT-d650cbc80ea8e84e",
+    "FACT-d9b57f47fb7ff890",
+    "FACT-e77aee5d7a429dee"
+  ],
+  "requiredUnavailableFactIds": [
+    "FACT-f5731569f8e9ccff"
+  ],
+  "schemaVersion": 1,
+  "selectionPolicySha256": "sha256:37166a1569ba1984c1e05117a6cf4b98f18186789a3e4d16797189e4f23685bc",
+  "sourceLedgerSha256": "sha256:eb36cfe0e49a56d31a1e3ed3d8513fdda47371fb821a434cad938ecf6028a043",
+  "viewId": "arch.contracts",
+  "viewSpecSha256": "sha256:13ff5bb50461e3b7a40d8e34e1785fd29ebd36b5134a59c7630fa5304d2997b0",
+  "viewVersion": 4
+}

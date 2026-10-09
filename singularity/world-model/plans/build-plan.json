@@ -1,0 +1,86 @@
+{
+  "bodyAccess": [],
+  "budgets": {
+    "maximumViewOutputTokens": 1400,
+    "totalMaximumOutputTokens": 5600
+  },
+  "estimatedWork": {
+    "deterministicExtractors": 15,
+    "maximumCompositionCalls": 4,
+    "sourceFiles": 26,
+    "views": 4
+  },
+  "extractors": [
+    "call-reference-edge@1.0.0",
+    "change-region@1.0.0",
+    "clause-code-binding@1.2.0",
+    "configuration-object@1.0.0",
+    "human-confirmed-knowledge-import@1.0.0",
+    "import-dependency@1.2.0",
+    "interface-contract@1.1.0",
+    "language-detection@1.0.0",
+    "ownership-maintainer-record@1.0.0",
+    "repository-files@1.0.0",
+    "rule-definition@1.0.0",
+    "runtime-observation-import@1.0.0",
+    "signature-and-export@1.0.0",
+    "symbol-skeleton@1.2.0",
+    "test-identity@1.0.0"
+  ],
+  "factRequirements": [
+    "business-meaning",
+    "change-frequency",
+    "changed-symbol",
+    "complexity-metric",
+    "consumer-dependency",
+    "contract-change",
+    "dependency-degree",
+    "dependency-edge",
+    "implementation",
+    "incident-mapping",
+    "interface",
+    "ownership-concentration",
+    "protocol-field",
+    "rule-definition",
+    "runtime-frequency",
+    "runtime-guarantee",
+    "schema-contract",
+    "signature"
+  ],
+  "kind": "world-model-build-plan",
+  "planSha256": "sha256:962296c9d4a7bf0e5783a9a2afb3a5e529ab957b243867b212ab81dced8b886b",
+  "requestSha256": "sha256:b8a3b868f35df3536ca398141fee12a002d0260bf78fefc1f23f73455fdb5f0a",
+  "schemaVersion": 1,
+  "scopeManifestSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "sourceManifestSha256": "sha256:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde",
+  "views": [
+    {
+      "cacheStatus": "stale",
+      "required": true,
+      "viewId": "arch.contracts",
+      "viewSpecSha256": "sha256:13ff5bb50461e3b7a40d8e34e1785fd29ebd36b5134a59c7630fa5304d2997b0",
+      "viewVersion": 4
+    },
+    {
+      "cacheStatus": "stale",
+      "required": true,
+      "viewId": "biz.rules",
+      "viewSpecSha256": "sha256:39cca8832e285cb7fd7b7b5a09deca629602e2c303908e0aace6032ccf2680b1",
+      "viewVersion": 4
+    },
+    {
+      "cacheStatus": "stale",
+      "required": true,
+      "viewId": "dev.hotspots",
+      "viewSpecSha256": "sha256:14edd4de2ad9e38a4b57956a74aa669b4e3436e45d13cd3167603c5c244c3ada",
+      "viewVersion": 4
+    },
+    {
+      "cacheStatus": "stale",
+      "required": true,
+      "viewId": "dev.impact",
+      "viewSpecSha256": "sha256:533e81e352ca8e38a12024424901e82668735ea5a638f7d5c85e30723ca24c41",
+      "viewVersion": 4
+    }
+  ]
+}

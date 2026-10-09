@@ -1,0 +1,104 @@
+{
+  "candidateSchemaSha256": "sha256:1673dbd2acd154d9d6283e5bcbe3943aac0de71d3a6472ab037c31251799afa1",
+  "candidateSha256": "sha256:83be96a0602ca162a868e95bc57930a77033ba3f5fe5b8ac93972e27effb9ef8",
+  "checks": [
+    {
+      "id": "candidate-json",
+      "status": "pass"
+    },
+    {
+      "id": "candidate-schema",
+      "status": "pass"
+    },
+    {
+      "id": "view-identity",
+      "status": "pass"
+    },
+    {
+      "id": "registered-title",
+      "status": "pass"
+    },
+    {
+      "id": "required-sections",
+      "status": "pass"
+    },
+    {
+      "id": "section-order",
+      "status": "pass"
+    },
+    {
+      "id": "unregistered-sections",
+      "status": "pass"
+    },
+    {
+      "id": "narrative-budgets",
+      "status": "pass"
+    },
+    {
+      "id": "factual-unit-references",
+      "status": "pass"
+    },
+    {
+      "id": "fact-reference-integrity",
+      "status": "pass"
+    },
+    {
+      "id": "used-fact-set",
+      "status": "pass"
+    },
+    {
+      "id": "required-facts",
+      "status": "pass"
+    },
+    {
+      "id": "required-unavailable",
+      "status": "pass"
+    },
+    {
+      "id": "admitted-fact-coverage",
+      "status": "pass"
+    },
+    {
+      "id": "contradictions",
+      "status": "pass"
+    },
+    {
+      "id": "assurance",
+      "status": "pass"
+    },
+    {
+      "id": "scope",
+      "status": "pass"
+    },
+    {
+      "id": "body-access",
+      "status": "pass"
+    },
+    {
+      "id": "cross-view",
+      "status": "pass"
+    },
+    {
+      "id": "kernel-metadata",
+      "status": "pass"
+    },
+    {
+      "id": "execution-route-contract",
+      "status": "pass"
+    },
+    {
+      "id": "total-output",
+      "status": "pass"
+    }
+  ],
+  "factLedgerSha256": "sha256:377b18771c27ffaec132f0daaa0778ae59b65caacb298c02bf836465c516c403",
+  "kind": "world-model-view-validation-receipt",
+  "receiptSha256": "sha256:5ffe6498691bd93b16c64eafd3547836650475fe06dfdc4c2ddadf81608eb257",
+  "schemaVersion": 1,
+  "scopeSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "status": "passed",
+  "validatorSha256": "sha256:c263cda0d2eca2e504cacad26b1b8de9085f2295e75ce79c00ba9af659ecceba",
+  "viewId": "biz.rules",
+  "viewSpecSha256": "sha256:39cca8832e285cb7fd7b7b5a09deca629602e2c303908e0aace6032ccf2680b1",
+  "viewVersion": 4
+}

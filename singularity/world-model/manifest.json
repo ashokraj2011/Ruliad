@@ -1,0 +1,70 @@
+{
+  "completeness": {
+    "availableRequiredViews": 4,
+    "optionalViews": 0,
+    "requiredViews": 4,
+    "unavailableOptionalViews": 0
+  },
+  "derivationCatalogSha256": "sha256:2df6be46973f8ad6f0e217338c84eddc859170084093be7aacf2162cee56fd50",
+  "evidenceCatalogSha256": "sha256:3851c0b3788d4ea1ec7f87acd0efd4ba37922c87c84fb8aae6c20c616756d40d",
+  "extractorRegistrySha256": "sha256:58a68115c70d3f6067ce1e69e015204f97c3723ee27ee1b2d6ab240208f444af",
+  "factLedgerSha256": "sha256:eb36cfe0e49a56d31a1e3ed3d8513fdda47371fb821a434cad938ecf6028a043",
+  "format": "wmb-v4",
+  "kind": "world-model-manifest",
+  "manifestSha256": "sha256:13ee7902074f9e80765715ce33abdea174c77f7483b662760094de40175ef406",
+  "policySnapshotSha256": "sha256:b27668de4b1df387968b6a1e6a83623a1d3937844c46ba47f0e03e33197c7f78",
+  "schemaVersion": 1,
+  "scopeManifestSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "sourceManifestSha256": "sha256:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde",
+  "subject": {
+    "id": "ruliad",
+    "kind": "repository"
+  },
+  "viewRegistrySha256": "sha256:e49b7c3e97b553eace2d94f26a971a5ec9d125be7f54f7dd28fcef55e5b48b14",
+  "views": [
+    {
+      "cache": "miss",
+      "executionSha256": "sha256:039446aeb3fa7c23055b0f12440bdd243129803e24bc03b0e4dd27006016bcfb",
+      "path": "views/arch.contracts.md",
+      "required": true,
+      "status": "available",
+      "validationReceiptSha256": "sha256:5f5e74c9f5f0a8730405f51422bfbb5540f3069b65fc5b7f07f07b603b3c04f9",
+      "viewId": "arch.contracts",
+      "viewSha256": "sha256:21e275824b46bb661f3078574ede1c46d756f1396217048e505718f353382aab",
+      "viewVersion": 4
+    },
+    {
+      "cache": "miss",
+      "executionSha256": "sha256:5b7971604b7f73ac83c0df6bb093cc835569aa415aa81f762f4279aaaa9f6057",
+      "path": "views/biz.rules.md",
+      "required": true,
+      "status": "available",
+      "validationReceiptSha256": "sha256:5ffe6498691bd93b16c64eafd3547836650475fe06dfdc4c2ddadf81608eb257",
+      "viewId": "biz.rules",
+      "viewSha256": "sha256:90026f6c56b06f41403f991fe57cc92ace674b3dde2fb762a53312a802c378d7",
+      "viewVersion": 4
+    },
+    {
+      "cache": "miss",
+      "executionSha256": "sha256:4595dfa3674c35e15ecf0f7a9b6819cdedc28ba81699cbfb2c0694ef6e3ae706",
+      "path": "views/dev.hotspots.md",
+      "required": true,
+      "status": "available",
+      "validationReceiptSha256": "sha256:cd01aad45943355995c249c721705ef2f8597a94187ce4389c5cd32d7a976804",
+      "viewId": "dev.hotspots",
+      "viewSha256": "sha256:803d251c2f46226bc98c08ebd254a445a35fac628f9fb20ca09af94e37f00a9f",
+      "viewVersion": 4
+    },
+    {
+      "cache": "miss",
+      "executionSha256": "sha256:50d024ff1e843c223cc59ffed728cc54c392ba89e808eb3a871222bec52191ad",
+      "path": "views/dev.impact.md",
+      "required": true,
+      "status": "available",
+      "validationReceiptSha256": "sha256:0c181c1eb773916309b831987813841ecd55861f123ab2dd99c4ae3e22e45ecb",
+      "viewId": "dev.impact",
+      "viewSha256": "sha256:ad7883431ae33dbb69d93748215f529c1bb2ceb8766307f9c459f9174680a2e9",
+      "viewVersion": 4
+    }
+  ]
+}

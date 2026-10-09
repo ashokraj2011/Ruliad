@@ -1,0 +1,16 @@
+{
+  "candidateSha256": "sha256:b20d99ee18e928d8ddfeda9002feea78ce32b5d7ac837de3e5ffec4260366752",
+  "contextManifestSha256": "sha256:6c448ef188c871ed375d0982c6c61a0984cb162bd4bacf154e9a017e36024769",
+  "executionSha256": "sha256:039446aeb3fa7c23055b0f12440bdd243129803e24bc03b0e4dd27006016bcfb",
+  "executionUnitManifestSha256": "sha256:742c69386b1f2917a8c6ec97f3deb1e7e2df52635b03a6933fef4afd1d0cddb4",
+  "kind": "world-model-view-execution",
+  "publishedViewSha256": "sha256:21e275824b46bb661f3078574ede1c46d756f1396217048e505718f353382aab",
+  "requestSha256": "sha256:b8a3b868f35df3536ca398141fee12a002d0260bf78fefc1f23f73455fdb5f0a",
+  "schemaVersion": 1,
+  "status": "completed",
+  "usageObservationSha256": "sha256:1ba459ff5d61fb291a266f5b3ff0d21c642e18bad4287d32a4171481b87cc872",
+  "validationReceiptSha256": "sha256:5f5e74c9f5f0a8730405f51422bfbb5540f3069b65fc5b7f07f07b603b3c04f9",
+  "viewFactLedgerSha256": "sha256:46c477e975eaf93f9733e151e72422b0283e00f1e15c52d2c8499ba3c55024b7",
+  "viewId": "arch.contracts",
+  "viewVersion": 4
+}

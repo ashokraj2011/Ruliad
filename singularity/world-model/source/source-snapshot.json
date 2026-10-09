@@ -1,0 +1,199 @@
+{
+  "files": [
+    {
+      "bytes": 228,
+      "contentSha256": "sha256:768e4f9dc3f4fd9c6cd6a154eddc3ddb6e302222f6d9a92fa94be316fd96473c",
+      "mode": "100644",
+      "path": ".gitignore",
+      "type": "regular"
+    },
+    {
+      "bytes": 176,
+      "contentSha256": "sha256:0a5548b173aac0ef943bbb3af850d676f7b651ddedb9f8d7f06735bc2809b3db",
+      "mode": "100644",
+      "path": ".idea/.gitignore",
+      "type": "regular"
+    },
+    {
+      "bytes": 282,
+      "contentSha256": "sha256:61c354b4e0b62c45e33db084cc30fbcabcdb282aee05d1f1f089f617f38caca1",
+      "mode": "100644",
+      "path": ".idea/modules.xml",
+      "type": "regular"
+    },
+    {
+      "bytes": 458,
+      "contentSha256": "sha256:035fd8fa90a68984b9c6ae2b35599ec30c045be661882ab8bf638bedfa60e221",
+      "mode": "100644",
+      "path": ".idea/ruliad-electron.iml",
+      "type": "regular"
+    },
+    {
+      "bytes": 180,
+      "contentSha256": "sha256:55768f1f84fb117f1d0fc383e180b5d0aa5e5e6584c8c4a2995c15b4237f0972",
+      "mode": "100644",
+      "path": ".idea/vcs.xml",
+      "type": "regular"
+    },
+    {
+      "bytes": 693,
+      "contentSha256": "sha256:d582f0cd4129c4dd8244fc401a69392097f5cfa9cf203c352ade6a73cf4bdd68",
+      "mode": "100644",
+      "path": ".vscode/launch.json",
+      "type": "regular"
+    },
+    {
+      "bytes": 285,
+      "contentSha256": "sha256:90899d9496bd0527556f62e9ea3a4b5e6b43763dc3c3120ea19bd03519ff1c3e",
+      "mode": "100644",
+      "path": ".vscode/tasks.json",
+      "type": "regular"
+    },
+    {
+      "bytes": 0,
+      "contentSha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "100644",
+      "path": "9327-80F0",
+      "type": "regular"
+    },
+    {
+      "bytes": 2282,
+      "contentSha256": "sha256:83184d0d750b095717ac8ea0b9c24a318fd91a17bf66b596f194ddf5e7116eff",
+      "mode": "100644",
+      "path": "components/README.md",
+      "type": "regular"
+    },
+    {
+      "bytes": 1840,
+      "contentSha256": "sha256:95d1210e6f1f2b8053f1255428025852813943c2d6b5a62fe68f0c5f64da0e73",
+      "mode": "100644",
+      "path": "components/RequestForm.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 2146,
+      "contentSha256": "sha256:d6d8047d9353f812e459223cec3e154f2d07bfef24ee7a5106bd7a2e9b908589",
+      "mode": "100644",
+      "path": "components/RequestItem.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 2181,
+      "contentSha256": "sha256:53d8e50129ce678dbac85b6460c9dedb4e63e8dbfda42b53b43cc02baa46e713",
+      "mode": "100644",
+      "path": "components/SuiteForm.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 2155,
+      "contentSha256": "sha256:a33a090c691ef095549075a4e089ec7d400f49ebf05bf34726b889985fa0bfee",
+      "mode": "100644",
+      "path": "components/SuiteItem.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 4351,
+      "contentSha256": "sha256:23060cb99bf432f0c0d15d79b2b87dab9a5ed66b32e7923c7eae82102b3a1283",
+      "mode": "100644",
+      "path": "components/index.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 2055,
+      "contentSha256": "sha256:e44144077795be4b8b905b7f8a288fbcdee5612a39086b9b9c964c30b4278cb4",
+      "mode": "100644",
+      "path": "config.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 6673,
+      "contentSha256": "sha256:d9c3acde89ab99e1d2f05e9f2932f8a2487ca6585e8b38ec5b85076d341ab8ce",
+      "mode": "100644",
+      "path": "db.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 2243,
+      "contentSha256": "sha256:8ba185a63820ad5f4e7e02e2353c17ec76eb586daa929865dc123557ef183439",
+      "mode": "100644",
+      "path": "db_scripts.sql",
+      "type": "regular"
+    },
+    {
+      "bytes": 8889,
+      "contentSha256": "sha256:a748616b35a9fdd3bb37b2c4edc9933cd9e36d87783d65bf17bcdb6250a22f96",
+      "mode": "100644",
+      "path": "index.html",
+      "type": "regular"
+    },
+    {
+      "bytes": 2108,
+      "contentSha256": "sha256:7f2f864d06935da080b92a25f996c79f115574e38ad3f5a2ca65e958ede11fde",
+      "mode": "100644",
+      "path": "login.html",
+      "type": "regular"
+    },
+    {
+      "bytes": 949,
+      "contentSha256": "sha256:f7115fd7332fb061c458c4b2a9e19a2285e9500725ddf4a0a2e7b7e2160a1728",
+      "mode": "100644",
+      "path": "main.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 35582,
+      "contentSha256": "sha256:6c5bf511a1a6d86968646ed7989f1de1b5bd92cac06b8a9a42ac299d40c4deef",
+      "mode": "100644",
+      "path": "package-lock.json",
+      "type": "regular"
+    },
+    {
+      "bytes": 312,
+      "contentSha256": "sha256:db71d547a4758d7668fb9b11300f5f9a62f7d154184b9c49ff2044d50b84ccd3",
+      "mode": "100644",
+      "path": "package.json",
+      "type": "regular"
+    },
+    {
+      "bytes": 489,
+      "contentSha256": "sha256:72e4dd1bdac04943f3c939772af7177419f687bf331fbac1bc1bc64bfbcc86f3",
+      "mode": "100644",
+      "path": "preload.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 861,
+      "contentSha256": "sha256:5b738eae7588b2f4ceaddf8443b57656a826bfa17652d25ecfbccf65b071f7c0",
+      "mode": "100644",
+      "path": "priority_suites.json",
+      "type": "regular"
+    },
+    {
+      "bytes": 10903,
+      "contentSha256": "sha256:ca2fbed61d87fa00a99f9c9c2d263acb74ee30fb210f14bee57529ddeb467f00",
+      "mode": "100644",
+      "path": "renderer.js",
+      "type": "regular"
+    },
+    {
+      "bytes": 346,
+      "contentSha256": "sha256:67ef75e34e7e6c8d68c8ead398c40470f6a5c58193af9debed7135c8553fdc52",
+      "mode": "100644",
+      "path": "saved_requests.json",
+      "type": "regular"
+    }
+  ],
+  "kind": "world-model-source-snapshot",
+  "lineEndingPolicy": "preserve-source",
+  "pathNormalization": "posix-relative",
+  "revision": {
+    "commit": "328a56ec5c5d91baaa4c1197147a0934b59ee0a2",
+    "tree": "ef0070f00d51f8e600e4ff83e4589a3857ed08aecbb8455b96a364e2f1cfa64b"
+  },
+  "schemaVersion": 1,
+  "sourceManifestSha256": "sha256:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde",
+  "subject": {
+    "id": "ruliad",
+    "kind": "repository"
+  }
+}

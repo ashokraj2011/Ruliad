@@ -1,0 +1,35 @@
+{
+  "budgetSha256": "sha256:18baff60e4606e5f323e275b594770968bcad5ec8a429e59fb71b050848e69cb",
+  "kind": "world-model-output-budget",
+  "overflowPolicy": [
+    "omit-optional-facts",
+    "shorten-narrative",
+    "split-view",
+    "route-larger-context",
+    "refuse"
+  ],
+  "schemaVersion": 1,
+  "totalMaximumOutputTokens": 5600,
+  "viewBudgets": {
+    "arch.contracts": {
+      "maximumNarrativeWords": 900,
+      "maximumOutputTokens": 1400,
+      "maximumSelectedFacts": 60
+    },
+    "biz.rules": {
+      "maximumNarrativeWords": 750,
+      "maximumOutputTokens": 1400,
+      "maximumSelectedFacts": 50
+    },
+    "dev.hotspots": {
+      "maximumNarrativeWords": 700,
+      "maximumOutputTokens": 1400,
+      "maximumSelectedFacts": 50
+    },
+    "dev.impact": {
+      "maximumNarrativeWords": 700,
+      "maximumOutputTokens": 1400,
+      "maximumSelectedFacts": 40
+    }
+  }
+}

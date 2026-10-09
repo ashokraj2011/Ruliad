@@ -1,0 +1,39 @@
+{
+  "kind": "world-model-composition-candidate",
+  "schemaVersion": 1,
+  "sections": [
+    {
+      "markdown": "No registered deterministic producer supplied interface for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied schema-contract for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied protocol-field for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied signature for arch.contracts@4 within the pinned scope. [F:FACT-561334ac8f598367,FACT-a565a2f6c3b442d9,FACT-d650cbc80ea8e84e,FACT-e77aee5d7a429dee]",
+      "sectionId": "public-contracts"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied implementation for arch.contracts@4 within the pinned scope. [F:FACT-a2f6f6e7e3d3e0f4]",
+      "sectionId": "implementations"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied consumer-dependency for arch.contracts@4 within the pinned scope. [F:FACT-d9b57f47fb7ff890]",
+      "sectionId": "consumers"
+    },
+    {
+      "markdown": "",
+      "sectionId": "contract-contradictions"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied runtime-guarantee for arch.contracts@4 within the pinned scope. [F:FACT-f5731569f8e9ccff]",
+      "sectionId": "unavailable-runtime-guarantees"
+    }
+  ],
+  "title": "Architecture contracts",
+  "tldrMarkdown": "No registered deterministic producer supplied interface for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied implementation for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied schema-contract for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied protocol-field for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied consumer-dependency for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied signature for arch.contracts@4 within the pinned scope. No registered deterministic producer supplied runtime-guarantee for arch.contracts@4 within the pinned scope. [F:FACT-561334ac8f598367,FACT-a2f6f6e7e3d3e0f4,FACT-a565a2f6c3b442d9,FACT-d650cbc80ea8e84e,FACT-d9b57f47fb7ff890,FACT-e77aee5d7a429dee,FACT-f5731569f8e9ccff]",
+  "usedFactIds": [
+    "FACT-561334ac8f598367",
+    "FACT-a2f6f6e7e3d3e0f4",
+    "FACT-a565a2f6c3b442d9",
+    "FACT-d650cbc80ea8e84e",
+    "FACT-d9b57f47fb7ff890",
+    "FACT-e77aee5d7a429dee",
+    "FACT-f5731569f8e9ccff"
+  ],
+  "view": "arch.contracts",
+  "viewVersion": 4
+}

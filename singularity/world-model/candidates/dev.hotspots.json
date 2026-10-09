@@ -1,0 +1,33 @@
+{
+  "kind": "world-model-composition-candidate",
+  "schemaVersion": 1,
+  "sections": [
+    {
+      "markdown": "No registered deterministic producer supplied complexity-metric for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied incident-mapping for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied ownership-concentration for dev.hotspots@4 within the pinned scope. [F:FACT-09d699674920ba4d,FACT-4eb534980e22dbaf,FACT-843288f4dc15dd73]",
+      "sectionId": "structural-concentration"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied change-frequency for dev.hotspots@4 within the pinned scope. [F:FACT-18d765e9065901ac]",
+      "sectionId": "change-concentration"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied dependency-degree for dev.hotspots@4 within the pinned scope. [F:FACT-ffbd847cf7917721]",
+      "sectionId": "dependency-concentration"
+    },
+    {
+      "markdown": "No registered deterministic producer supplied complexity-metric for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied change-frequency for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied incident-mapping for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied ownership-concentration for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied dependency-degree for dev.hotspots@4 within the pinned scope. [F:FACT-09d699674920ba4d,FACT-18d765e9065901ac,FACT-4eb534980e22dbaf,FACT-843288f4dc15dd73,FACT-ffbd847cf7917721]",
+      "sectionId": "evidence-limitations"
+    }
+  ],
+  "title": "Development hotspots",
+  "tldrMarkdown": "No registered deterministic producer supplied complexity-metric for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied change-frequency for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied incident-mapping for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied ownership-concentration for dev.hotspots@4 within the pinned scope. No registered deterministic producer supplied dependency-degree for dev.hotspots@4 within the pinned scope. [F:FACT-09d699674920ba4d,FACT-18d765e9065901ac,FACT-4eb534980e22dbaf,FACT-843288f4dc15dd73,FACT-ffbd847cf7917721]",
+  "usedFactIds": [
+    "FACT-09d699674920ba4d",
+    "FACT-18d765e9065901ac",
+    "FACT-4eb534980e22dbaf",
+    "FACT-843288f4dc15dd73",
+    "FACT-ffbd847cf7917721"
+  ],
+  "view": "dev.hotspots",
+  "viewVersion": 4
+}

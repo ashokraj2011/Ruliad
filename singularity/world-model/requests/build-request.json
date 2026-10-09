@@ -1,0 +1,39 @@
+{
+  "cachePolicy": "rebuild",
+  "composerProfileSha256": "sha256:c4f4790b28ed13eb378cf73168dc29ed0c40f7f1965474fc300d589e046bd3b9",
+  "consistency": "exact",
+  "extractorRegistrySha256": "sha256:58a68115c70d3f6067ce1e69e015204f97c3723ee27ee1b2d6ab240208f444af",
+  "kind": "world-model-build-request",
+  "outputBudgetSha256": "sha256:18baff60e4606e5f323e275b594770968bcad5ec8a429e59fb71b050848e69cb",
+  "policySnapshotSha256": "sha256:b27668de4b1df387968b6a1e6a83623a1d3937844c46ba47f0e03e33197c7f78",
+  "requestId": "WMB-REQ-4ba1502a942cb642d3069b3e",
+  "requestSha256": "sha256:b8a3b868f35df3536ca398141fee12a002d0260bf78fefc1f23f73455fdb5f0a",
+  "requestedViews": [
+    {
+      "required": true,
+      "viewId": "arch.contracts"
+    },
+    {
+      "required": true,
+      "viewId": "biz.rules"
+    },
+    {
+      "required": true,
+      "viewId": "dev.hotspots"
+    },
+    {
+      "required": true,
+      "viewId": "dev.impact"
+    }
+  ],
+  "schemaVersion": 1,
+  "scopeManifestSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "source": {
+    "commit": "328a56ec5c5d91baaa4c1197147a0934b59ee0a2",
+    "snapshotRef": "sfref:source-snapshot:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde",
+    "snapshotSha256": "sha256:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde",
+    "subjectId": "ruliad",
+    "subjectKind": "repository"
+  },
+  "viewRegistrySha256": "sha256:e49b7c3e97b553eace2d94f26a971a5ec9d125be7f54f7dd28fcef55e5b48b14"
+}

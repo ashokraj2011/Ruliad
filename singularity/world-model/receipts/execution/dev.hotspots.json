@@ -1,0 +1,16 @@
+{
+  "candidateSha256": "sha256:367ac62fb38aef6cb102a765fb58218ec21559e3e107b159cb27f358f72289e3",
+  "contextManifestSha256": "sha256:a758af35ac70e87cb42bb6f1baf8a3d7a4eae73f79db5d3311ba8e222c9ae3e2",
+  "executionSha256": "sha256:4595dfa3674c35e15ecf0f7a9b6819cdedc28ba81699cbfb2c0694ef6e3ae706",
+  "executionUnitManifestSha256": "sha256:742c69386b1f2917a8c6ec97f3deb1e7e2df52635b03a6933fef4afd1d0cddb4",
+  "kind": "world-model-view-execution",
+  "publishedViewSha256": "sha256:803d251c2f46226bc98c08ebd254a445a35fac628f9fb20ca09af94e37f00a9f",
+  "requestSha256": "sha256:b8a3b868f35df3536ca398141fee12a002d0260bf78fefc1f23f73455fdb5f0a",
+  "schemaVersion": 1,
+  "status": "completed",
+  "usageObservationSha256": "sha256:6e432174144a1f4f0b215d607478dad30af3732c03ea12ef57b4987ba5f112f8",
+  "validationReceiptSha256": "sha256:cd01aad45943355995c249c721705ef2f8597a94187ce4389c5cd32d7a976804",
+  "viewFactLedgerSha256": "sha256:827bcc07bc1e609e0c7bed5ad314e199a5c0602afe629300e22c644884ef0088",
+  "viewId": "dev.hotspots",
+  "viewVersion": 4
+}

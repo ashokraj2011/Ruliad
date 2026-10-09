@@ -1,0 +1,1530 @@
+{
+  "extractorRegistrySha256": "sha256:58a68115c70d3f6067ce1e69e015204f97c3723ee27ee1b2d6ab240208f444af",
+  "facts": [
+    {
+      "assurance": "source-exact",
+      "claim": "renderer.js exists as a 100644 Git blob with 10903 bytes.",
+      "claimSha256": "sha256:79f9dbae13796f847cb614009a835c1984cd36d2af1661eff183920d39a12a9c",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-affed4eb358fe7e5"
+      ],
+      "factSha256": "sha256:68bc3c1ee8878e5c242e581197b5bb5a6cf6de1f6c5021fdad2e937c85b53fb3",
+      "factType": "file-exists",
+      "id": "FACT-018c0081190f0759",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "deterministically-derived",
+      "claim": "package.json is a json configuration object with 8 registered key(s); bounded key inventory: author, dependencies, description, license, main, name, scripts, version.",
+      "claimSha256": "sha256:08b651895a40905d5920a5f056173f717e16392bba67381d9b6202ee5e7d9808",
+      "conflictsWith": [],
+      "derivationId": "DRV-292e396097fe16f6",
+      "evidenceIds": [
+        "EV-1db0569ab9c7f85e"
+      ],
+      "factSha256": "sha256:bc1e884b76951f9dc3d0bf5eb162ac34af066c27b30041611c611efdf871a661",
+      "factType": "configuration-object",
+      "id": "FACT-0853aa88681095ec",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "package.json",
+        "kind": "configuration"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "components/index.js imports the in-scope module components/SuiteForm.js.",
+      "claimSha256": "sha256:5f5b8c28d79692f3e6c43f73da8d8e336a78c15a85480fb650c14773e16df969",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-be034e0ae78d5042"
+      ],
+      "factSha256": "sha256:230b9f79b00634d728aa39a823ccb4032394f9331d4f8481dd1da9669dd20c54",
+      "factType": "dependency-edge",
+      "id": "FACT-097559391ea10912",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js->components/SuiteForm.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:fbf6cbf5b7c3fc4b5e4d20c74ab75c1111790b00d5fca9886f6445e603776a95",
+      "factType": "complexity-metric",
+      "id": "FACT-09d699674920ba4d",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied complexity-metric for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:complexity-metric",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "db.js declares import target fs.",
+      "claimSha256": "sha256:4a498ffce4461c024396b4eb82186689d1b51afe3feeadb0f89ac52f971732df",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-2dbe9422757e22a4"
+      ],
+      "factSha256": "sha256:453898725d48c806d5e457969bf3302880de7fc05f2ffcb1d3f4abc1d92c2d15",
+      "factType": "import-dependency",
+      "id": "FACT-0d110e29a60a17db",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js->fs",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js declares import target path.",
+      "claimSha256": "sha256:d68285e60d203ce2ba835a0633d85ecd67e2264cfc21a481d8009518a7f79cf9",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-2163187526657d28"
+      ],
+      "factSha256": "sha256:dda5343da1bb9973c21e523a301864b1e9c9d1fa80c10fe3fdad717f518f611f",
+      "factType": "import-dependency",
+      "id": "FACT-1243ea2296060af1",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->path",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".vscode/launch.json exists as a 100644 Git blob with 693 bytes.",
+      "claimSha256": "sha256:956c1ad8c9371c31a9e93913ec4fec676ad0154e64cb1ce326a5bdc78c949b5e",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-08b5701d612b93e2"
+      ],
+      "factSha256": "sha256:6b674f75ebaefa9f14291acfa4e2b771973ac3117d8220ef9a3b14671856cf60",
+      "factType": "file-exists",
+      "id": "FACT-129f480955da3e63",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".vscode/launch.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "components/index.js imports the in-scope module components/SuiteItem.js.",
+      "claimSha256": "sha256:ad2e29bdacd982f80c96e6b1e99c9485af3e72f63175a8e474044a45ca71e619",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-30ee4afa039d7bfb"
+      ],
+      "factSha256": "sha256:e3ed7db16dee0e55705b82ac89cfbf4990010126f56b4922e48815529808b68b",
+      "factType": "dependency-edge",
+      "id": "FACT-15077d9773c577c1",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js->components/SuiteItem.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "main.js exists as a 100644 Git blob with 949 bytes.",
+      "claimSha256": "sha256:4cd841d6cc9c8ea280105d6b483926dffd79f19c28b066229a207ff8cddff984",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-2d249bbb8f5c7b20"
+      ],
+      "factSha256": "sha256:a81e841e0ddb4e40a4eb67513a4cbfd316e1f839b50b9a16bc4db3486b930e1e",
+      "factType": "file-exists",
+      "id": "FACT-16752c1e1651b2d3",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:8183aafde1d8f80db77d1b48de90258373992458acfaa78c575294db7ac102ed",
+      "factType": "change-frequency",
+      "id": "FACT-18d765e9065901ac",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied change-frequency for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:change-frequency",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/RequestForm.js exists as a 100644 Git blob with 1840 bytes.",
+      "claimSha256": "sha256:667614b98b6dc9cd911cf66a10204650e4075a58656bca15749492eb1cd8b74d",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-185b27dd4c7fa6bb"
+      ],
+      "factSha256": "sha256:9a49423f65300c3389951be00216d713e4b7ad1029bc756a0a12dc689a0ad1bb",
+      "factType": "file-exists",
+      "id": "FACT-1c7ddf25e3f6af1d",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/RequestForm.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "main.js imports the in-scope module config.js.",
+      "claimSha256": "sha256:b92dbf29d9004bc38c22f870d323b11bbecb3796a3fdbc8c60b0dd7fdbacf6d5",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-bd4b3669d82bb21c"
+      ],
+      "factSha256": "sha256:28c57bbf55703e669e726e855b40f7eb0edd0f731eff385d02332e2521aeb76d",
+      "factType": "dependency-edge",
+      "id": "FACT-24e1afdfda380afd",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js->config.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/SuiteForm.js has the registered javascript source extension.",
+      "claimSha256": "sha256:d52b13104468d271d2d0ed236a674beb6cb52be6a368a58e3d8d3e224bace4f7",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-316fdd326c5071e6"
+      ],
+      "factSha256": "sha256:68f6ff7c32af3fd528ce42411aad19c90cfd36346b9917c2aec0b8c99b3cc296",
+      "factType": "language-detected",
+      "id": "FACT-259cfbfa31f2a7f8",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/SuiteForm.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js declares import target electron.",
+      "claimSha256": "sha256:11c60eac356a838fc1d2fe1dbf45f1234a867ffd4940f93c7af5abc6c0a06b37",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-784d8f4449a4ce82"
+      ],
+      "factSha256": "sha256:1905c2ddf00d78651c0682dad50c5c3818b5fcd349c813b07236eb9c705b1923",
+      "factType": "import-dependency",
+      "id": "FACT-2a69f06ab611e11f",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->electron",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "package-lock.json exists as a 100644 Git blob with 35582 bytes.",
+      "claimSha256": "sha256:f260689bbc1475e4aee135a41a6ace703490a3acbe1fd9510b0168da37ce7a76",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-e9fd3125ed4becdb"
+      ],
+      "factSha256": "sha256:acc03d4df30d84644258fae4a2ac86ee368430e0c98e774c3b6d46efa70cb529",
+      "factType": "file-exists",
+      "id": "FACT-2dfcac29bccb5e83",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "package-lock.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/RequestForm.js has the registered javascript source extension.",
+      "claimSha256": "sha256:abb24ce3d93f7b10397a4fcfc2c97cac3907e0651aca9cfe55986974bf48cffa",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-185b27dd4c7fa6bb"
+      ],
+      "factSha256": "sha256:da9fe2676780f065c452f4ac0dc2d51c5bb1105c32541bd763dc12806e3c7ae3",
+      "factType": "language-detected",
+      "id": "FACT-33a9069a73fd28bc",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/RequestForm.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "renderer.js has the registered javascript source extension.",
+      "claimSha256": "sha256:0c6bf8e4eb44c6ed8f2f367b90027aaf5556b02952e6163674f23d7126f98ea3",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-affed4eb358fe7e5"
+      ],
+      "factSha256": "sha256:a6636e91dd3026f4fe5cde3a9df3c7089445f94ced22307f954ec6aa9f3e0784",
+      "factType": "language-detected",
+      "id": "FACT-380d35c0d1ace3ce",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "9327-80F0 exists as a 100644 Git blob with 0 bytes.",
+      "claimSha256": "sha256:fd3c97ab188daf2d774aef9deed4d98e641fa0b50bec74edf2daa841df038733",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-f0144c13955ba377"
+      ],
+      "factSha256": "sha256:5452bc9c8a9bd95c39ff69c19fca043cc6e0be54453e4e344e3625ce0654acb6",
+      "factType": "file-exists",
+      "id": "FACT-39dfec671cdb72b5",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "9327-80F0",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "components/index.js imports the in-scope module components/RequestForm.js.",
+      "claimSha256": "sha256:8125af0aba0ef05a8854b484e86f0ecdee71413009d01613a9bad43e920a3854",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-8e5fe750ed0675d4"
+      ],
+      "factSha256": "sha256:d164e0d0ae8ec743d0b7d0915f69f6ad99f357eb36cc5f7e3eaaaa6e84bdfdde",
+      "factType": "dependency-edge",
+      "id": "FACT-3a4e38d8c33ad999",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js->components/RequestForm.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "saved_requests.json exists as a 100644 Git blob with 346 bytes.",
+      "claimSha256": "sha256:4919193c16a7a7bad952ded6ed8f2e5d0c5e600980adb7f896064e0a7bdb1109",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-7e4424c3dd4e94d2"
+      ],
+      "factSha256": "sha256:23c55bf85dc990e168cedb7c600cc879e2e893839a42898df6882112a4b97ca1",
+      "factType": "file-exists",
+      "id": "FACT-3d1f3b9298f4bb28",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "saved_requests.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "components/index.js imports the in-scope module components/RequestItem.js.",
+      "claimSha256": "sha256:a7b79579378ad3a137a101beeea68b50870fa2784b833eaeadc7f4a099973cf4",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-0a996294e3aa5fd7"
+      ],
+      "factSha256": "sha256:1c66fdabfc316f8e6c0293baac94f15a61aa8e6cd12ae63b8b134b70a578e59c",
+      "factType": "dependency-edge",
+      "id": "FACT-3e1167d8e331f4e6",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js->components/RequestItem.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "preload.js exists as a 100644 Git blob with 489 bytes.",
+      "claimSha256": "sha256:3520e8a7213e15dd952d7fc7b9e5d219dd7768b6671a4f3611f2dcb38a8a5621",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-06cb1870576ef858"
+      ],
+      "factSha256": "sha256:241667a165546a9b06054535dacbeec03a05a283319e5a1b35d46b742c2cf307",
+      "factType": "file-exists",
+      "id": "FACT-40b202b66330fa58",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "preload.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js imports the in-scope module components/index.js.",
+      "claimSha256": "sha256:00341fe7a3cc491fe42826ec508300f9f5f4d811cc3815746fcc12fddd1a2f02",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-40e3cbd98e18d7e6"
+      ],
+      "factSha256": "sha256:7ea0ddab22a3ea4bdb51114adcaaacf1d95c43b19001fb1eb25053174be0a855",
+      "factType": "dependency-edge",
+      "id": "FACT-450d3275fe33350c",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->components/index.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "db.js imports the in-scope module config.js.",
+      "claimSha256": "sha256:e8ce824772f607e9cd2de70da5bd8c7d0cfe9fe86c6e98d2c77bcba4a7ab8b5a",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-5923f19675665dbb"
+      ],
+      "factSha256": "sha256:3e20c9ed9f3b9447537b4866d4b04cc465f180b505ac75b986765ebe94165d4b",
+      "factType": "dependency-edge",
+      "id": "FACT-4ccfa0276c7357a8",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js->config.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:fe9ff7f9ce19690deb06815b71b7944214db79c35067eee3ee2a5dff253aea51",
+      "factType": "incident-mapping",
+      "id": "FACT-4eb534980e22dbaf",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied incident-mapping for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:incident-mapping",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "db.js declares import target pg.",
+      "claimSha256": "sha256:2e711019b398d5d10825b9e5350474fa204b141caca93ccae925ddada6880513",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-1599bf5f1d337c0a"
+      ],
+      "factSha256": "sha256:f980821d692eec5a19698257e0a271f1312ea73110967b48f3f9af9ed72343d8",
+      "factType": "import-dependency",
+      "id": "FACT-54245e31b1dbbf3e",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js->pg",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "db.js exists as a 100644 Git blob with 6673 bytes.",
+      "claimSha256": "sha256:a36014e5ce3e897c51be4527050505c87e7cc056c717a7edfbdd7fd067664e78",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-72f282acefb49f10"
+      ],
+      "factSha256": "sha256:5ea4223545d68c7b3909fb142b804f010cb3c0dc830fa5497e361dfa220b0482",
+      "factType": "file-exists",
+      "id": "FACT-54277d9e578fdd1b",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:2b668ed65f7fd3c0fb55495ee769b6345e186c6390e77c2d311e99ed9a5c3d97",
+      "factType": "interface",
+      "id": "FACT-561334ac8f598367",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied interface for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:interface",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-30452d23dfcc0997",
+      "evidenceIds": [],
+      "factSha256": "sha256:d8c9adfa16557788cb290bd98513ef0ca2e42cd9ac785e824d620cc3f702e1e5",
+      "factType": "test-impact",
+      "id": "FACT-597f6653f12a88ee",
+      "reason": {
+        "attemptedProducer": "change-region",
+        "code": "PARSE_FAILURE",
+        "detail": "The bounded exact first-parent Git diff could not be read; test-impact extraction is unavailable."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "change-region:test-impact",
+        "kind": "test"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "db.js declares import target path.",
+      "claimSha256": "sha256:1586c8250534fdc121289394b7430ba4c1fe987f7a0632c70e1446e4ff9a0518",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-993f0d7cabae33b2"
+      ],
+      "factSha256": "sha256:ac78fd04686b8e12526d99a84bb4124b17aba56689eb3e662c87a0f38cf9ef4b",
+      "factType": "import-dependency",
+      "id": "FACT-5c01bde9ef12b96a",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js->path",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:b39efbffe39a2e766d1be30c87920a8aa7d5c34d3ce648ab0e5537628484fcb1",
+      "factType": "rule-definition",
+      "id": "FACT-6242549f4c409e7f",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied rule-definition for biz.rules@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "biz.rules@4:rule-definition",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js imports the in-scope module db.js.",
+      "claimSha256": "sha256:e35c27f43256afc48a58d2d92093bb44a4d3f598ce612a3b502704f740dbdadf",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-002cbac373d2d4a4"
+      ],
+      "factSha256": "sha256:be8abe65c20a65645afc2c488f8b430bd135f397c5d1ae1ba9552bba62d78cf6",
+      "factType": "dependency-edge",
+      "id": "FACT-631c166c5185b28e",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->db.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".idea/ruliad-electron.iml exists as a 100644 Git blob with 458 bytes.",
+      "claimSha256": "sha256:2791d1a52ddeb163be1ebe558cd839ecdb46feb62c1729635ef5828f99ab1e81",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-724302f2be39549a"
+      ],
+      "factSha256": "sha256:02dd5ce71c2064571e231370d3fb56c2849706fe6b4d5b5a80188baf1e7e9b04",
+      "factType": "file-exists",
+      "id": "FACT-680155de1ccd5589",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".idea/ruliad-electron.iml",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "db_scripts.sql exists as a 100644 Git blob with 2243 bytes.",
+      "claimSha256": "sha256:ed87fba33f29a26928d555ef632ff592affa0d368d0025cc72de76ed3842a987",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-0f4eeedca382b4ba"
+      ],
+      "factSha256": "sha256:d0c93d26cf5a96800a9865f034b07af7fd3b3f490685189dc46e0dc394b4658c",
+      "factType": "file-exists",
+      "id": "FACT-6e814a2acc4b602b",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db_scripts.sql",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/SuiteForm.js exists as a 100644 Git blob with 2181 bytes.",
+      "claimSha256": "sha256:b3d6f2dc14600629a7370e3eb3aa0f299aed3c67b0a1c07f9eccc2479f015966",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-316fdd326c5071e6"
+      ],
+      "factSha256": "sha256:d4c20df1db6732fcf4f15c743b66f4d9536b3547b733ffe928c59ee7c683bf2c",
+      "factType": "file-exists",
+      "id": "FACT-6f25dff8718eb2b3",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/SuiteForm.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "preload.js has the registered javascript source extension.",
+      "claimSha256": "sha256:419dee5d56a25ac866e0f85f0c80fb02ba6e554111495854371589bf5fd70b19",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-06cb1870576ef858"
+      ],
+      "factSha256": "sha256:d383a837e1364e3a705194b18fab972a7b2b459c180e9245c47429d60fc7a2d5",
+      "factType": "language-detected",
+      "id": "FACT-73a2a05cb18b75e7",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "preload.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js declares import target fs.",
+      "claimSha256": "sha256:8f1572c69a72666c94b6c1944fb56c04b6d5c55484eaf1876a3379d0a060871b",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-84ccaeccd147eb2a"
+      ],
+      "factSha256": "sha256:d3a4a851e08ce05a347c045f05bc50f4759792d44160154c2b79c9c1ccb887dd",
+      "factType": "import-dependency",
+      "id": "FACT-7bd46647723ffe32",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->fs",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".idea/modules.xml exists as a 100644 Git blob with 282 bytes.",
+      "claimSha256": "sha256:2784c393a8072dffbd1cee52889461b530987c16878517448525b23f2d9c604d",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-9aa539ae9e4ab6d7"
+      ],
+      "factSha256": "sha256:5711b392d99246f281ef72a71de55d49b22c93c5ec827face2ab0610b69e0323",
+      "factType": "file-exists",
+      "id": "FACT-814ad28d05d645d7",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".idea/modules.xml",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:579805fa8b26edfe878aa64c62f6b9603b9359e747b32f6f0fae31df25f8732d",
+      "factType": "ownership-concentration",
+      "id": "FACT-843288f4dc15dd73",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied ownership-concentration for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:ownership-concentration",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/RequestItem.js has the registered javascript source extension.",
+      "claimSha256": "sha256:120ffd9b0169795d5bcb780ef6588704ae169783e66011e4a67ed60fc03a533b",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-d7d0c796784ba409"
+      ],
+      "factSha256": "sha256:584eb58a295f03a6fd4e581daf3bf3d3d219b91d92db5ed88946c7481c8df599",
+      "factType": "language-detected",
+      "id": "FACT-870d9c58035ecf20",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/RequestItem.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "preload.js declares import target fs.",
+      "claimSha256": "sha256:c403c55c2d8279ed51af58b83f1a104fe675c1bec2ee8544b87b0aad43f31b54",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-0850f1754dc49dca"
+      ],
+      "factSha256": "sha256:c84a2ac07fbe1d563c6f07588a029788df28adce6de561752c872038bfd097b2",
+      "factType": "import-dependency",
+      "id": "FACT-87a6c3bbda25700d",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "preload.js->fs",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "config.js has the registered javascript source extension.",
+      "claimSha256": "sha256:0ff21856ee22f812b3b64d0c44cf39af9414dfda076935c945b09a9e931e1de5",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-9e2ba7c0ad69a8f6"
+      ],
+      "factSha256": "sha256:2adfc106336dd7ad79966398e99f7af31aa1cfe2606bb66907cbd91ea73aa729",
+      "factType": "language-detected",
+      "id": "FACT-91dd1d31c3467210",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "config.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".idea/.gitignore exists as a 100644 Git blob with 176 bytes.",
+      "claimSha256": "sha256:e1d71d9ef9d8d1dbf957eae4714f7735d93b60643e795daf4923b27ce920a946",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-e50701e38280e9d6"
+      ],
+      "factSha256": "sha256:eea4bff2f72b7eede33d368b13daf67958fcf9c15edd6ba9306a32422456effc",
+      "factType": "file-exists",
+      "id": "FACT-92214294b7bc7568",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".idea/.gitignore",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "preload.js declares import target path.",
+      "claimSha256": "sha256:efc31725eb7ad463fe31093196f600232180e292d17b10ab875dff6428844750",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-358ec11698bfec42"
+      ],
+      "factSha256": "sha256:dcef326509fa58082e478fc22c5daf50a3ac55bf22254c932e86c68583653d62",
+      "factType": "import-dependency",
+      "id": "FACT-92e7e41b87367a07",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "preload.js->path",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "main.js declares import target @electron/remote/main.",
+      "claimSha256": "sha256:e9efa24786c23db76ebb7f5c6c1b878612eff1a7723afaf5ee88a677b5e530d8",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-fa880ec5602fcf2d"
+      ],
+      "factSha256": "sha256:0af65e703770c60007cfae1c6c59a3bd8c3c8479b97a377dc9b5e2d8869ef14f",
+      "factType": "import-dependency",
+      "id": "FACT-93841667e6bf1d5f",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js->@electron/remote/main",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".vscode/tasks.json exists as a 100644 Git blob with 285 bytes.",
+      "claimSha256": "sha256:ef6f034a1a87faef6dfc7ecc35d28ba6b6cb8ef4e98de726c5cfaf873156e662",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-5f9e3fbc0dea1500"
+      ],
+      "factSha256": "sha256:97f80d6a601fb9bad4a07ea13107c6e5b35991869798d71cde8d337cfa0ae283",
+      "factType": "file-exists",
+      "id": "FACT-9493a3ae1643b5a7",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".vscode/tasks.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/SuiteItem.js has the registered javascript source extension.",
+      "claimSha256": "sha256:d281ea93c745d9eaba47036a7676951790d602e4b96b434cc039cdaff54f8d5f",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-aa430907d68285a7"
+      ],
+      "factSha256": "sha256:38f1c20e1cbf3eae08109b6a19ab77cac1b8d8eff9a2be5a64b1de11496a31ff",
+      "factType": "language-detected",
+      "id": "FACT-95d30824206e1150",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/SuiteItem.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-30452d23dfcc0997",
+      "evidenceIds": [],
+      "factSha256": "sha256:9101713c6007d9d0da19d1caf19ca23a03ffe581d395e24860184b080b51bc00",
+      "factType": "changed-symbol",
+      "id": "FACT-96629aa432fe27bf",
+      "reason": {
+        "attemptedProducer": "change-region",
+        "code": "PARSE_FAILURE",
+        "detail": "The bounded exact first-parent Git diff could not be read; changed-symbol extraction is unavailable."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "change-region:changed-symbol",
+        "kind": "symbol"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:5e8b07dd78b13a241a2822e5e2505035c444e79b93bf774c5d4e329b58c14857",
+      "factType": "runtime-frequency",
+      "id": "FACT-9d9fdc8c0d7c573c",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_RUNTIME_EVIDENCE",
+        "detail": "No registered deterministic producer supplied runtime-frequency for dev.impact@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.impact@4:runtime-frequency",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "package.json exists as a 100644 Git blob with 312 bytes.",
+      "claimSha256": "sha256:c792c5009d9fc5446ec4dab39b2f0ffe24e28da0e3b40941bfd032eb9c89fdd1",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-370a5fe254b31ea0"
+      ],
+      "factSha256": "sha256:a2cccbd4e2c5ceb30d0c5eae2c94cee0ff8c07488292d71ea0b424e42a11478b",
+      "factType": "file-exists",
+      "id": "FACT-a060fc6175ee5610",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "package.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:89a6bae0e7fbe8c8f21b9c4953f65a54d0bc4e6e669fedde3983e4ace37e6802",
+      "factType": "implementation",
+      "id": "FACT-a2f6f6e7e3d3e0f4",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied implementation for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:implementation",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-30452d23dfcc0997",
+      "evidenceIds": [],
+      "factSha256": "sha256:3b22fd1673aa34c31c787eb88439ae4904560fad6a529d62b19df28428ed4848",
+      "factType": "contract-change",
+      "id": "FACT-a2fd88ef2de3e50b",
+      "reason": {
+        "attemptedProducer": "change-region",
+        "code": "PARSE_FAILURE",
+        "detail": "The bounded exact first-parent Git diff could not be read; contract-change extraction is unavailable."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "change-region:contract-change",
+        "kind": "contract"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "main.js declares import target path.",
+      "claimSha256": "sha256:69a7e54153c4950637b142fb441f2972a29e47a46284a326826edcaee7df7f10",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-26bc51a18d6415df"
+      ],
+      "factSha256": "sha256:232c09aacd0f0ad7885a9c07bf2545e5c7857ae7dab8ecae93e75756955a6f86",
+      "factType": "import-dependency",
+      "id": "FACT-a31e2e53fd8059cb",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js->path",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:f61b6f56ab28291e401ed048db13038fa858c7e8b60e8dd8a2b9538e81f8cb04",
+      "factType": "schema-contract",
+      "id": "FACT-a565a2f6c3b442d9",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied schema-contract for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:schema-contract",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "db.js has the registered javascript source extension.",
+      "claimSha256": "sha256:51eda706c7297906fc6414c4306f5011682b64681792a50b0726711df2c28fb1",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-72f282acefb49f10"
+      ],
+      "factSha256": "sha256:64dc9b771d68711019a15ae01f574ee3f0bcc26c5b6fb0d120c03cb25004bbb5",
+      "factType": "language-detected",
+      "id": "FACT-acd538ab48e92a50",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "db.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/index.js exists as a 100644 Git blob with 4351 bytes.",
+      "claimSha256": "sha256:7a9e7fa1cc43123eccb6e39f69539a9b637a7b23454afa668b587aeaf5580408",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-e88459ca20c4c660"
+      ],
+      "factSha256": "sha256:924be8b7d59ff34f2e1a72ddae326961fc2b33cfd96078c66561aaed049f9d6e",
+      "factType": "file-exists",
+      "id": "FACT-b5c1bf15ba4b0a80",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "main.js has the registered javascript source extension.",
+      "claimSha256": "sha256:d8e73573be1bacec111d61ef36c2ac18d6489bbcb19091fe0cf6dd92c6e5c553",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-2d249bbb8f5c7b20"
+      ],
+      "factSha256": "sha256:6681f3c3f7a56efa4b0d214fe0ca1ff0f9411f8b9c78b881950f2a60875ff86f",
+      "factType": "language-detected",
+      "id": "FACT-bd09dc689d86d615",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "main.js declares import target electron.",
+      "claimSha256": "sha256:a7c18c633a7573a72713f994e09e8eef03d4acddde87a43f68d4ab2a60267f10",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-4f45ba3d1d215142"
+      ],
+      "factSha256": "sha256:842619f47f7f036513bc801680a9069e0c5abca53450a10a96f2e61a5b617316",
+      "factType": "import-dependency",
+      "id": "FACT-c11c497f215e5f0f",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "main.js->electron",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-30452d23dfcc0997",
+      "evidenceIds": [],
+      "factSha256": "sha256:1ca96cd2528a27e593dc7b7fbbc96aa2603e11dea4bda9d67b05295ed3004774",
+      "factType": "structural-impact",
+      "id": "FACT-c1bc92a6b6173a8f",
+      "reason": {
+        "attemptedProducer": "change-region",
+        "code": "PARSE_FAILURE",
+        "detail": "The bounded exact first-parent Git diff could not be read; structural-impact extraction is unavailable."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "change-region:structural-impact",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/README.md exists as a 100644 Git blob with 2282 bytes.",
+      "claimSha256": "sha256:820d015252927b3d71b13221599c78c6e0640f4970a0da135f85928bd50dda66",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-05d24b374212885d"
+      ],
+      "factSha256": "sha256:837e917e868e26707c816d274909668878bebabd80fa84898e9081867725668d",
+      "factType": "file-exists",
+      "id": "FACT-ce159caa98bc3a97",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/README.md",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:191517d5ee54d630093cc095035a573b78f9bb9075bfadfa3a93ae559f431238",
+      "factType": "business-meaning",
+      "id": "FACT-d0f9fe2b4d4a5434",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied business-meaning for biz.rules@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "biz.rules@4:business-meaning",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/RequestItem.js exists as a 100644 Git blob with 2146 bytes.",
+      "claimSha256": "sha256:6bbdc4648d6ce5e59ff5b7e84984d4aa3a25bb358d2117b98243e45ced3c48f3",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-d7d0c796784ba409"
+      ],
+      "factSha256": "sha256:974b65b4997f97944a62004305686d9d3ada3c91526e6a34c20a4a78cb864f90",
+      "factType": "file-exists",
+      "id": "FACT-d2b4350426b42ff6",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/RequestItem.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:650454081d572aeb9b0ebd59b5e1faddbbc4d2ab42539682d31c557fdb8c8e88",
+      "factType": "protocol-field",
+      "id": "FACT-d650cbc80ea8e84e",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied protocol-field for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:protocol-field",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:167898bfbb15bdac618532084c0157cb978da34299f93ad86407cb810db8b39d",
+      "factType": "consumer-dependency",
+      "id": "FACT-d9b57f47fb7ff890",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied consumer-dependency for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:consumer-dependency",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "index.html exists as a 100644 Git blob with 8889 bytes.",
+      "claimSha256": "sha256:3cff6b05218e36fd07cb0fced1805ef76a2fb5d1d4b1f1b84b591d3d400634c6",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-4138f1b3d568f31d"
+      ],
+      "factSha256": "sha256:59c033049b9a79d40aee8a8b3e1e4d46704fc155338e594956bfb323c336c114",
+      "factType": "file-exists",
+      "id": "FACT-d9df3bff60347f5a",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "index.html",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/index.js has the registered javascript source extension.",
+      "claimSha256": "sha256:5c8bcf411ea1a49b6e59e529955351972202728f314c563e31ad5e31f7139bbf",
+      "conflictsWith": [],
+      "derivationId": "DRV-3652f31c92bcc86f",
+      "evidenceIds": [
+        "EV-e88459ca20c4c660"
+      ],
+      "factSha256": "sha256:e2264adf7fb34d6dc02413ae520c135f885c6564ab4b9380f24655c3ac277c37",
+      "factType": "language-detected",
+      "id": "FACT-e2f139e2ad31f6f4",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/index.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "priority_suites.json exists as a 100644 Git blob with 861 bytes.",
+      "claimSha256": "sha256:e1d962edbc74352aa5eb30a2319782c3f7b58e2ef73d4814592613a17650f451",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-f40b76c0104f6b34"
+      ],
+      "factSha256": "sha256:54b95f273294433cc6bdd6d7b0ea700af4dd19f67266062ed14802d810de3be2",
+      "factType": "file-exists",
+      "id": "FACT-e616ad1c96f63528",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "priority_suites.json",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:de091f445ca62e594e4c99aa7d765bdff33b861fa998672e8a88bde198c277a7",
+      "factType": "signature",
+      "id": "FACT-e77aee5d7a429dee",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied signature for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:signature",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "renderer.js imports the in-scope module config.js.",
+      "claimSha256": "sha256:e348f08ae6214cff69821259f3fc5fcb5978168e8acf1fb6c4a5a982681eef82",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-44213beda9cda97b"
+      ],
+      "factSha256": "sha256:ada8d4116251e825de022ed91bcedf349fe5f87d2aab54a0db26def5a45b947e",
+      "factType": "dependency-edge",
+      "id": "FACT-eb8ed20c44785902",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "renderer.js->config.js",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "components/SuiteItem.js exists as a 100644 Git blob with 2155 bytes.",
+      "claimSha256": "sha256:8207f2b695b4e3244655a991600dfd83ff6c7a5229854667503fed032a552695",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-aa430907d68285a7"
+      ],
+      "factSha256": "sha256:afbb8fc12d68799cd8df84b48c06d386cd0d649b0524b6071cbd3cbfd5b09721",
+      "factType": "file-exists",
+      "id": "FACT-ec8db2be796d6fc9",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "components/SuiteItem.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:9ca9453d45f5ac23bacc85696c21945fa08fe2e3d69f9056de5cbb01af271c1d",
+      "factType": "runtime-guarantee",
+      "id": "FACT-f5731569f8e9ccff",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_RUNTIME_EVIDENCE",
+        "detail": "No registered deterministic producer supplied runtime-guarantee for arch.contracts@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "arch.contracts@4:runtime-guarantee",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "structurally-derived",
+      "claim": "preload.js declares import target electron.",
+      "claimSha256": "sha256:aebc3a26da2acf091bc0537b20441e389537aac645c9d91f317c54a34cde5a3a",
+      "conflictsWith": [],
+      "derivationId": "DRV-8de74d369b3fc926",
+      "evidenceIds": [
+        "EV-a1e77fc45073724a"
+      ],
+      "factSha256": "sha256:e504357dc22293ecc4cc8d6c793777fee91ca22934094f58572adc33a219bed1",
+      "factType": "import-dependency",
+      "id": "FACT-f6063bd51b5070d0",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "preload.js->electron",
+        "kind": "dependency-edge"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".gitignore exists as a 100644 Git blob with 228 bytes.",
+      "claimSha256": "sha256:6d203e50b2710dcc173401dfdbf3430f49cb0756590f5e98cb14fe97833a507b",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-b14df8b7bdb0ec18"
+      ],
+      "factSha256": "sha256:f1d1d0efc2cfd535ed40ccca2bb0a85d3c6b15f8e0f4bb4545030542c0c7a1ba",
+      "factType": "file-exists",
+      "id": "FACT-f7a84cf1245c59c6",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".gitignore",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": ".idea/vcs.xml exists as a 100644 Git blob with 180 bytes.",
+      "claimSha256": "sha256:82db00a733e07bfa0528650c986bc45b4be7b2e5f50034a0181a93afd79a81a6",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-7ea7c0e502bb805e"
+      ],
+      "factSha256": "sha256:ecd948a64d07fdc5d221799e62dbc202ef3b3a11574a6cb2001bd3fb14c510cf",
+      "factType": "file-exists",
+      "id": "FACT-f7dadefbfc0585a1",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": ".idea/vcs.xml",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "login.html exists as a 100644 Git blob with 2108 bytes.",
+      "claimSha256": "sha256:758c7a6a3e8ab0bbf7ea2cba3ce1ef423924293fdc3183480487e9f69df7605d",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-bc66abcd19074de9"
+      ],
+      "factSha256": "sha256:b9cd68e672e3242d5c23c96fe905ca2c54425e0979296fb6b4c281489cd9e8d4",
+      "factType": "file-exists",
+      "id": "FACT-f99838ee488c2b72",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "login.html",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "source-exact",
+      "claim": "config.js exists as a 100644 Git blob with 2055 bytes.",
+      "claimSha256": "sha256:cc96f9e6f9d7a3eca996e1c8860ea7d7cf905b0e2229d2e3794e07a40b6916b7",
+      "conflictsWith": [],
+      "derivationId": "DRV-20d4fb5628c5406d",
+      "evidenceIds": [
+        "EV-9e2ba7c0ad69a8f6"
+      ],
+      "factSha256": "sha256:4aa023e8afc4267c5760042d46797f988fe5a8b875953a4021e522dd16342609",
+      "factType": "file-exists",
+      "id": "FACT-fb189de4e71fb7ab",
+      "scopeStatus": "inside",
+      "status": "available",
+      "subject": {
+        "id": "config.js",
+        "kind": "file"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:306b962e670ccfb8770c1062f35b6672321ba3fec6ae87203762e06a98357c8a",
+      "factType": "dependency-degree",
+      "id": "FACT-ffbd847cf7917721",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied dependency-degree for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:dependency-degree",
+        "kind": "analysis"
+      }
+    }
+  ],
+  "kind": "world-model-fact-ledger",
+  "ledgerSha256": "sha256:eb36cfe0e49a56d31a1e3ed3d8513fdda47371fb821a434cad938ecf6028a043",
+  "schemaVersion": 1,
+  "scopeManifestSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "sourceManifestSha256": "sha256:82547a2aa824436f39fe266b3f40861b473399ac7175c65aefd104aea9c2ecde"
+}

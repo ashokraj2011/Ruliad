@@ -1,0 +1,104 @@
+{
+  "candidateSchemaSha256": "sha256:1673dbd2acd154d9d6283e5bcbe3943aac0de71d3a6472ab037c31251799afa1",
+  "candidateSha256": "sha256:367ac62fb38aef6cb102a765fb58218ec21559e3e107b159cb27f358f72289e3",
+  "checks": [
+    {
+      "id": "candidate-json",
+      "status": "pass"
+    },
+    {
+      "id": "candidate-schema",
+      "status": "pass"
+    },
+    {
+      "id": "view-identity",
+      "status": "pass"
+    },
+    {
+      "id": "registered-title",
+      "status": "pass"
+    },
+    {
+      "id": "required-sections",
+      "status": "pass"
+    },
+    {
+      "id": "section-order",
+      "status": "pass"
+    },
+    {
+      "id": "unregistered-sections",
+      "status": "pass"
+    },
+    {
+      "id": "narrative-budgets",
+      "status": "pass"
+    },
+    {
+      "id": "factual-unit-references",
+      "status": "pass"
+    },
+    {
+      "id": "fact-reference-integrity",
+      "status": "pass"
+    },
+    {
+      "id": "used-fact-set",
+      "status": "pass"
+    },
+    {
+      "id": "required-facts",
+      "status": "pass"
+    },
+    {
+      "id": "required-unavailable",
+      "status": "pass"
+    },
+    {
+      "id": "admitted-fact-coverage",
+      "status": "pass"
+    },
+    {
+      "id": "contradictions",
+      "status": "pass"
+    },
+    {
+      "id": "assurance",
+      "status": "pass"
+    },
+    {
+      "id": "scope",
+      "status": "pass"
+    },
+    {
+      "id": "body-access",
+      "status": "pass"
+    },
+    {
+      "id": "cross-view",
+      "status": "pass"
+    },
+    {
+      "id": "kernel-metadata",
+      "status": "pass"
+    },
+    {
+      "id": "execution-route-contract",
+      "status": "pass"
+    },
+    {
+      "id": "total-output",
+      "status": "pass"
+    }
+  ],
+  "factLedgerSha256": "sha256:827bcc07bc1e609e0c7bed5ad314e199a5c0602afe629300e22c644884ef0088",
+  "kind": "world-model-view-validation-receipt",
+  "receiptSha256": "sha256:cd01aad45943355995c249c721705ef2f8597a94187ce4389c5cd32d7a976804",
+  "schemaVersion": 1,
+  "scopeSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "status": "passed",
+  "validatorSha256": "sha256:c263cda0d2eca2e504cacad26b1b8de9085f2295e75ce79c00ba9af659ecceba",
+  "viewId": "dev.hotspots",
+  "viewSpecSha256": "sha256:14edd4de2ad9e38a4b57956a74aa669b4e3436e45d13cd3167603c5c244c3ada",
+  "viewVersion": 4
+}

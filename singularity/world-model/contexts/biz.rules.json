@@ -1,0 +1,72 @@
+{
+  "kind": "world-model-context-manifest",
+  "manifestSha256": "sha256:3baaf1ab280b2e633740a41d01037315cdb8265cbc34f54226f7476b0de646d2",
+  "promptSha256": "sha256:c5121d2f9a50a174db554f489693d4e6ee65d0286871d9e9fd286d6c615265ec",
+  "regions": [
+    {
+      "bytes": 3864,
+      "cacheClass": "stable-prefix",
+      "estimatedTokens": 966,
+      "id": "stable-core",
+      "sha256": "sha256:e358e2b202702b74c84c32853e16130da2366d85de0189b571eb84fbf37dc5e2"
+    },
+    {
+      "bytes": 319,
+      "cacheClass": "stable-prefix",
+      "estimatedTokens": 80,
+      "id": "fact-reference-grammar",
+      "sha256": "sha256:51e16d1f1e7d9f6e9d1965625a2c8af165efe28dbe664a2f6cc8f2f49ef4f73d"
+    },
+    {
+      "bytes": 1362,
+      "cacheClass": "stable-prefix",
+      "estimatedTokens": 341,
+      "id": "composition-candidate-schema",
+      "sha256": "sha256:a375456e18154709d94f6f413d7bfbd740b72ebb48901c5e6faee3f9ee7305e7"
+    },
+    {
+      "bytes": 2075,
+      "cacheClass": "stable-view",
+      "estimatedTokens": 519,
+      "id": "view-contract",
+      "sha256": "sha256:4c4de09bec243d1d8f95432fc9451f3378a8f473563821a8392d936c9189ee1a"
+    },
+    {
+      "bytes": 359,
+      "cacheClass": "task",
+      "estimatedTokens": 90,
+      "id": "consumer-profile",
+      "sha256": "sha256:9364c6ca1e37172629c0ceafee7e60abd76e6d289f6f48838e19627695788171"
+    },
+    {
+      "bytes": 484,
+      "cacheClass": "task",
+      "estimatedTokens": 121,
+      "id": "output-budget",
+      "sha256": "sha256:85f5897bdc3f09356b5cede33ff1bc42d69cc9ea46a556f4ed3ea9066f296f50"
+    },
+    {
+      "bytes": 736,
+      "cacheClass": "dynamic",
+      "estimatedTokens": 184,
+      "id": "scope-manifest",
+      "sha256": "sha256:4f1bd23c1ff452056856c599667da45363f214e037c794115c1df39d6d78227c"
+    },
+    {
+      "bytes": 2233,
+      "cacheClass": "dynamic",
+      "estimatedTokens": 559,
+      "id": "composition-fact-packet",
+      "sha256": "sha256:ef8d542e4e423a409bd1fa63fa252f3873951e28f5bcce813298bbcaa7e0bf59"
+    },
+    {
+      "bytes": 86,
+      "cacheClass": "dynamic",
+      "estimatedTokens": 22,
+      "id": "evidence-catalog",
+      "sha256": "sha256:ff3e34e378add1b3a9419cf018c47f230a8e463e60414fd239ee9afe14e8e053"
+    }
+  ],
+  "schemaVersion": 1,
+  "viewId": "biz.rules"
+}

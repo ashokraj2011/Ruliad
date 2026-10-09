@@ -1,0 +1,132 @@
+{
+  "facts": [
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:fbf6cbf5b7c3fc4b5e4d20c74ab75c1111790b00d5fca9886f6445e603776a95",
+      "factType": "complexity-metric",
+      "id": "FACT-09d699674920ba4d",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied complexity-metric for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:complexity-metric",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:8183aafde1d8f80db77d1b48de90258373992458acfaa78c575294db7ac102ed",
+      "factType": "change-frequency",
+      "id": "FACT-18d765e9065901ac",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied change-frequency for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:change-frequency",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:fe9ff7f9ce19690deb06815b71b7944214db79c35067eee3ee2a5dff253aea51",
+      "factType": "incident-mapping",
+      "id": "FACT-4eb534980e22dbaf",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied incident-mapping for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:incident-mapping",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:579805fa8b26edfe878aa64c62f6b9603b9359e747b32f6f0fae31df25f8732d",
+      "factType": "ownership-concentration",
+      "id": "FACT-843288f4dc15dd73",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied ownership-concentration for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:ownership-concentration",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:306b962e670ccfb8770c1062f35b6672321ba3fec6ae87203762e06a98357c8a",
+      "factType": "dependency-degree",
+      "id": "FACT-ffbd847cf7917721",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied dependency-degree for dev.hotspots@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "dev.hotspots@4:dependency-degree",
+        "kind": "analysis"
+      }
+    }
+  ],
+  "kind": "world-model-view-fact-ledger",
+  "ledgerSha256": "sha256:827bcc07bc1e609e0c7bed5ad314e199a5c0602afe629300e22c644884ef0088",
+  "materialContradictionFactIds": [],
+  "requiredFactIds": [
+    "FACT-18d765e9065901ac",
+    "FACT-ffbd847cf7917721"
+  ],
+  "requiredUnavailableFactIds": [
+    "FACT-09d699674920ba4d",
+    "FACT-4eb534980e22dbaf",
+    "FACT-843288f4dc15dd73"
+  ],
+  "schemaVersion": 1,
+  "selectionPolicySha256": "sha256:37166a1569ba1984c1e05117a6cf4b98f18186789a3e4d16797189e4f23685bc",
+  "sourceLedgerSha256": "sha256:eb36cfe0e49a56d31a1e3ed3d8513fdda47371fb821a434cad938ecf6028a043",
+  "viewId": "dev.hotspots",
+  "viewSpecSha256": "sha256:14edd4de2ad9e38a4b57956a74aa669b4e3436e45d13cd3167603c5c244c3ada",
+  "viewVersion": 4
+}

@@ -1,0 +1,404 @@
+{
+  "contracts": [
+    {
+      "bodyAccess": {
+        "allowed": false,
+        "maximumBytes": 0
+      },
+      "budgets": {
+        "maximumInputTokens": 8000,
+        "maximumOutputTokens": 1400
+      },
+      "contractSha256": "sha256:13ff5bb50461e3b7a40d8e34e1785fd29ebd36b5134a59c7630fa5304d2997b0",
+      "crossViewReferences": {
+        "allowed": false
+      },
+      "factPolicy": {
+        "allowedAssurance": [
+          "source-exact",
+          "structurally-derived",
+          "deterministically-derived",
+          "human-confirmed",
+          "runtime-observed",
+          "not-applicable"
+        ],
+        "allowedStatus": [
+          "available",
+          "partial",
+          "unavailable",
+          "contradicted"
+        ],
+        "optionalFactTypes": [],
+        "requiredFactTypes": [
+          "consumer-dependency",
+          "implementation",
+          "interface",
+          "protocol-field",
+          "schema-contract",
+          "signature"
+        ],
+        "requiredUnavailableSubjects": [
+          "runtime-guarantee"
+        ]
+      },
+      "facts": {
+        "canonicalBlock": "kernel-materialized",
+        "maximumSelectedFacts": 60
+      },
+      "id": "arch.contracts",
+      "kind": "world-model-view-contract",
+      "model": {
+        "mode": "optional",
+        "outputSchema": "world-model-composition-candidate-v1"
+      },
+      "narrative": {
+        "factualUnitsRequireFactRefs": true,
+        "sectionMaximumWords": 250,
+        "tldrMaximumWords": 120,
+        "totalMaximumWords": 900
+      },
+      "publisher": {
+        "id": "sflow-core"
+      },
+      "risk": {
+        "class": "low"
+      },
+      "schemaVersion": 1,
+      "sections": [
+        {
+          "id": "public-contracts",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Public contracts"
+        },
+        {
+          "id": "implementations",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Implementations"
+        },
+        {
+          "id": "consumers",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Consumers"
+        },
+        {
+          "id": "contract-contradictions",
+          "required": true,
+          "sectionKind": "contradiction",
+          "title": "Contract contradictions"
+        },
+        {
+          "id": "unavailable-runtime-guarantees",
+          "required": true,
+          "sectionKind": "unavailable",
+          "title": "Unavailable runtime guarantees"
+        }
+      ],
+      "title": "Architecture contracts",
+      "validity": {
+        "status": "active"
+      },
+      "version": 4
+    },
+    {
+      "bodyAccess": {
+        "allowed": false,
+        "maximumBytes": 0
+      },
+      "budgets": {
+        "maximumInputTokens": 8000,
+        "maximumOutputTokens": 1400
+      },
+      "contractSha256": "sha256:39cca8832e285cb7fd7b7b5a09deca629602e2c303908e0aace6032ccf2680b1",
+      "crossViewReferences": {
+        "allowed": false
+      },
+      "factPolicy": {
+        "allowedAssurance": [
+          "source-exact",
+          "structurally-derived",
+          "deterministically-derived",
+          "human-confirmed",
+          "runtime-observed",
+          "not-applicable"
+        ],
+        "allowedStatus": [
+          "available",
+          "partial",
+          "unavailable",
+          "contradicted"
+        ],
+        "optionalFactTypes": [
+          "business-glossary",
+          "clause-binding",
+          "condition-expression"
+        ],
+        "requiredFactTypes": [
+          "rule-definition"
+        ],
+        "requiredUnavailableSubjects": [
+          "business-meaning"
+        ]
+      },
+      "facts": {
+        "canonicalBlock": "kernel-materialized",
+        "maximumSelectedFacts": 50
+      },
+      "id": "biz.rules",
+      "kind": "world-model-view-contract",
+      "model": {
+        "mode": "optional",
+        "outputSchema": "world-model-composition-candidate-v1"
+      },
+      "narrative": {
+        "factualUnitsRequireFactRefs": true,
+        "sectionMaximumWords": 220,
+        "tldrMaximumWords": 100,
+        "totalMaximumWords": 750
+      },
+      "publisher": {
+        "id": "sflow-core"
+      },
+      "risk": {
+        "class": "low"
+      },
+      "schemaVersion": 1,
+      "sections": [
+        {
+          "id": "registered-rules",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Registered rules"
+        },
+        {
+          "id": "conditions-and-outcomes",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Conditions and outcomes"
+        },
+        {
+          "id": "rule-locations",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Rule locations"
+        },
+        {
+          "id": "conflicts-and-unavailable-meaning",
+          "required": true,
+          "sectionKind": "unavailable",
+          "title": "Conflicts and unavailable meaning"
+        }
+      ],
+      "title": "Business rules",
+      "validity": {
+        "status": "active"
+      },
+      "version": 4
+    },
+    {
+      "bodyAccess": {
+        "allowed": false,
+        "maximumBytes": 0
+      },
+      "budgets": {
+        "maximumInputTokens": 8000,
+        "maximumOutputTokens": 1400
+      },
+      "contractSha256": "sha256:14edd4de2ad9e38a4b57956a74aa669b4e3436e45d13cd3167603c5c244c3ada",
+      "crossViewReferences": {
+        "allowed": false
+      },
+      "factPolicy": {
+        "allowedAssurance": [
+          "source-exact",
+          "structurally-derived",
+          "deterministically-derived",
+          "human-confirmed",
+          "runtime-observed",
+          "not-applicable"
+        ],
+        "allowedStatus": [
+          "available",
+          "partial",
+          "unavailable",
+          "contradicted"
+        ],
+        "optionalFactTypes": [
+          "complexity-metric",
+          "incident-mapping",
+          "ownership-concentration"
+        ],
+        "requiredFactTypes": [
+          "change-frequency",
+          "dependency-degree"
+        ],
+        "requiredUnavailableSubjects": [
+          "complexity-metric",
+          "incident-mapping",
+          "ownership-concentration"
+        ]
+      },
+      "facts": {
+        "canonicalBlock": "kernel-materialized",
+        "maximumSelectedFacts": 50
+      },
+      "id": "dev.hotspots",
+      "kind": "world-model-view-contract",
+      "model": {
+        "mode": "optional",
+        "outputSchema": "world-model-composition-candidate-v1"
+      },
+      "narrative": {
+        "factualUnitsRequireFactRefs": true,
+        "sectionMaximumWords": 220,
+        "tldrMaximumWords": 100,
+        "totalMaximumWords": 700
+      },
+      "publisher": {
+        "id": "sflow-core"
+      },
+      "risk": {
+        "class": "low"
+      },
+      "schemaVersion": 1,
+      "sections": [
+        {
+          "id": "structural-concentration",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Structural concentration"
+        },
+        {
+          "id": "change-concentration",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Change concentration"
+        },
+        {
+          "id": "dependency-concentration",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Dependency concentration"
+        },
+        {
+          "id": "evidence-limitations",
+          "required": true,
+          "sectionKind": "unavailable",
+          "title": "Evidence limitations"
+        }
+      ],
+      "title": "Development hotspots",
+      "validity": {
+        "status": "active"
+      },
+      "version": 4
+    },
+    {
+      "bodyAccess": {
+        "allowed": false,
+        "maximumBytes": 0
+      },
+      "budgets": {
+        "maximumInputTokens": 8000,
+        "maximumOutputTokens": 1400
+      },
+      "contractSha256": "sha256:533e81e352ca8e38a12024424901e82668735ea5a638f7d5c85e30723ca24c41",
+      "crossViewReferences": {
+        "allowed": false
+      },
+      "factPolicy": {
+        "allowedAssurance": [
+          "source-exact",
+          "structurally-derived",
+          "deterministically-derived",
+          "human-confirmed",
+          "runtime-observed",
+          "not-applicable"
+        ],
+        "allowedStatus": [
+          "available",
+          "partial",
+          "unavailable",
+          "contradicted"
+        ],
+        "optionalFactTypes": [
+          "structural-impact",
+          "test-impact"
+        ],
+        "requiredFactTypes": [
+          "changed-symbol",
+          "contract-change",
+          "dependency-edge"
+        ],
+        "requiredUnavailableSubjects": [
+          "runtime-frequency"
+        ]
+      },
+      "facts": {
+        "canonicalBlock": "kernel-materialized",
+        "maximumSelectedFacts": 40
+      },
+      "id": "dev.impact",
+      "kind": "world-model-view-contract",
+      "model": {
+        "mode": "optional",
+        "outputSchema": "world-model-composition-candidate-v1"
+      },
+      "narrative": {
+        "factualUnitsRequireFactRefs": true,
+        "sectionMaximumWords": 250,
+        "tldrMaximumWords": 120,
+        "totalMaximumWords": 700
+      },
+      "publisher": {
+        "id": "sflow-core"
+      },
+      "risk": {
+        "class": "low"
+      },
+      "schemaVersion": 1,
+      "sections": [
+        {
+          "id": "changed-structure",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Changed structure"
+        },
+        {
+          "id": "dependency-impact",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Dependency impact"
+        },
+        {
+          "id": "affected-contracts",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Affected contracts"
+        },
+        {
+          "id": "test-impact",
+          "required": true,
+          "sectionKind": "factual",
+          "title": "Test impact"
+        },
+        {
+          "id": "unavailable-analysis",
+          "required": true,
+          "sectionKind": "unavailable",
+          "title": "Unavailable analysis"
+        }
+      ],
+      "title": "Development impact",
+      "validity": {
+        "status": "active"
+      },
+      "version": 4
+    }
+  ],
+  "kind": "world-model-view-registry",
+  "registrySha256": "sha256:e49b7c3e97b553eace2d94f26a971a5ec9d125be7f54f7dd28fcef55e5b48b14",
+  "schemaVersion": 1
+}

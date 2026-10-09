@@ -1,0 +1,63 @@
+{
+  "facts": [
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:b39efbffe39a2e766d1be30c87920a8aa7d5c34d3ce648ab0e5537628484fcb1",
+      "factType": "rule-definition",
+      "id": "FACT-6242549f4c409e7f",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied rule-definition for biz.rules@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "biz.rules@4:rule-definition",
+        "kind": "analysis"
+      }
+    },
+    {
+      "assurance": "not-applicable",
+      "claim": null,
+      "claimSha256": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "conflictsWith": [],
+      "derivationId": "DRV-dde8f3b531fae5f3",
+      "evidenceIds": [],
+      "factSha256": "sha256:191517d5ee54d630093cc095035a573b78f9bb9075bfadfa3a93ae559f431238",
+      "factType": "business-meaning",
+      "id": "FACT-d0f9fe2b4d4a5434",
+      "reason": {
+        "attemptedProducer": "required-fact-coverage",
+        "code": "NO_REGISTERED_PRODUCER",
+        "detail": "No registered deterministic producer supplied business-meaning for biz.rules@4 within the pinned scope."
+      },
+      "scopeStatus": "inside",
+      "status": "unavailable",
+      "subject": {
+        "id": "biz.rules@4:business-meaning",
+        "kind": "analysis"
+      }
+    }
+  ],
+  "kind": "world-model-view-fact-ledger",
+  "ledgerSha256": "sha256:377b18771c27ffaec132f0daaa0778ae59b65caacb298c02bf836465c516c403",
+  "materialContradictionFactIds": [],
+  "requiredFactIds": [
+    "FACT-6242549f4c409e7f"
+  ],
+  "requiredUnavailableFactIds": [
+    "FACT-d0f9fe2b4d4a5434"
+  ],
+  "schemaVersion": 1,
+  "selectionPolicySha256": "sha256:37166a1569ba1984c1e05117a6cf4b98f18186789a3e4d16797189e4f23685bc",
+  "sourceLedgerSha256": "sha256:eb36cfe0e49a56d31a1e3ed3d8513fdda47371fb821a434cad938ecf6028a043",
+  "viewId": "biz.rules",
+  "viewSpecSha256": "sha256:39cca8832e285cb7fd7b7b5a09deca629602e2c303908e0aace6032ccf2680b1",
+  "viewVersion": 4
+}

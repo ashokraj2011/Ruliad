@@ -1,0 +1,33 @@
+{
+  "allowedPaths": [
+    "**"
+  ],
+  "allowedSubjects": [
+    "analysis",
+    "configuration",
+    "contract",
+    "dependency-edge",
+    "directory",
+    "file",
+    "human-record",
+    "repository",
+    "rule",
+    "runtime-observation",
+    "symbol",
+    "test"
+  ],
+  "capabilityId": "ruliad",
+  "excludedPaths": [
+    ".git/**",
+    ".github/agents/**",
+    ".sflow/**",
+    ".singularity-flow/**",
+    "singularity/**"
+  ],
+  "kind": "world-model-scope-manifest",
+  "maximumTraversalDepth": 8,
+  "policySourceSha256": "sha256:b27668de4b1df387968b6a1e6a83623a1d3937844c46ba47f0e03e33197c7f78",
+  "schemaVersion": 1,
+  "scopeSha256": "sha256:e1a4c9e6774f845725f4ede334b13e8cd3b3407dec33f961726dedf2734e3295",
+  "sharedPaths": []
+}

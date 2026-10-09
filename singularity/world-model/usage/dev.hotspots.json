@@ -1,0 +1,23 @@
+{
+  "assurance": {
+    "estimatedTokens": "estimated",
+    "promptBytes": "exact",
+    "providerTokens": "provider-reported"
+  },
+  "cost": {
+    "amount": null,
+    "assurance": "unavailable",
+    "currency": "USD"
+  },
+  "estimatedInputTokens": 3604,
+  "estimatedOutputTokens": 2065,
+  "kind": "world-model-usage-observation",
+  "observationSha256": "sha256:6e432174144a1f4f0b215d607478dad30af3732c03ea12ef57b4987ba5f112f8",
+  "outputBytes": 8259,
+  "promptBytes": 14413,
+  "providerCachedTokens": 7569,
+  "providerInputTokens": 16626,
+  "providerOutputTokens": 1416,
+  "schemaVersion": 1,
+  "viewId": "dev.hotspots"
+}
