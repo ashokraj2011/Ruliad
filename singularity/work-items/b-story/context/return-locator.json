@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "kind": "return-locator",
+  "workId": "b-story",
+  "capabilityId": "ruliad",
+  "originRepositoryId": "ruliad",
+  "repositories": [
+    {
+      "id": "ruliad",
+      "remote": "origin",
+      "required": true,
+      "url": "https://github.com/ashokraj2011/Ruliad.git",
+      "fingerprint": "2e33a09c2fd990b18bd3ecdac04ce5abfdce7f963889ca0003747c15ebbd9083",
+      "portability": "portable"
+    }
+  ],
+  "lifecycleRef": "refs/heads/b-story",
+  "workBranchRef": "refs/heads/b-story",
+  "configuration": {
+    "sha256": "b19fb6290af5ba4d1b93159036648a0d0b53b701eac480fee4ac38eebdbc79cd",
+    "branch": "sflow/config",
+    "commit": "613a0b9feb11ce866336136c5839b7de3812269f"
+  },
+  "cloneStrategy": "existing-or-clone",
+  "integritySha256": "04324fa23a7788064c7d695fe0ef75e6ce4515a48a8e50139745059f360a05bb"
+}

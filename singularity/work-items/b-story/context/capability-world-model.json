@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "capabilityId": "ruliad",
+  "capabilityPath": [
+    "ruliad"
+  ],
+  "capabilityMapSha256": "19ac2b9754efb2833aa1e52bfc6ee3de19b19a025f1c3bbf2f87e72784692c33",
+  "requiredViews": [
+    "biz.rules",
+    "arch.contracts",
+    "dev.impact"
+  ],
+  "maxBytes": 262144,
+  "bytes": 0,
+  "repositories": [
+    {
+      "id": "ruliad",
+      "status": "local-grounding"
+    }
+  ],
+  "files": [],
+  "warnings": [
+    "Capability leases could not be read: Governed state at 'refs/remotes/origin/state' is unavailable; it was not treated as absent. Git could not list governed state at 'refs/remotes/origin/state'."
+  ],
+  "recordedAt": "2026-10-09T06:58:00.545Z"
+}

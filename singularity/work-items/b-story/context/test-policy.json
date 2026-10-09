@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "story-test-policy",
+  "workId": "b-story",
+  "baseCommit": "328a56ec5c5d91baaa4c1197147a0934b59ee0a2",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "executionScope": "affected",
+  "baselineChoice": "reuse",
+  "baselineObservation": "pending-not-verified",
+  "testRuntime": {
+    "nodeOptions": []
+  },
+  "baselineFailures": "repair-in-story",
+  "witnessDefault": "automated-test",
+  "riskCategories": [
+    "external-dependency",
+    "known-failure",
+    "assurance-shortfall",
+    "deferred-verification",
+    "accepted-deviation"
+  ],
+  "maximumRiskDays": 90,
+  "nonWaivable": [
+    "tampered-or-forged-evidence",
+    "unknown-candidate-or-test-identity",
+    "unauthorized-decision",
+    "broken-evidence-authenticity",
+    "stale-evidence"
+  ],
+  "capability": {
+    "status": "not-checked",
+    "modules": [],
+    "truncated": false,
+    "guidance": "Copilot: /sf-test-setup; Shell: singularity-flow capability test-setup --json. Inspect the selected module, review the command and run required tests during coding/verification; intake is not passing evidence."
+  }
+}
