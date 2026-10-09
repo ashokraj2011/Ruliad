@@ -126,6 +126,14 @@ ledger:
   enabled: true
   branch: state
   remote: origin
+  behind: warn
+  enforcement: shadow
+  maxRetries: 4
+  pinTransport: refs
+  publication: warn
+  retentionDays: 2555
+  signing: off
+  trustTier: T0
 
 templatesRoot: singularity/templates
 
