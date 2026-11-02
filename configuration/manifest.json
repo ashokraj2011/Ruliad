@@ -1,16 +1,17 @@
 {
   "format": "singularity-flow-configuration-mirror/v2",
   "layout": "canonical-paths",
-  "subject": {
-    "repositoryIdentity": "sha256:5364065b6d3810ff9e7e4c71791b45199f359192b2baa3e263cac949791a4023"
-  },
   "source": {
     "branch": "sflow/config",
-    "commit": "d8f0b8a18ccacc433ad5b2cb824e91baa859525c"
+    "commit": "8ef17c5d7ada229c049ac0cf3c94352c6d106d59"
   },
   "history": {
-    "branch": "sflow/config-history/d8f0b8a18ccacc433ad5b2cb824e91baa859525c",
-    "commit": "d8f0b8a18ccacc433ad5b2cb824e91baa859525c"
+    "branch": "sflow/config-history/8ef17c5d7ada229c049ac0cf3c94352c6d106d59",
+    "commit": "8ef17c5d7ada229c049ac0cf3c94352c6d106d59"
+  },
+  "product": {
+    "version": "0.9.0",
+    "revision": "67aaccc3e7e8b0345f0e1f47b7150b3c1a48a1c0"
   },
   "files": {
     ".github/agents/architect.agent.md": "d75713542fb455b2bff883f290f7610bca1895228080ff4e77ce14e3e549be62",
@@ -182,7 +183,7 @@
     "singularity/user-defined/careful-change/skills/plan-change/SKILL.md": "d722a9ff6f6a48ead05382b1b9e282da45ac83d4a1c33948abd0debcc3618521",
     "singularity/user-defined/careful-change/skills/self-review/SKILL.md": "acd91f6d4f757a131bbabb88aabe41b73c4823154e64d985b614951def28e255",
     "singularity/user-defined/careful-change/skills/write-tests/SKILL.md": "04bb1ebea4c967ea24e4080781f1d006d35d9c5c1ecf09660bb13b784398d175",
-    "singularity/workflow.yml": "af2ae8eccfd03058337a6d7d5ae8ecdc55e0402e6d76810a3dd3baee78c5883a"
+    "singularity/workflow.yml": "353d58120b4731fef9bdf744ddb50c1722941693379ccbdddc061b5178829d18"
   },
   "assets": {
     ".github/agents/architect.agent.md": {
@@ -1031,8 +1032,8 @@
       "mode": "100644"
     },
     "singularity/workflow.yml": {
-      "sha256": "af2ae8eccfd03058337a6d7d5ae8ecdc55e0402e6d76810a3dd3baee78c5883a",
-      "object": "94be21c8cf8946fc2ff6654082ba77832602693c",
+      "sha256": "353d58120b4731fef9bdf744ddb50c1722941693379ccbdddc061b5178829d18",
+      "object": "365d5d990563ab135eafb6a6da22ee64827688e2",
       "mode": "100644"
     }
   }
