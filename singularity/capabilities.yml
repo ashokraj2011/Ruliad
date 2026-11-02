@@ -1,0 +1,12 @@
+version: 1
+capabilities:
+  ruliad:
+    name: ruliad
+    kind: delivery
+    parent: null
+    repository: ruliad
+    jira:
+      projectKey: pya
+    appId: app23
+    teams:
+      - pzn
