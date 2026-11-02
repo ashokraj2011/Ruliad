@@ -1,0 +1,40 @@
+{
+  "draft": {
+    "sequence": 3,
+    "snapshotSha256": "sha256:105d524f32ed24b2fa8df30f9b3ee77cf4f8bb9e865d86a9d8bc2f59f9e1e830"
+  },
+  "files": {
+    "gaps.json": "sha256:76dc74fb54db7515e8084fa79ad82ecedad401fc495e95501cb84a4b8ccdf8ed",
+    "quality.json": "sha256:1e784986490c7ee3f9b1ebd9dcca7bfc7b69c4658d55dd72e1207e3caf062a1c",
+    "research.json": "sha256:d80692f005cb8278d8db332cd38889d406161561d807219cbbea73522eab1ca6",
+    "spec.md": "sha256:3eb55b6e2341debf56bbfdf8a5fc482508c7d34c3dc8a2daa4243a65743e4b1b"
+  },
+  "operationId": "spp-105d524f32ed24b2-reviewed",
+  "parentManifestSha256": null,
+  "parentRevision": null,
+  "publishedBy": {
+    "email": "88361104+ashokraj2011@users.noreply.github.com",
+    "name": "Ashok Raj"
+  },
+  "quality": {
+    "a": {
+      "pending": 0,
+      "status": "not-run"
+    },
+    "blocking": 0,
+    "d": {
+      "passed": 8,
+      "total": 8
+    },
+    "h": {
+      "deferred": 0,
+      "open": 0
+    }
+  },
+  "recordedAt": "2026-11-02T11:11:07.456Z",
+  "reviewState": "reviewed",
+  "revision": 1,
+  "schemaVersion": 1,
+  "specId": "SPEC-CHK-004",
+  "title": "Order discount threshold"
+}

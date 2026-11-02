@@ -1,0 +1,135 @@
+{
+  "analyzer": {
+    "advisories": [],
+    "clauseCount": 4,
+    "clauseIds": [
+      "SPEC-CHK-004:REQ-001",
+      "SPEC-CHK-004:REQ-002",
+      "SPEC-CHK-004:AC-001",
+      "SPEC-CHK-004:AC-002"
+    ],
+    "disclaimer": "Deterministic analysis only. It reports checkable defects and makes no claim that the specification is complete, clear, consistent, or correct.",
+    "mode": "enforce"
+  },
+  "assisted": {
+    "pending": [],
+    "settled": [],
+    "status": "not-run"
+  },
+  "blocking": [],
+  "counts": {
+    "a": {
+      "pending": 0,
+      "status": "not-run"
+    },
+    "d": {
+      "passed": 8,
+      "total": 8
+    },
+    "h": {
+      "deferred": 0,
+      "open": 0
+    }
+  },
+  "deterministic": {
+    "passed": 8,
+    "rules": [
+      {
+        "findings": [],
+        "id": "analyzer",
+        "label": "Specification analyzer (enforce)",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "sections",
+        "label": "Library sections present",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "clauses",
+        "label": "At least one clause",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "anchors",
+        "label": "Literal clause anchors in the specification's namespace",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "placeholders",
+        "label": "No template placeholders left",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "decisions-stated",
+        "label": "Every decided or deferred gap is stated",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "research-current",
+        "label": "Cited code still matches",
+        "passed": true
+      },
+      {
+        "findings": [],
+        "id": "citations",
+        "label": "Every code fact is cited",
+        "passed": true
+      }
+    ],
+    "total": 8
+  },
+  "draftSequence": 3,
+  "human": {
+    "articles": [
+      {
+        "article": "completeness",
+        "decision": "satisfied",
+        "reason": null
+      },
+      {
+        "article": "ambiguity",
+        "decision": "satisfied",
+        "reason": null
+      },
+      {
+        "article": "consistency",
+        "decision": "satisfied",
+        "reason": null
+      },
+      {
+        "article": "verifiability",
+        "decision": "satisfied",
+        "reason": null
+      },
+      {
+        "article": "boundary-conditions",
+        "decision": "satisfied",
+        "reason": null
+      },
+      {
+        "article": "non-functional",
+        "decision": "satisfied",
+        "reason": null
+      }
+    ],
+    "gaps": {
+      "decided": [],
+      "deferred": [],
+      "open": []
+    },
+    "undecided": []
+  },
+  "research": [],
+  "reviewReady": true,
+  "revision": 1,
+  "schemaVersion": 1,
+  "specId": "SPEC-CHK-004",
+  "verifiedAt": "864a1b4c1aa3ab75773e5da806b2ce516c79c4fc"
+}
