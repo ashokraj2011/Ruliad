@@ -3,18 +3,18 @@
   "layout": "canonical-paths",
   "source": {
     "branch": "sflow/config",
-    "commit": "ed5a84679efef3ef5610b0feb68f115032e849c1"
+    "commit": "edd2ed2557f6350d9fe529e54554297ca2c0a3bd"
   },
   "history": {
-    "branch": "sflow/config-history/ed5a84679efef3ef5610b0feb68f115032e849c1",
-    "commit": "ed5a84679efef3ef5610b0feb68f115032e849c1"
+    "branch": "sflow/config-history/edd2ed2557f6350d9fe529e54554297ca2c0a3bd",
+    "commit": "edd2ed2557f6350d9fe529e54554297ca2c0a3bd"
   },
   "product": {
     "version": "0.9.0",
-    "revision": "229441d9b9937fdb9376fb549046dd56c0d44387"
+    "revision": "7079721c1652f850066930db5d2f6d3253925e4f"
   },
   "files": {
-    ".github/agents/architect.agent.md": "9d481daa57ed45b31c0608ac50dc0876c8ddf27392f87f6e116a04b9c03dbb44",
+    ".github/agents/architect.agent.md": "1a6832345721bb2530cba9e9da6944fb2a6714fddd73b0a8dd18a1d1140625e0",
     ".github/agents/careful-change.agent.md": "2c10baa768720e6eeed2d2ed34b00fed58d94959561a4b468b51221c113fd94c",
     ".github/agents/demo-code-checker.agent.md": "84b88558925115c78d36f691b9678879db0c6d9a4d0f12388d482abdbb21f33c",
     ".github/agents/demo-code-repairer.agent.md": "36887859ed9a33e6837ab30d8c4358f3a8aecdb52805f1e7e993986aa72799fa",
@@ -39,7 +39,7 @@
     ".github/agents/poc-test-developer.agent.md": "85cdcd87d11d4964ca9976cd189d1351c7c4aa8d7616c9f36f6b11d93a5a81a9",
     ".github/agents/poc-validator.agent.md": "466d8266770df2613784d0dc353fb370fab4900945893084a476c16f2c4ce192",
     ".github/agents/product-designer.agent.md": "01b6714c5e933cbee9a53dbb680b6166d2b83caa15fd38f28500c5dcbd4e438e",
-    ".github/agents/product-owner.agent.md": "a7631cf39679463f2e505ad7726352b7466ec1de73ee3db38a9f89541d21b18d",
+    ".github/agents/product-owner.agent.md": "781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a",
     ".github/agents/qa.agent.md": "913904d9f5bbc2dae081b7e44f4bf21806ddfeffc02bdf47f81e8ffd920fac02",
     ".github/agents/scenario-developer.agent.md": "9ac24c7c72a73839a3c5b19816670bfaed0d5f71147ee3c4e8a70a87b323ec16",
     ".github/agents/scenario-tester.agent.md": "f0e7ecd9c0c537459720f37fd25188e7819391616870bd8f7fa2c813a3085f48",
@@ -103,6 +103,8 @@
     "singularity/templates/figma-mobile/implementation.md": "69b5b75886dcc41da4e3063c7ceb6ff805251f98dd40ee41b2bf5de660dc74da",
     "singularity/templates/figma-mobile/mobile-spec.md": "5f25f3417be372a7073ac5ba2676b0e47ea302ff54d1db64270448d635db6d98",
     "singularity/templates/figma-mobile/visual-verification.md": "0c732adf496717a4c2034cff347408d9e6e4bb5f9556152b226fa1e376e48bf5",
+    "singularity/templates/findings-remediation/intake.md": "006a191fc00c3fb3a02286cc4c97bfd4bf97d478c42018948b15c91bc7864e50",
+    "singularity/templates/findings-remediation/remediation-plan.md": "d7cea4e52ea5f07ae744807487a92c15c67dc6fb48cbc8de8e0d0ca960fa04a8",
     "singularity/templates/initiatives/adr-log.md": "4ece55ac194e15395cbc331d382d6464f76e013b33576050895092a5dcebce12",
     "singularity/templates/initiatives/business-case.md": "155faec79961574f8dd12556f0874ec8bb396f5a546ca792b2ab41dc34aa6a17",
     "singularity/templates/initiatives/cicd-readiness.md": "98222239a8e316ff1413f827f1fe400d90345bb0759db5d06fe49f859e2aa754",
@@ -183,12 +185,12 @@
     "singularity/user-defined/careful-change/skills/plan-change/SKILL.md": "d722a9ff6f6a48ead05382b1b9e282da45ac83d4a1c33948abd0debcc3618521",
     "singularity/user-defined/careful-change/skills/self-review/SKILL.md": "acd91f6d4f757a131bbabb88aabe41b73c4823154e64d985b614951def28e255",
     "singularity/user-defined/careful-change/skills/write-tests/SKILL.md": "04bb1ebea4c967ea24e4080781f1d006d35d9c5c1ecf09660bb13b784398d175",
-    "singularity/workflow.yml": "353d58120b4731fef9bdf744ddb50c1722941693379ccbdddc061b5178829d18"
+    "singularity/workflow.yml": "82611f00210b06f02538cd148273db0acdbe1053492a7f9678c7cde3f215d0ea"
   },
   "assets": {
     ".github/agents/architect.agent.md": {
-      "sha256": "9d481daa57ed45b31c0608ac50dc0876c8ddf27392f87f6e116a04b9c03dbb44",
-      "object": "5e561255d30f6370093862405342ab639970ff3d",
+      "sha256": "1a6832345721bb2530cba9e9da6944fb2a6714fddd73b0a8dd18a1d1140625e0",
+      "object": "22870af72bb6fb554c305aeacf4de950110ae2a4",
       "mode": "100644"
     },
     ".github/agents/careful-change.agent.md": {
@@ -312,8 +314,8 @@
       "mode": "100644"
     },
     ".github/agents/product-owner.agent.md": {
-      "sha256": "a7631cf39679463f2e505ad7726352b7466ec1de73ee3db38a9f89541d21b18d",
-      "object": "94a9135bb21cf0ddb3c56c8f65569e7158d7406a",
+      "sha256": "781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a",
+      "object": "bc21d51ecbcf6700b36c8e8b1ae66b9fec18a1f0",
       "mode": "100644"
     },
     ".github/agents/qa.agent.md": {
@@ -629,6 +631,16 @@
     "singularity/templates/figma-mobile/visual-verification.md": {
       "sha256": "0c732adf496717a4c2034cff347408d9e6e4bb5f9556152b226fa1e376e48bf5",
       "object": "6115947c57cb0836bedf5a6d045e8b0b8a97399c",
+      "mode": "100644"
+    },
+    "singularity/templates/findings-remediation/intake.md": {
+      "sha256": "006a191fc00c3fb3a02286cc4c97bfd4bf97d478c42018948b15c91bc7864e50",
+      "object": "148b725ee1412edfa61c415953657f6d02fe4e6c",
+      "mode": "100644"
+    },
+    "singularity/templates/findings-remediation/remediation-plan.md": {
+      "sha256": "d7cea4e52ea5f07ae744807487a92c15c67dc6fb48cbc8de8e0d0ca960fa04a8",
+      "object": "1471c6503841934c96a5e1e7c6bd63d237d552ca",
       "mode": "100644"
     },
     "singularity/templates/initiatives/adr-log.md": {
@@ -1032,8 +1044,8 @@
       "mode": "100644"
     },
     "singularity/workflow.yml": {
-      "sha256": "353d58120b4731fef9bdf744ddb50c1722941693379ccbdddc061b5178829d18",
-      "object": "365d5d990563ab135eafb6a6da22ee64827688e2",
+      "sha256": "82611f00210b06f02538cd148273db0acdbe1053492a7f9678c7cde3f215d0ea",
+      "object": "c1d878bd091e685fd952cf321531739194088b89",
       "mode": "100644"
     }
   }
