@@ -1110,6 +1110,56 @@ workTypes:
         inputs:
           - { phase: convergence }
           - { phase: verification, projection: approved-summary, preserve: [Acceptance and specification results, "Negative, regression, security, and non-functional checks"], maximumSummaryBytes: 24576, expansion: hash-bound-reference, fallback: block }
+  findings-remediation:
+    label: Security and TLM remediation
+    description: Fixes security findings and TLM items picked from the findings register. A major upgrade is listed for a person and never made by itself; verification runs all existing tests.
+    phases:
+      - findings-intake
+      - remediation-plan
+      - implementation
+      - verification
+      - conformance
+    plannedClaims:
+      mode: required
+      clausePhases:
+        - findings-intake
+      owners:
+        implementation: remediation-plan
+    phaseOverrides:
+      remediation-plan:
+        inputs:
+          - findings-intake
+      implementation:
+        inputs:
+          - findings-intake
+          - remediation-plan
+        approval:
+          rejectTo:
+            - findings-intake
+            - remediation-plan
+            - implementation
+      verification:
+        inputs:
+          - remediation-plan
+          - implementation
+        approval:
+          rejectTo:
+            - findings-intake
+            - remediation-plan
+            - implementation
+            - verification
+      conformance:
+        inputs:
+          - remediation-plan
+          - implementation
+          - verification
+        approval:
+          rejectTo:
+            - findings-intake
+            - remediation-plan
+            - implementation
+            - verification
+            - conformance
 phases:
   intake:
     label: Intake
@@ -1759,6 +1809,49 @@ phases:
     writeScope: source-and-artifact
     inputs: []
     approval: { authorities: [engineering-reviewers], minimum: 1 }
+  findings-intake:
+    label: Findings intake
+    defaultTemplate: findings-remediation/intake.md
+    artifact:
+      path: artifacts/findings-intake/findings-intake.md
+      kind: requirements
+      minimumBytes: 200
+    clarification:
+      mode: when-needed
+      maxQuestions: 3
+      topics:
+        - scope
+        - exceptions
+        - due dates
+    writeScope: artifact-only
+    approval:
+      authorities:
+        - engineering-reviewers
+      minimum: 1
+      rejectTo:
+        - findings-intake
+  remediation-plan:
+    label: Remediation plan
+    defaultTemplate: findings-remediation/remediation-plan.md
+    artifact:
+      path: artifacts/remediation-plan/remediation-plan.md
+      kind: implementation-spec
+      minimumBytes: 300
+    clarification:
+      mode: when-needed
+      maxQuestions: 3
+      topics:
+        - major upgrades
+        - compatibility
+        - rollback
+    writeScope: artifact-only
+    approval:
+      authorities:
+        - architecture-reviewers
+      minimum: 1
+      rejectTo:
+        - findings-intake
+        - remediation-plan
 governance:
   requireAcceptanceCriteriaTags: true
   protectedPaths:

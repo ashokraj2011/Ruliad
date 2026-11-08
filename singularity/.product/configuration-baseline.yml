@@ -1,7 +1,7 @@
 format: singularity-flow-configuration-baseline/v1
 product:
   version: 0.9.0
-  revision: 229441d9b9937fdb9376fb549046dd56c0d44387
+  revision: 7079721c1652f850066930db5d2f6d3253925e4f
 workflow:
   version: 2
   inputsMode: enforce
@@ -588,6 +588,58 @@ workflow:
           approval:
             rejectTo:
               - intake
+              - implementation
+              - verification
+              - conformance
+    findings-remediation:
+      label: Security and TLM remediation
+      description: Fixes security findings and TLM items picked from the findings
+        register. A major upgrade is listed for a person and never made by
+        itself; verification runs all existing tests.
+      phases:
+        - findings-intake
+        - remediation-plan
+        - implementation
+        - verification
+        - conformance
+      plannedClaims:
+        mode: required
+        clausePhases:
+          - findings-intake
+        owners:
+          implementation: remediation-plan
+      phaseOverrides:
+        remediation-plan:
+          inputs:
+            - findings-intake
+        implementation:
+          inputs:
+            - findings-intake
+            - remediation-plan
+          approval:
+            rejectTo:
+              - findings-intake
+              - remediation-plan
+              - implementation
+        verification:
+          inputs:
+            - remediation-plan
+            - implementation
+          approval:
+            rejectTo:
+              - findings-intake
+              - remediation-plan
+              - implementation
+              - verification
+        conformance:
+          inputs:
+            - remediation-plan
+            - implementation
+            - verification
+          approval:
+            rejectTo:
+              - findings-intake
+              - remediation-plan
               - implementation
               - verification
               - conformance
@@ -1979,6 +2031,49 @@ workflow:
           - reproduction
           - fix-design
           - fix-spec
+    findings-intake:
+      label: Findings intake
+      defaultTemplate: findings-remediation/intake.md
+      artifact:
+        path: artifacts/findings-intake/findings-intake.md
+        kind: requirements
+        minimumBytes: 200
+      clarification:
+        mode: when-needed
+        maxQuestions: 3
+        topics:
+          - scope
+          - exceptions
+          - due dates
+      writeScope: artifact-only
+      approval:
+        authorities:
+          - engineering-reviewers
+        minimum: 1
+        rejectTo:
+          - findings-intake
+    remediation-plan:
+      label: Remediation plan
+      defaultTemplate: findings-remediation/remediation-plan.md
+      artifact:
+        path: artifacts/remediation-plan/remediation-plan.md
+        kind: implementation-spec
+        minimumBytes: 300
+      clarification:
+        mode: when-needed
+        maxQuestions: 3
+        topics:
+          - major upgrades
+          - compatibility
+          - rollback
+      writeScope: artifact-only
+      approval:
+        authorities:
+          - architecture-reviewers
+        minimum: 1
+        rejectTo:
+          - findings-intake
+          - remediation-plan
     design-intake:
       label: Design package intake
       defaultTemplate: figma-mobile/design-intake.md
@@ -3349,7 +3444,7 @@ workflow:
       - .github/skills
 assets:
   .github/agents/architect.agent.md:
-    sha256: 9d481daa57ed45b31c0608ac50dc0876c8ddf27392f87f6e116a04b9c03dbb44
+    sha256: 1a6832345721bb2530cba9e9da6944fb2a6714fddd73b0a8dd18a1d1140625e0
   .github/agents/careful-change.agent.md:
     sha256: 2c10baa768720e6eeed2d2ed34b00fed58d94959561a4b468b51221c113fd94c
   .github/agents/demo-code-checker.agent.md:
@@ -3399,7 +3494,7 @@ assets:
   .github/agents/product-designer.agent.md:
     sha256: 01b6714c5e933cbee9a53dbb680b6166d2b83caa15fd38f28500c5dcbd4e438e
   .github/agents/product-owner.agent.md:
-    sha256: a7631cf39679463f2e505ad7726352b7466ec1de73ee3db38a9f89541d21b18d
+    sha256: 781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a
   .github/agents/qa.agent.md:
     sha256: 913904d9f5bbc2dae081b7e44f4bf21806ddfeffc02bdf47f81e8ffd920fac02
   .github/agents/scenario-developer.agent.md:
@@ -3522,6 +3617,10 @@ assets:
     sha256: 5f25f3417be372a7073ac5ba2676b0e47ea302ff54d1db64270448d635db6d98
   singularity/templates/figma-mobile/visual-verification.md:
     sha256: 0c732adf496717a4c2034cff347408d9e6e4bb5f9556152b226fa1e376e48bf5
+  singularity/templates/findings-remediation/intake.md:
+    sha256: 006a191fc00c3fb3a02286cc4c97bfd4bf97d478c42018948b15c91bc7864e50
+  singularity/templates/findings-remediation/remediation-plan.md:
+    sha256: d7cea4e52ea5f07ae744807487a92c15c67dc6fb48cbc8de8e0d0ca960fa04a8
   singularity/templates/initiatives/adr-log.md:
     sha256: 4ece55ac194e15395cbc331d382d6464f76e013b33576050895092a5dcebce12
   singularity/templates/initiatives/business-case.md:
@@ -3676,6 +3775,7 @@ ownership:
       feature: framework
       bugfix: framework
       chore: framework
+      findings-remediation: framework
       figma-mobile: framework
       quick-fix: framework
       careful-change: framework
@@ -3702,6 +3802,8 @@ ownership:
       reproduction: framework
       fix-design: framework
       fix-spec: framework
+      findings-intake: framework
+      remediation-plan: framework
       design-intake: framework
       design-inventory: framework
       component-mapping: framework
@@ -3837,6 +3939,8 @@ ownership:
     singularity/templates/figma-mobile/implementation.md: framework
     singularity/templates/figma-mobile/mobile-spec.md: framework
     singularity/templates/figma-mobile/visual-verification.md: framework
+    singularity/templates/findings-remediation/intake.md: framework
+    singularity/templates/findings-remediation/remediation-plan.md: framework
     singularity/templates/initiatives/adr-log.md: framework
     singularity/templates/initiatives/business-case.md: framework
     singularity/templates/initiatives/cicd-readiness.md: framework
