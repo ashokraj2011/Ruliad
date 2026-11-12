@@ -1,7 +1,7 @@
 format: singularity-flow-configuration-baseline/v1
 product:
   version: 0.9.0
-  revision: dfd7334bb67aea72562fd36fd2e99e74af938fa9
+  revision: dd565f8ab4fda1265d317c77a232a52d1a108776
 workflow:
   version: 2
   inputsMode: enforce
@@ -3540,105 +3540,105 @@ assets:
   singularity/skill-library/demo-web-screenshot-intake/SKILL.md:
     sha256: 225d981bbf356ccbe63033940b4c81172d5985f9453330af275bdd21c4510a63
   singularity/templates/benchmark/conformance.md:
-    sha256: 417aeb68ea4af698cbfbdf4b2b1aa17fa5d12c447bc1a1f8a1b9ed300402ff0a
+    sha256: 15a9dad17dc047ccc88beaf8a7309e72aad7d940d600e0755469aed7fb0a9173
   singularity/templates/benchmark/design.md:
-    sha256: fe3cdb987ebbe39d1e42464cf176f437e45287b589ffc66456c7ba4438bc025d
+    sha256: 3d5cc15acfe3a956225fc4a450d5af23e74597c6cf2375d0c631fdb65160c80f
   singularity/templates/benchmark/implementation.md:
     sha256: e25ab3d9104c4ddaef541191d544ea032c35f551b9538ad77a38628ca1a58db6
   singularity/templates/benchmark/intake.md:
-    sha256: 49107281e2e461ede0e000edb51bf9f22aec85ddc84acbd1781680076f795f5c
+    sha256: cf841655fc9a24e615dde7f7030032dcae671d28244b9b72ae1b52157d109fd3
   singularity/templates/benchmark/testing.md:
     sha256: a9338f04dbe1be3ad988c331f9b45bab335a4661fb367f2c4f110609049fb9a8
   singularity/templates/bugfix/fix-design.md:
     sha256: cee7774777fd55a3740ebd9f2cafd100702d52617ae307f80e35764229c7867e
   singularity/templates/bugfix/fix-spec.md:
-    sha256: f62cb2f1e2d275d6826b2f47c356db23a006594b3673d3727af387169851067d
+    sha256: fdcff65d4553e9fc95d29c14dbfde50ce9ab64daac23980934e4e7066b5eba05
   singularity/templates/bugfix/intake.md:
     sha256: c0aa89555e400e9c78c782021b1928175607f32ad20773c70fae04b28ced320c
   singularity/templates/bugfix/reproduction.md:
-    sha256: f134541a5c15fdd80e958741e0576df94bf0de63a3d095717ede84e6fd0adbfb
+    sha256: a7506d0d9b76e376fa50bc3ba469824ee244be8df539cf3a825450a9e0e3d039
   singularity/templates/chore/intake.md:
-    sha256: 7fe95857aaee8f87eb8762e362a2c09bb3d9c7d62d02a4b6a161f0dabecd59d8
+    sha256: bf318cc5e977b9dee20c7fdac7180c48fe14536ccfe3f5404fc5ff038a23565f
   singularity/templates/classic-delivery/code-checking.md:
-    sha256: 16a83f4541e9267591ae6b08204b8746f9a2a3271b0e35bc24b422025a273796
+    sha256: 2e6050d9985b9af3316f5b951ee22efe8b5daa060d18020dd59ea1c26939afad
   singularity/templates/classic-delivery/intake.md:
-    sha256: 54e29e22388aebec1dfd70e9046dfd3f88b60b6479b2ee4a58b93200fbd581eb
+    sha256: 45dd8abdb11b650614f169c284af70f96aab5224504eccb2d486bb6a78232ae9
   singularity/templates/classic-delivery/testing.md:
-    sha256: af701aa3de1057e07f62f88753dfdd633185e7e66d83bc6ae7c66e93ed507bd9
+    sha256: 334381b545b52a967f15110b093803985851eddeeb30660645d46bc23ffe37fd
   singularity/templates/common/careful-change.md:
-    sha256: 28de53a2eec7fb9d0cb495102e1e064a8b201615d9a599038064d2524d403dfc
+    sha256: e1e7055af5d4da3003e4471d4bd20757ad9afb3a5eec74a506320b79fb88e469
   singularity/templates/common/conformance.md:
-    sha256: be71314c915f967e1f1c3d5789fed1d192fda5ed33371cb1aff94b665669b9da
+    sha256: 8c342771cb590be4960267ca307ea181647a7415006994686acc2a04dd8e7fea
   singularity/templates/common/implementation.md:
-    sha256: 2d1d1dc1ab8e94760cda8df39cf07aef51ef7ce191d76218558d19a6ffcc1a54
+    sha256: ba0749ab3997579949fc836a839af6606f995c2012a90b410597ebadf211298d
   singularity/templates/common/intake.md:
     sha256: e16cd8b47f472973823a1a53294c77ac6551285c4df75e916c739611c3bc1d23
   singularity/templates/common/verification.md:
-    sha256: fdda5ab9e701142bd6d1f12e90b85b4e24dddffb0f4f5d89c5b534bd9137e4e0
+    sha256: 4f559684330b34b509cd27e959615ef48fdbda1bf0c44e05456bf70cb7754532
   singularity/templates/demo-check-repair-close/check.md:
-    sha256: cbde6d2812b782f32589db7f95f33c44586ce6e552ce636541326e912c3a1663
+    sha256: 31590fe1e0292a0b19c4d077f5a89c51d7df8147c53bf6f4926dd99d5c3a597a
   singularity/templates/demo-check-repair-close/close.md:
-    sha256: 9070bc1135edfa168c5c63b43df230dd5997f527e7b7a2931311eb8cca78a2d6
+    sha256: d506d6c235084669f554806639a83c10669a7e85a468ed3a1098c3186636cb63
   singularity/templates/demo-check-repair-close/intake.md:
-    sha256: 7fb9e7b8f42b328702d386d5c99d9dc56bae106dc4b8f3a38297a4e073076d8f
+    sha256: 15fcceb1c3be771afd89b42071686a59b054159dfaa0b3a3c1117cf246d3c84d
   singularity/templates/demo-check-repair-close/repair.md:
-    sha256: 66af2bad38c83317e4ccd2d96c7713234f64149e7d7015235b98047770f7df30
+    sha256: f34a916c6f16192042fc77230b3515884c16ce6f38acbf5f6cd9f5d4d086037b
   singularity/templates/demo-web-e2e-testing/check.md:
-    sha256: 31bc19257b108572d3043066a8747ade34dc0facb9bc75e013a5b5ded599e2c5
+    sha256: 10e17dfe84cf8b469025cdc52a34e8c71a026eda693fcbce47aedd37bf5c5c67
   singularity/templates/demo-web-e2e-testing/intake.md:
-    sha256: 90c4f1684bdb932884707041d8787f5f9225963994e2605098cc74b0218c57b1
+    sha256: a01c0ed028158443e51ad0c008bc5fd025e1bc9187b8c5ebe931d8dc02bbc0ea
   singularity/templates/demo-web-e2e-testing/repair.md:
-    sha256: 5cf8165f7981c55d1b6d2b6f09e23e0230261eeb98312de213f11b93091f332f
+    sha256: 1f652e4cb4a19004de7fb33ba1d5c372bc1417f6bcc7701aeea0421a3a368581
   singularity/templates/document-test-repair/check.md:
-    sha256: 2dcb5121d1577a3a26ca6527f9107336b632600dab21c5fe4c215c23cb84f438
+    sha256: c49126eed2d5539bd79048cf20da1579f4ff86fafccf7afab84555988eefa604
   singularity/templates/document-test-repair/intake.md:
-    sha256: aba7b2017e29b11d89d5b3cc3d1eb0457a8177321904dc0fd2c20d9ae4d3bcd9
+    sha256: f7f02ba44629015042e844ccf218a571ae1f441769fff62085fdf6e3f7fb81c1
   singularity/templates/document-test-repair/repair.md:
-    sha256: 51f9d673c5614e202ff9e40aa5e5dd2ba8042fbe87354dd502a0e5497bca2628
+    sha256: cb3f4ba1bfe974693f036246add60a6399d09f5b4a912d99d095b659760dc0a2
   singularity/templates/feature/design.md:
     sha256: 8b7455f464a7025efa92942c272a04e3c0a3ab2a4d3eb438703cc14e230bc856
   singularity/templates/feature/implementation-spec.md:
-    sha256: 775affeb36ab41074d9953109f7459efca860c5d31465c8d5592ad986f311adf
+    sha256: 272a9a9b7a5da042e467b068ae581e4224a5c868a3cdebe37bb96e9e2449394c
   singularity/templates/feature/intake.md:
     sha256: eb53814f46f12ea3d93d1629164bd7ff22a3a54feceff7f7dd55670caeb5dbab
   singularity/templates/feature/requirements.md:
     sha256: 32016db8ed6fadd6596e7dc702647cff95cdee1a203b38395d7ba5626dd8134e
   singularity/templates/figma-mobile/component-mapping.md:
-    sha256: cdea8a1e3defa73ade72bdaaac162ecd9b8b43817aa319d7e712e2de2eb296a3
+    sha256: f549e291f0b355420bad0a55ab1538ecc95feadecc5282d9812f969e69ac5a7d
   singularity/templates/figma-mobile/conformance.md:
-    sha256: bc82839bff97575e16deddd8beb1a35a110180651ac2f78aeedbd95aee45b185
+    sha256: f795eca206230eb9ddf139e3ac0c511c4622b34bdb521e9d8d1f7cf4139be2de
   singularity/templates/figma-mobile/design-intake.md:
-    sha256: 39e83b9ecf10bad9249070d4f3267e8d2ec2412bfbfb6e46ead396e888f682b3
+    sha256: 8ad13c36d8e9a4c0b2b7da66f2885a2e2d3c5d98e1d1883eef3fc41adc451aec
   singularity/templates/figma-mobile/design-inventory.md:
-    sha256: 822ea61a75a25ec5a6b42dd887c842d5126233b36f7f0fc875402f9a43125079
+    sha256: e4c2e093fa102892ca159ac8969e0b94e4310690cfbef98320e9b7a9ce305aa4
   singularity/templates/figma-mobile/implementation.md:
     sha256: 69b5b75886dcc41da4e3063c7ceb6ff805251f98dd40ee41b2bf5de660dc74da
   singularity/templates/figma-mobile/mobile-spec.md:
-    sha256: 5f25f3417be372a7073ac5ba2676b0e47ea302ff54d1db64270448d635db6d98
+    sha256: d5009c1fedb6cf3fd5a42c9e94dd8ff33f904686e32e0c74980a4b6211da1c2b
   singularity/templates/figma-mobile/visual-verification.md:
-    sha256: 0c732adf496717a4c2034cff347408d9e6e4bb5f9556152b226fa1e376e48bf5
+    sha256: 51e94dd4869bbeaccde25a0b0b10422611c038aa85d05089bbce64568be5d58c
   singularity/templates/findings-remediation/intake.md:
-    sha256: 006a191fc00c3fb3a02286cc4c97bfd4bf97d478c42018948b15c91bc7864e50
+    sha256: 10a4a0a215e3aae28286540bb16a6bb56c5f2cbe43d07080f65716e5feaef4a1
   singularity/templates/findings-remediation/remediation-plan.md:
-    sha256: d7cea4e52ea5f07ae744807487a92c15c67dc6fb48cbc8de8e0d0ca960fa04a8
+    sha256: 8406dd2bb25ad3c26abfac6c8fd42361841f14f093a0bcb73239f786c771e40a
   singularity/templates/initiatives/adr-log.md:
-    sha256: 4ece55ac194e15395cbc331d382d6464f76e013b33576050895092a5dcebce12
+    sha256: 8a99d6c77b4a170289e8f565cbc0c1b837f3428962ff4d65712dc3cfe8ed756f
   singularity/templates/initiatives/business-case.md:
-    sha256: 155faec79961574f8dd12556f0874ec8bb396f5a546ca792b2ab41dc34aa6a17
+    sha256: 92e374064a04d48481e421b99739a93fef2eaf03b7fa55ef9e0e91478e436c6f
   singularity/templates/initiatives/cicd-readiness.md:
-    sha256: 98222239a8e316ff1413f827f1fe400d90345bb0759db5d06fe49f859e2aa754
+    sha256: 62466777b698091951f8bf14129581814c3020bf13813e50722396401cba6062
   singularity/templates/initiatives/compliance-assessment.md:
-    sha256: 88645356dc868b46a78dabc50f2605b28e0ed0d9b78549e7cf9fef6536ea2296
+    sha256: 11ca40776d701122d393bf5e1ea2af6dd1cecab488f83e523bda5103403fdb57
   singularity/templates/initiatives/data-readiness.md:
-    sha256: 9b39c24e75f253e461fdf45150378a62599ba5782fb1a1721b1b6f66ba9b2dfe
+    sha256: 186ea9d458f8c77730e4084b4c7ca24b7f5071ca3627f579ab46ffa0e5f5ae23
   singularity/templates/initiatives/data-source-decision.md:
-    sha256: 49b76f3f576c6660696a6504e7bfdd78737089c26b540be5ea7f638ea800189c
+    sha256: db972acf5e822ead3cec02e5703e9360a33ee7f66e8c6f7c65451f2edd7fc375
   singularity/templates/initiatives/dependency-matrix.md:
-    sha256: 890fef7b2cae6c11927137161755c4a9cfba8f13fdd7aca73b58ba8ef5ff1b7e
+    sha256: a883d51fb9723086eb98a1f817bf25ae811b422d682c69635a42d5c16d20771a
   singularity/templates/initiatives/deployment-record.md:
-    sha256: 1898365f596234fa78fd9b6330c9cc5e7ed50be566b998e7f8ec8f76f294db85
+    sha256: 10eaf9456e561f9ba36ae01f903296a4c828370d331134ecb90df9f937f08090
   singularity/templates/initiatives/design-specification.md:
-    sha256: 341c2ebad1e5945a011906e451c2b7290fc806e35e6a531bbc39a9b87bf11a5e
+    sha256: 97edfa88e4272fa4484a0b891e8f461e1c65ef2caeb251dd7318babedd0f1b97
   singularity/templates/initiatives/epic-record.yml:
     sha256: 9ca4bdb695a7cd07633746cbe8245a2e170315e09b3dd10a252684a25671ad94
   singularity/templates/initiatives/epic/impact-analysis.yml:
@@ -3646,15 +3646,15 @@ assets:
   singularity/templates/initiatives/epic/jira-write-plan.yml:
     sha256: 176c8c177d77e61df465472bdb5b9bfb67a9a3183e13e4704aafa1f4931e48e9
   singularity/templates/initiatives/epic/materialization-report.md:
-    sha256: 18bdd184358ac5f1f08f4e0edda9e09bab7dab8b8dcbfe7a65a2e4196e99001c
+    sha256: 02ec0607eb0adc6ef68e9f7425db2bb6ea6fee2639e8d73a432cac7bda407a8d
   singularity/templates/initiatives/epic/parent-spec.md:
-    sha256: 4c80b3cb91962fd1b1fe64f01bd7dc4b0ed14ec7fb889750cabf1522eaabfa72
+    sha256: 362a54994213a9a184b7f97d9df2a5294b61aebcfafe631e864be8eba96a949a
   singularity/templates/initiatives/epic/repository-map.yml:
     sha256: fc948774dce5b0263cd0823cd71f446a7c9c165b8e68a7ea6a4588486adfd328
   singularity/templates/initiatives/epic/requirements-traceability.yml:
     sha256: 672a8ccb13f2945e9043e325f7fe0538bddfe8a43d3bf07864bee7937b680b73
   singularity/templates/initiatives/epic/requirements.md:
-    sha256: 174d57ca16c5b43a23c6292873c683335f9fb08c6efd6d0a7bf6e6594aa5ec0b
+    sha256: 3f4dd8ee6b3775753fce7d75101a7b90d9878950ef3898ec01d1489cf398faa8
   singularity/templates/initiatives/epic/story-plan.yml:
     sha256: 9ff2b979d06de8302c36ef0e1898c1c74df6f0dd92df64c1b68accdf360b555f
   singularity/templates/initiatives/epic/story-spec-index.yml:
@@ -3662,109 +3662,109 @@ assets:
   singularity/templates/initiatives/epic/story-spec.md:
     sha256: ee2791700162ce5b843ce9458bd8e2b6580b97d2e6db4343fafc5cc64ec9bfe4
   singularity/templates/initiatives/eta-register.md:
-    sha256: adeda18823f2d52d82f17c5c029bd883a504205cf8757f2a7ee5237e5d1cd109
+    sha256: 5f4a3351e4d76a4808266cdbcdc33f4385f947251461e39383bfa2aa2daea4ec
   singularity/templates/initiatives/feasibility-report.md:
-    sha256: 10fe5879b55d78b9a06b24589328fb2517eb0defd4f6e465b23ca0f6f833b63b
+    sha256: 53230c9ff2a3257f38ebd15550fae3fffc2868dbc5a879df80e01f0acc9e6bb5
   singularity/templates/initiatives/functional-tests.md:
-    sha256: 760e46dd617e449ff8993dad3a98ce8c4e95e928dbf63c1b00017bff1d3ebdf3
+    sha256: 904937aeee28a10b4462269e7f2d1a3acbcc7402450194b9f7b381d40301200f
   singularity/templates/initiatives/generic-output.md:
-    sha256: 67e01f4cc8cfd624400128a7f16e50ab62a98d52a920b0f5e9a0fcea2607759a
+    sha256: 72b59f924feb515d4fb68cbd3cfce7aac4f144e0c3de7ec304c80a59d1220363
   singularity/templates/initiatives/generic-output.yml:
     sha256: 6d57e9ed847259d3671f61f737eaad7604c2952cb5268da25f701b1facffcdd4
   singularity/templates/initiatives/implementation-index.md:
-    sha256: 8d3c8cdf27fe2aebf9991858836fc3bb7b37d902afa5638616c67a9c9961dca0
+    sha256: 6a2682bc0886d37e67d57e51102b1f70bf2347c7fdf8c47f76cb61fa8bfb3426
   singularity/templates/initiatives/initiative-conformance.md:
-    sha256: d5270e19131d7c2a1bdb6d447a1ed04017f80ba77ad3703f35c5462ee67a2801
+    sha256: a8fb5501884f801112c2c271366b0536ec2b8f64ec695fca56dd45afc38c4acf
   singularity/templates/initiatives/initiative-scope.md:
-    sha256: 142478e091855e712667f23038ffd40a92e4f86b0e665427f27361d74b1ab489
+    sha256: eed478104dd8f1275216a488d8d4dbf5d4e35691164e462699aa6c70cd42ec0b
   singularity/templates/initiatives/intake-record.md:
-    sha256: 1dbd17ccf123ef632b1248963cc1ad36786b96efa8879278322e77aecc2eeabb
+    sha256: 9de271c3547f355a38999d6e7187de6823d8c856f1706fd52b4f1cc5e50eeab1
   singularity/templates/initiatives/interface-contract.md:
-    sha256: fb047de3b81b417eb257862840e7cd9b07d533d70711301bf904272124954053
+    sha256: 6b097816ddade4e49c61aaf022eed20f00f245fbdbb84bff16039d9220a41cd7
   singularity/templates/initiatives/measurement-plan.md:
-    sha256: dac7671ee00e4207d5b25a520935fe536767b66219b21cf405872affb0d16187
+    sha256: df8ef58c7158f3fc057496a50b952f29f80a867c642b72656239fe65be26ccf7
   singularity/templates/initiatives/nfr-assessment.md:
-    sha256: fdbdd138b0a6c1d3ae03acf1a624c42aa074c802a5c25dc8c36ceadb8db3e46a
+    sha256: 4e96a76f4e10ba92dbc3971613a36d8b46022da0264ef322e6a782ff10146a27
   singularity/templates/initiatives/nfr-specification.md:
-    sha256: b98bb5b743576d4cc55f1f508b5d7489a9a85eee72c9af4f93ce71b396fc454c
+    sha256: ed55e31f2ff5aa798357a340f6b46af01efb797ca81f5a1a969a9a33e16f4d91
   singularity/templates/initiatives/observability-handoff.md:
-    sha256: 41787345e0e77b79e0d3ff5878d3d61f018e42cf65d66681d14fdfa014e2750a
+    sha256: 78c0faf0fb982b3df902cfd7348f3240b0ad97a611c7289409cbd2c1979b2686
   singularity/templates/initiatives/operational-readiness.md:
-    sha256: d8890590723c5cdff0ffe5225f5e88e8d2d5cde8f7b3805e3568393162ff5c31
+    sha256: 0f8dab29bec99a536b66462157bca8fe9cacff7f740ad57383a7acc9eae305b7
   singularity/templates/initiatives/opportunity-brief.md:
-    sha256: 1896ad72afd98908b599e3ae5d81de6843df2601e91b6bd4e813a0768dff7b6a
+    sha256: dfd43129c4b640d734ff1726fe5f07e3befde20f7b894c7c3250ec633dc7e797
   singularity/templates/initiatives/poc-results.md:
-    sha256: 40aba41fdfc6b2f4c748976082801e85e1bef84b80fe300980cc50fa3d0c89f7
+    sha256: 3fc36e6eef1993e6b4dcfe759ec6af3f393574e9b54041bb53063f5fd905158e
   singularity/templates/initiatives/prfaq.md:
-    sha256: b2dcba973be8992f52373720ba5af959b233e3a6059bfa07e26a9797a23cc22f
+    sha256: 102b63d25d5a8930762771b5257becc242c8199595d7d4dda0f679be836857b7
   singularity/templates/initiatives/product-roadmap.md:
-    sha256: 34a3df88bd97e0637cab02564f54ff98cccc776d5267ad6d85a3d063849e6cd1
+    sha256: 744535b255707067aa026a7f15f5a506bef0630bc05608a9a4d55cd314d2896e
   singularity/templates/initiatives/production-learning.md:
-    sha256: 5e090b0e8a4821698af7b86052d43c970e009b8c64bcb3ddfb8b5ac8bf57c50f
+    sha256: e34b48ba311d1995c6b89b7bdb9fae56e58bde9437036b8dedb2a3a4494b3d41
   singularity/templates/initiatives/production-validation.md:
-    sha256: 8ce5dd20813d422778c1921a7658793b0b63640fe2b00af3ecca1a15cc08f56f
+    sha256: 2ab1828243980d2b9211f28e64ec2359c4ad198a36f23347c5d4c1b195f17571
   singularity/templates/initiatives/release-scope.md:
-    sha256: 56ef6617316bbbe052a595dafed210f5acf854d7426cb9420e89e1269038552d
+    sha256: 16c25bca5a462cc70285d8368297add5f3fadc6cc2e7d9b1fc026d794d3344cd
   singularity/templates/initiatives/requirement-impact.md:
-    sha256: f3afdcc90c5bd4e7d8c8218070b6bdac58f22d5dd787d288b515495e883dd1ff
+    sha256: 12bf724dd853cbcd510331a3ebc1520047314187a1119f9426e5efcd6996ae11
   singularity/templates/initiatives/sequencing-plan.md:
-    sha256: 832d7d8e9820482b7263b87e9305a98037bd971e4a34a5c65e7d8c5cd5fd30b3
+    sha256: f0af9d69da908444df53efad6d1da192c2b04f95969f4b44ebc6e9f1f816b506
   singularity/templates/initiatives/service-blueprint.md:
-    sha256: 36424028305ca3a95f355249783090907e9fab5620eed93a9537b777af33ccbf
+    sha256: e7a1e7b618ec241ab417b417309364656bacf1123021c87b9e6fc6375be1715e
   singularity/templates/initiatives/solution-architecture.md:
-    sha256: 699d6646a25f65bb7967081dced900e3c5235e16613089e54bb002f184e67862
+    sha256: 261f098b927ee5967d102301c9eb2635d420cf907026353abfe18bb48e377290
   singularity/templates/initiatives/solution-validation.md:
-    sha256: 9e025f84f9ebdcc5a56d1a0ae5aa044e5e0f04ec3857ba72c18afee2a209052a
+    sha256: a735f499342a87b5f6c3976b36d12f0c3a0bcb3b89d3624a2ae28dab4a7fe8b0
   singularity/templates/initiatives/stakeholder-raci.md:
-    sha256: 7aa9d81064f4e41f5756ab2d0df1e1777c7b83530ff54f994823c359292f20c7
+    sha256: ac85aba4cace4aa5f96683ceecc3e963574f7314675306e9b2d11e4e9aa57d22
   singularity/templates/initiatives/technical-poc-results.md:
-    sha256: 7fbe8d0159e55a79548d6a56cbb5e1990086c5abb821735c3a197bb95f9922de
+    sha256: 3355c70fbf78992aecb7f52929cddf4b715bddaf9d400a293dbc20423b39eb07
   singularity/templates/initiatives/test-attestation.md:
-    sha256: 28fe58500e6d21aa1816494ce8ef6c15b16c30da9d5f04c30f8c1f97554be822
+    sha256: c6bd43bdd4f839bc85cb050ac8a02288e45181938d2734349628a680d7c58a25
   singularity/templates/initiatives/test-data-inventory.md:
-    sha256: 3377bd930d736890c16ecff4c1f1ec81ee83636e609aa61e95d29a5449793419
+    sha256: 2647a173b34950a2612d82b47d6b556d95080b7d62e4b5684c934843804c8e74
   singularity/templates/initiatives/ux-concept.md:
-    sha256: d12e90b0412fcf41cf07fec6bcfe8c83d80949fc01fec2973d23a24a62e73b89
+    sha256: e8418ed898fbd11791e3d1149c8f744089cd77bd1aff1510aba80f3b592bf87d
   singularity/templates/poc-lite/act.md:
-    sha256: f9c3c015c593a51b7d3fd11ba5ec9fc104eaf00f45e2c78ea50a9b78d061c383
+    sha256: 2167869c4ca421c12027d066f883e8950014c2cc6b8a7ac5338ecc585a3fe33e
   singularity/templates/poc-lite/finalize.md:
-    sha256: 7e9e55b2d7199199b757780b78c83abcc35c0f9a48b6760e68b106282ef9cc57
+    sha256: 7e0f82599de4dbe35f391e0ed1b34d266bdcde712ae77b43d1306bd0d32673e2
   singularity/templates/poc-lite/plan.md:
-    sha256: b4748d5dca1e0fdef282f9f679c32ed360d5534a975a4361a2e925dfb1beca8e
+    sha256: 347f3de8f838d6c0ac57a535d79a2d21096fb50c0b65d2faf37d162e412b7b0c
   singularity/templates/poc-lite/verify.md:
-    sha256: c31624345a1b3803f1cfe267b670e570e1ad1ae3742e88898d123f962b913a58
+    sha256: 1fd14ad56daddc335cbb26d23ad3fb2e616b87b6ebc7ff0e67aef499963c8426
   singularity/templates/poc-workflow/impact-analysis.md:
-    sha256: 16b58133b53c74c225f9e0a10b36301678d3ae5cd1a2686f23d1cbe414ec6c93
+    sha256: e064cb953fe74b9ff472c30b021de4419327e92596b2a77e10ac7f4332f99e80
   singularity/templates/poc-workflow/intake.md:
-    sha256: 48c577ec3df824a95022a4abdd02a09f0c1040ed7f057b1150bd05a0beff4a14
+    sha256: e48da83e3d4139a42da68f69a3ba48d52d574817195b19331eee25ef41464a34
   singularity/templates/poc-workflow/publication-review.md:
-    sha256: e5d0e59595e5dd01899883adf781a728bdc6636a07efe4290b57c55b808288d1
+    sha256: 41973e2ec380ff8b6e933516adf5d7aa11effacabf5e418db67c7a0361012582
   singularity/templates/poc-workflow/test-generation.md:
-    sha256: 6fa0c17056fe263eb9f47699a84a0759a899b8e67c35a3d53df8961f1ca59b25
+    sha256: f01f9dd2668d4b6e4df5c15fdea58bcdacba096c9e1141d56a436c6f125beba5
   singularity/templates/poc-workflow/ui-exploration.md:
-    sha256: ba1d1918737d8753d51c1d59b368eab9980dbf0b587ddaab88174c68bdd986b1
+    sha256: cd97cd1b49710ed2c80cfd766320694f887099d4283ad17a96cf7b290b10824b
   singularity/templates/poc-workflow/validation.md:
-    sha256: b1d121afbd49c09538d221cbac60b352a21f7eb7699bc4cba08d35b88ba47fb6
+    sha256: 56d2f39844aa4ef48926a0b0f78ff807839b0a63ad746a1089f8fe5f56568224
   singularity/templates/quick-fix/implement.md:
-    sha256: dff093133a1be4c93115cfbbb0d994c8ce391fc19279caee30b441ec27a05c0a
+    sha256: a252cd732cfb91a944f9c38b01c02710191291fccca5a190d9008ecff4f4459a
   singularity/templates/quick-fix/intake.md:
-    sha256: 3a90e48c46e2fa39dbf8c382d1a278f97d58807f8670b4d27b0008c6da6a8e23
+    sha256: 5fc0dfa8dbd78cb24656d72962d5e67bd13d6d407b550d7dba28b5bd85cf8493
   singularity/templates/quick-fix/verify.md:
-    sha256: a21900d99d044d35de501f0e43888a8a3ebcfe860e702a5d1b3eec61fdd06f27
+    sha256: f54cccabc38f645bcd987cb3096070f7ea18732c689bb8c1ee90d4222b966632
   singularity/templates/spec-code-test-loop/conformance.md:
-    sha256: bb2f9e6d23b3814949db9e1538ae140a8b24d47e2debe4cc54682c95851a1ebc
+    sha256: 105059f473d71491e044e6c17ee1d02cf538a7c3b382aed6d41228acedd7a388
   singularity/templates/spec-code-test-loop/specification.md:
-    sha256: 13c535747dc428cd0a9a4f31a4f4fdce29d4f8fd4f43a8062579f96e0d37c6fe
+    sha256: aaa206553da4ff106a1668a7aceaa7b0a9e3aa926f6628285f6ce14e0d5f539f
   singularity/templates/spec-code-test-loop/testing.md:
-    sha256: dfc7d52ec93a94c33507ba76bada5459577895d714160136f4ec46bfcf0660d2
+    sha256: 30010a1180ec6d7212c745a53a0fe49fad624d4212d476071088c74dfddea916
   singularity/templates/spec-driven/convergence.md:
-    sha256: eb257477afca0229ed858875499736c57498015aaee0a527b714356819a9dde2
+    sha256: 922df3ebcd5e081ca202606f29f640f1b0439d9b9c17a94a2ff2478aad2a4d5a
   singularity/templates/spec-driven/plan.md:
-    sha256: 589ff56b9968fba0b7feb05abb0d0f974fad2d2747df16c5a485f52e23744914
+    sha256: 8ac870c047c0155d5ca4ca7391a11acb7310b52aae746d66f40e1d77ecdb14ec
   singularity/templates/spec-driven/release.md:
-    sha256: 8f3e84e8e19dfc851d9948f20fbd48c0e43e5d8df9c747404d602106930e14fe
+    sha256: 8f7c0be1d576e781de1724a50bc906ad8f511807e665328e753bf40fd4e881a6
   singularity/templates/spec-driven/spec.md:
-    sha256: fbb7f5f29844d24836c6b918e2796940cbc21c24ae0a7aa252d4e1207588e2cb
+    sha256: bf74e36ca2163588de73b18cd91340c54f4ddcba78a8c4bb4cc05bf2c0691f06
   singularity/templates/starter-packs/skp-team-notes/draft-input.json:
     sha256: fbc136911e7dfecf14be06091b6d759770fa72c133c39de74710511bfee57410
   singularity/templates/starter-packs/skp-team-notes/README.md:
