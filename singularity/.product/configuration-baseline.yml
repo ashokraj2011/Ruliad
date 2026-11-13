@@ -1,7 +1,7 @@
 format: singularity-flow-configuration-baseline/v1
 product:
   version: 0.9.0
-  revision: 08c7241d4181bd952fe060da8e7131f985ba32c3
+  revision: 5f89b2478ea8ab6aec0e55b9161824a28b0d3b25
 workflow:
   version: 2
   inputsMode: enforce
@@ -804,6 +804,23 @@ workflow:
           reason: Careful change plans and makes the change itself, in its one step, from
             its own instructions.
           authority: engineering-reviewers
+    test-run:
+      label: Test run
+      description: Runs the repository's own tests and has a quality reviewer sign off
+        what they found; nothing is changed.
+      phases:
+        - test-run
+      omits:
+        - responsibility: scope
+          reason: A test run checks the product as it is; it defines no new requirements.
+          authority: quality-reviewers
+        - responsibility: plan
+          reason: A test run changes no code, so there is no change to plan.
+          authority: quality-reviewers
+        - responsibility: implement
+          reason: A test run changes no code; a failure it finds is fixed in a Story of
+            its own.
+          authority: quality-reviewers
     classic-delivery:
       label: Classic delivery
       description: Intake, code, testing, and code checking with committed test
@@ -2245,6 +2262,30 @@ workflow:
           - testing
       qualityCommands: []
       repositoryTests: run
+    test-run:
+      label: Run the tests
+      description: Runs the repository's own tests and records what they found.
+      defaultTemplate: test-run/run.md
+      artifact:
+        path: artifacts/test-run/test-report.md
+        kind: test-evidence
+        minimumBytes: 200
+        validation:
+          requiredHeadings:
+            - What ran
+            - Results
+            - Failures and follow-up
+      clarification:
+        mode: off
+      writeScope: artifact-only
+      approval:
+        authorities:
+          - quality-reviewers
+        minimum: 1
+        rejectTo:
+          - test-run
+      qualityCommands: []
+      repositoryTests: run
     visual-verification:
       label: Mobile visual verification
       defaultTemplate: figma-mobile/visual-verification.md
@@ -3496,7 +3537,7 @@ assets:
   .github/agents/product-owner.agent.md:
     sha256: 781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a
   .github/agents/qa.agent.md:
-    sha256: 913904d9f5bbc2dae081b7e44f4bf21806ddfeffc02bdf47f81e8ffd920fac02
+    sha256: 0e255fe098bdf64629605d449db145d180e8a7f5c8c9da3efab956422a393018
   .github/agents/scenario-developer.agent.md:
     sha256: 9ac24c7c72a73839a3c5b19816670bfaed0d5f71147ee3c4e8a70a87b323ec16
   .github/agents/scenario-tester.agent.md:
@@ -3734,17 +3775,17 @@ assets:
   singularity/templates/poc-lite/verify.md:
     sha256: 1fd14ad56daddc335cbb26d23ad3fb2e616b87b6ebc7ff0e67aef499963c8426
   singularity/templates/poc-workflow/impact-analysis.md:
-    sha256: e064cb953fe74b9ff472c30b021de4419327e92596b2a77e10ac7f4332f99e80
+    sha256: 2935ce4d7b841d372db41bb79ccf7db08c5f44f3683d582e6f0e0ae7dfcca3e9
   singularity/templates/poc-workflow/intake.md:
-    sha256: e48da83e3d4139a42da68f69a3ba48d52d574817195b19331eee25ef41464a34
+    sha256: b1114bfef65e8e15a026266011c6f9c46c9a0c1acd96362e4fb9f0c964183651
   singularity/templates/poc-workflow/publication-review.md:
-    sha256: 41973e2ec380ff8b6e933516adf5d7aa11effacabf5e418db67c7a0361012582
+    sha256: 05d9456cedaf8e49edf95011360a44eab6f5ad941c89f628bffcbc41b22f10db
   singularity/templates/poc-workflow/test-generation.md:
-    sha256: f01f9dd2668d4b6e4df5c15fdea58bcdacba096c9e1141d56a436c6f125beba5
+    sha256: 3b525c13136d52f66c56ae3e4e61a601bf814b32e25f62915d2bf71ba85fd60d
   singularity/templates/poc-workflow/ui-exploration.md:
-    sha256: cd97cd1b49710ed2c80cfd766320694f887099d4283ad17a96cf7b290b10824b
+    sha256: ed4664f08f43e319a5ac52fdb2628daa29cbb0451473609270b0c2e052096efa
   singularity/templates/poc-workflow/validation.md:
-    sha256: 56d2f39844aa4ef48926a0b0f78ff807839b0a63ad746a1089f8fe5f56568224
+    sha256: 6d547ce42bab537561a9ec677fef49517fdbb677aa2e12ed68d724dfb8ef11f6
   singularity/templates/quick-fix/implement.md:
     sha256: a252cd732cfb91a944f9c38b01c02710191291fccca5a190d9008ecff4f4459a
   singularity/templates/quick-fix/intake.md:
@@ -3769,6 +3810,8 @@ assets:
     sha256: fbc136911e7dfecf14be06091b6d759770fa72c133c39de74710511bfee57410
   singularity/templates/starter-packs/skp-team-notes/README.md:
     sha256: ab3e66d1654df81922a6022c491ac85868cb3b644e0eace77c4f9089c4f599ea
+  singularity/templates/test-run/run.md:
+    sha256: db3a2ab7f202df79ef93ea75a326be7456ad7dfe86b3682ce85057e8849fae6a
 ownership:
   workflow:
     workTypes:
@@ -3779,6 +3822,7 @@ ownership:
       figma-mobile: framework
       quick-fix: framework
       careful-change: framework
+      test-run: framework
       classic-delivery: framework
       spec-code-test-loop: framework
       document-test-repair: framework
@@ -3812,6 +3856,7 @@ ownership:
       implement: framework
       verify: framework
       careful-change: framework
+      test-run: framework
       testing: framework
       specification: framework
       document-intake: framework
@@ -4015,3 +4060,4 @@ ownership:
     singularity/templates/spec-driven/spec.md: framework
     singularity/templates/starter-packs/skp-team-notes/draft-input.json: framework
     singularity/templates/starter-packs/skp-team-notes/README.md: framework
+    singularity/templates/test-run/run.md: framework
