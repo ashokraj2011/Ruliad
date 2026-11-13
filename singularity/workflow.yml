@@ -1160,6 +1160,21 @@ workTypes:
             - implementation
             - verification
             - conformance
+  test-run:
+    label: Test run
+    description: Runs the repository's own tests and has a quality reviewer sign off what they found; nothing is changed.
+    phases:
+      - test-run
+    omits:
+      - responsibility: scope
+        reason: A test run checks the product as it is; it defines no new requirements.
+        authority: quality-reviewers
+      - responsibility: plan
+        reason: A test run changes no code, so there is no change to plan.
+        authority: quality-reviewers
+      - responsibility: implement
+        reason: A test run changes no code; a failure it finds is fixed in a Story of its own.
+        authority: quality-reviewers
 phases:
   intake:
     label: Intake
@@ -1852,6 +1867,30 @@ phases:
       rejectTo:
         - findings-intake
         - remediation-plan
+  test-run:
+    label: Run the tests
+    description: Runs the repository's own tests and records what they found.
+    defaultTemplate: test-run/run.md
+    artifact:
+      path: artifacts/test-run/test-report.md
+      kind: test-evidence
+      minimumBytes: 200
+      validation:
+        requiredHeadings:
+          - What ran
+          - Results
+          - Failures and follow-up
+    clarification:
+      mode: off
+    writeScope: artifact-only
+    approval:
+      authorities:
+        - quality-reviewers
+      minimum: 1
+      rejectTo:
+        - test-run
+    qualityCommands: []
+    repositoryTests: run
 governance:
   requireAcceptanceCriteriaTags: true
   protectedPaths:

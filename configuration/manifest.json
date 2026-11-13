@@ -3,15 +3,15 @@
   "layout": "canonical-paths",
   "source": {
     "branch": "sflow/config",
-    "commit": "d8871c4e91b1a4da3a9a89b4b635012049fa73df"
+    "commit": "bea50975a49a7465ebbe67cad5493106ab7c16c5"
   },
   "history": {
-    "branch": "sflow/config-history/d8871c4e91b1a4da3a9a89b4b635012049fa73df",
-    "commit": "d8871c4e91b1a4da3a9a89b4b635012049fa73df"
+    "branch": "sflow/config-history/bea50975a49a7465ebbe67cad5493106ab7c16c5",
+    "commit": "bea50975a49a7465ebbe67cad5493106ab7c16c5"
   },
   "product": {
     "version": "0.9.0",
-    "revision": "08c7241d4181bd952fe060da8e7131f985ba32c3"
+    "revision": "5f89b2478ea8ab6aec0e55b9161824a28b0d3b25"
   },
   "files": {
     ".github/agents/architect.agent.md": "1a6832345721bb2530cba9e9da6944fb2a6714fddd73b0a8dd18a1d1140625e0",
@@ -40,7 +40,7 @@
     ".github/agents/poc-validator.agent.md": "466d8266770df2613784d0dc353fb370fab4900945893084a476c16f2c4ce192",
     ".github/agents/product-designer.agent.md": "01b6714c5e933cbee9a53dbb680b6166d2b83caa15fd38f28500c5dcbd4e438e",
     ".github/agents/product-owner.agent.md": "781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a",
-    ".github/agents/qa.agent.md": "913904d9f5bbc2dae081b7e44f4bf21806ddfeffc02bdf47f81e8ffd920fac02",
+    ".github/agents/qa.agent.md": "0e255fe098bdf64629605d449db145d180e8a7f5c8c9da3efab956422a393018",
     ".github/agents/scenario-developer.agent.md": "9ac24c7c72a73839a3c5b19816670bfaed0d5f71147ee3c4e8a70a87b323ec16",
     ".github/agents/scenario-tester.agent.md": "f0e7ecd9c0c537459720f37fd25188e7819391616870bd8f7fa2c813a3085f48",
     "singularity/agent-mappings.yml": "1b39a4f4caa3242749889a291e2259a361c815712bd762abde3db3cbe9f8a688",
@@ -161,12 +161,12 @@
     "singularity/templates/poc-lite/finalize.md": "7e0f82599de4dbe35f391e0ed1b34d266bdcde712ae77b43d1306bd0d32673e2",
     "singularity/templates/poc-lite/plan.md": "347f3de8f838d6c0ac57a535d79a2d21096fb50c0b65d2faf37d162e412b7b0c",
     "singularity/templates/poc-lite/verify.md": "1fd14ad56daddc335cbb26d23ad3fb2e616b87b6ebc7ff0e67aef499963c8426",
-    "singularity/templates/poc-workflow/impact-analysis.md": "e064cb953fe74b9ff472c30b021de4419327e92596b2a77e10ac7f4332f99e80",
-    "singularity/templates/poc-workflow/intake.md": "e48da83e3d4139a42da68f69a3ba48d52d574817195b19331eee25ef41464a34",
-    "singularity/templates/poc-workflow/publication-review.md": "41973e2ec380ff8b6e933516adf5d7aa11effacabf5e418db67c7a0361012582",
-    "singularity/templates/poc-workflow/test-generation.md": "f01f9dd2668d4b6e4df5c15fdea58bcdacba096c9e1141d56a436c6f125beba5",
-    "singularity/templates/poc-workflow/ui-exploration.md": "cd97cd1b49710ed2c80cfd766320694f887099d4283ad17a96cf7b290b10824b",
-    "singularity/templates/poc-workflow/validation.md": "56d2f39844aa4ef48926a0b0f78ff807839b0a63ad746a1089f8fe5f56568224",
+    "singularity/templates/poc-workflow/impact-analysis.md": "2935ce4d7b841d372db41bb79ccf7db08c5f44f3683d582e6f0e0ae7dfcca3e9",
+    "singularity/templates/poc-workflow/intake.md": "b1114bfef65e8e15a026266011c6f9c46c9a0c1acd96362e4fb9f0c964183651",
+    "singularity/templates/poc-workflow/publication-review.md": "05d9456cedaf8e49edf95011360a44eab6f5ad941c89f628bffcbc41b22f10db",
+    "singularity/templates/poc-workflow/test-generation.md": "3b525c13136d52f66c56ae3e4e61a601bf814b32e25f62915d2bf71ba85fd60d",
+    "singularity/templates/poc-workflow/ui-exploration.md": "ed4664f08f43e319a5ac52fdb2628daa29cbb0451473609270b0c2e052096efa",
+    "singularity/templates/poc-workflow/validation.md": "6d547ce42bab537561a9ec677fef49517fdbb677aa2e12ed68d724dfb8ef11f6",
     "singularity/templates/quick-fix/implement.md": "a252cd732cfb91a944f9c38b01c02710191291fccca5a190d9008ecff4f4459a",
     "singularity/templates/quick-fix/intake.md": "5fc0dfa8dbd78cb24656d72962d5e67bd13d6d407b550d7dba28b5bd85cf8493",
     "singularity/templates/quick-fix/verify.md": "f54cccabc38f645bcd987cb3096070f7ea18732c689bb8c1ee90d4222b966632",
@@ -179,13 +179,14 @@
     "singularity/templates/spec-driven/spec.md": "c3b2d1434d1d37fefc2ae168f849e9f801992433a7b81c7eb9f27b78c7f66d4e",
     "singularity/templates/starter-packs/skp-team-notes/draft-input.json": "fbc136911e7dfecf14be06091b6d759770fa72c133c39de74710511bfee57410",
     "singularity/templates/starter-packs/skp-team-notes/README.md": "ab3e66d1654df81922a6022c491ac85868cb3b644e0eace77c4f9089c4f599ea",
+    "singularity/templates/test-run/run.md": "db3a2ab7f202df79ef93ea75a326be7456ad7dfe86b3682ce85057e8849fae6a",
     "singularity/user-defined/careful-change.json": "053608f2a503620e778bc9ea11854f9c10bc735934570d02c201dadfc7431de0",
     "singularity/user-defined/careful-change/careful-change.agent.md": "bddfc3272ede5e9e1ca7d1383cff3293edf90d66c7608a4dc1535c7ad572877a",
     "singularity/user-defined/careful-change/README.md": "07ef0ea5d847e239a34efd4a0d21a4010e51419364363fced33171d6c1640604",
     "singularity/user-defined/careful-change/skills/plan-change/SKILL.md": "d722a9ff6f6a48ead05382b1b9e282da45ac83d4a1c33948abd0debcc3618521",
     "singularity/user-defined/careful-change/skills/self-review/SKILL.md": "acd91f6d4f757a131bbabb88aabe41b73c4823154e64d985b614951def28e255",
     "singularity/user-defined/careful-change/skills/write-tests/SKILL.md": "04bb1ebea4c967ea24e4080781f1d006d35d9c5c1ecf09660bb13b784398d175",
-    "singularity/workflow.yml": "82611f00210b06f02538cd148273db0acdbe1053492a7f9678c7cde3f215d0ea"
+    "singularity/workflow.yml": "18aba2a1ad5cd9586a085bf40765c1d7ba28dd079d6ade50c7d4eb7b7a70f42b"
   },
   "assets": {
     ".github/agents/architect.agent.md": {
@@ -319,8 +320,8 @@
       "mode": "100644"
     },
     ".github/agents/qa.agent.md": {
-      "sha256": "913904d9f5bbc2dae081b7e44f4bf21806ddfeffc02bdf47f81e8ffd920fac02",
-      "object": "5844c5bec762f096afc5f0f9c1fd56ecb80e9a21",
+      "sha256": "0e255fe098bdf64629605d449db145d180e8a7f5c8c9da3efab956422a393018",
+      "object": "43a6ba9ace5bb0958d25ba2abe09871fa442cd19",
       "mode": "100644"
     },
     ".github/agents/scenario-developer.agent.md": {
@@ -924,33 +925,33 @@
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/impact-analysis.md": {
-      "sha256": "e064cb953fe74b9ff472c30b021de4419327e92596b2a77e10ac7f4332f99e80",
-      "object": "83d0ad5e2d6cf691595a1491a5b38a6673ef7b88",
+      "sha256": "2935ce4d7b841d372db41bb79ccf7db08c5f44f3683d582e6f0e0ae7dfcca3e9",
+      "object": "aec066188dc744313f7d47a70641f0dcbf15eb1f",
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/intake.md": {
-      "sha256": "e48da83e3d4139a42da68f69a3ba48d52d574817195b19331eee25ef41464a34",
-      "object": "c26a520f2a404f9857669cf8d01d823b372cb5fd",
+      "sha256": "b1114bfef65e8e15a026266011c6f9c46c9a0c1acd96362e4fb9f0c964183651",
+      "object": "e822bc6a68909f6f7eb4c1119d1a66254b8bf8a2",
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/publication-review.md": {
-      "sha256": "41973e2ec380ff8b6e933516adf5d7aa11effacabf5e418db67c7a0361012582",
-      "object": "91c82ccf506214136a4e83313dd5dd01f310586f",
+      "sha256": "05d9456cedaf8e49edf95011360a44eab6f5ad941c89f628bffcbc41b22f10db",
+      "object": "36483bd8e0a17157429f3f2b830974d077c4eeb3",
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/test-generation.md": {
-      "sha256": "f01f9dd2668d4b6e4df5c15fdea58bcdacba096c9e1141d56a436c6f125beba5",
-      "object": "545af40ee4f243de8ba80f7a36391d808cfdc586",
+      "sha256": "3b525c13136d52f66c56ae3e4e61a601bf814b32e25f62915d2bf71ba85fd60d",
+      "object": "716394326f106030be21c2f988479dace44ad40a",
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/ui-exploration.md": {
-      "sha256": "cd97cd1b49710ed2c80cfd766320694f887099d4283ad17a96cf7b290b10824b",
-      "object": "194eb86a38c01fd5a142b4d64c0d0dd0800b2a5b",
+      "sha256": "ed4664f08f43e319a5ac52fdb2628daa29cbb0451473609270b0c2e052096efa",
+      "object": "7f2c9bd63ffa09382ae8228216407cfb77e20caf",
       "mode": "100644"
     },
     "singularity/templates/poc-workflow/validation.md": {
-      "sha256": "56d2f39844aa4ef48926a0b0f78ff807839b0a63ad746a1089f8fe5f56568224",
-      "object": "e91082f96a0369261b039d3db115e1b743e64982",
+      "sha256": "6d547ce42bab537561a9ec677fef49517fdbb677aa2e12ed68d724dfb8ef11f6",
+      "object": "f54bcf8169643cedacccca2b19ea3451f6f4dda3",
       "mode": "100644"
     },
     "singularity/templates/quick-fix/implement.md": {
@@ -1013,6 +1014,11 @@
       "object": "8f30972dbca27e00804991136aea2e949ced8f83",
       "mode": "100644"
     },
+    "singularity/templates/test-run/run.md": {
+      "sha256": "db3a2ab7f202df79ef93ea75a326be7456ad7dfe86b3682ce85057e8849fae6a",
+      "object": "495d3bca0d271a412f13d2eeaaff4330048665bc",
+      "mode": "100644"
+    },
     "singularity/user-defined/careful-change.json": {
       "sha256": "053608f2a503620e778bc9ea11854f9c10bc735934570d02c201dadfc7431de0",
       "object": "1f2289aca17a4bd5cfc3f8f461fafee313db5cbc",
@@ -1044,8 +1050,8 @@
       "mode": "100644"
     },
     "singularity/workflow.yml": {
-      "sha256": "82611f00210b06f02538cd148273db0acdbe1053492a7f9678c7cde3f215d0ea",
-      "object": "c1d878bd091e685fd952cf321531739194088b89",
+      "sha256": "18aba2a1ad5cd9586a085bf40765c1d7ba28dd079d6ade50c7d4eb7b7a70f42b",
+      "object": "066bf09f33d15e42a0d186f28eb7d62a4cda644f",
       "mode": "100644"
     }
   }
