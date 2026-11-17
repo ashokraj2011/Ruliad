@@ -1,4 +1,6 @@
 version: 2
+# SFlow's step agents live in singularity/agents; .github/agents is the team's own.
+agentPromptsRoot: singularity/agents
 inputsMode: enforce
 
 # Keep large governed results bounded in model context and allow exact expansion
