@@ -1,10 +1,10 @@
 format: singularity-flow-configuration-baseline/v2
 product:
   version: 0.9.0
-  revision: 2a6d95541f05176c78142de1c28e4ca8519bae06
+  revision: 698adbc9529049a6496dc23ec63c4e2adeebb924
 build:
-  commit: 2a6d95541f05176c78142de1c28e4ca8519bae06
-  builtAt: 2026-11-17T06:49:16.000Z
+  commit: 698adbc9529049a6496dc23ec63c4e2adeebb924
+  builtAt: 2026-11-20T01:15:59.000Z
 workflow:
   version: 2
   inputsMode: enforce
@@ -434,13 +434,19 @@ workflow:
         design: feature/design.md
         implementation-spec: feature/implementation-spec.md
       phaseOverrides:
+        intake:
+          approval:
+            automatic: when-ready
         requirements:
           inputs:
             - intake
+          approval:
+            automatic: when-ready
         design:
           inputs:
             - requirements
           approval:
+            automatic: when-ready
             rejectTo:
               - intake
               - requirements
@@ -478,6 +484,7 @@ workflow:
             - implementation
             - verification
           approval:
+            automatic: when-ready
             rejectTo:
               - intake
               - requirements
@@ -508,12 +515,19 @@ workflow:
         fix-design: bugfix/fix-design.md
         fix-spec: bugfix/fix-spec.md
       phaseOverrides:
+        intake:
+          approval:
+            automatic: when-ready
         reproduction:
           inputs:
             - intake
+          approval:
+            automatic: when-ready
         fix-design:
           inputs:
             - reproduction
+          approval:
+            automatic: when-ready
         fix-spec:
           inputs:
             - reproduction
@@ -546,6 +560,7 @@ workflow:
             - implementation
             - verification
           approval:
+            automatic: when-ready
             rejectTo:
               - intake
               - reproduction
@@ -589,6 +604,7 @@ workflow:
             - implementation
             - verification
           approval:
+            automatic: when-ready
             rejectTo:
               - intake
               - implementation
@@ -612,6 +628,9 @@ workflow:
         owners:
           implementation: remediation-plan
       phaseOverrides:
+        findings-intake:
+          approval:
+            automatic: when-ready
         remediation-plan:
           inputs:
             - findings-intake
@@ -640,6 +659,7 @@ workflow:
             - implementation
             - verification
           approval:
+            automatic: when-ready
             rejectTo:
               - findings-intake
               - remediation-plan
@@ -708,9 +728,13 @@ workflow:
         design-inventory:
           inputs:
             - design-intake
+          approval:
+            automatic: when-ready
         component-mapping:
           inputs:
             - design-inventory
+          approval:
+            automatic: when-ready
         mobile-spec:
           inputs:
             - design-inventory
@@ -737,6 +761,7 @@ workflow:
             - implementation
             - visual-verification
           approval:
+            automatic: when-ready
             authorities:
               - design-reviewers
               - architecture-reviewers
@@ -877,6 +902,7 @@ workflow:
           writeScope: artifact-only
           testEvidenceFrom: implementation
           approval:
+            automatic: when-ready
             authorities:
               - quality-reviewers
             minimum: 1
@@ -892,6 +918,7 @@ workflow:
             - testing
           testEvidenceFrom: implementation
           approval:
+            automatic: when-ready
             authorities:
               - quality-reviewers
               - engineering-reviewers
@@ -1001,6 +1028,7 @@ workflow:
                 - Correction and final decision
           testEvidenceFrom: implementation
           approval:
+            automatic: when-ready
             authorities:
               - quality-reviewers
               - architecture-reviewers
@@ -1664,6 +1692,9 @@ workflow:
         planning: spec-driven/plan.md
         convergence: spec-driven/convergence.md
       phaseOverrides:
+        specification:
+          approval:
+            automatic: when-ready
         planning:
           inputs:
             - specification
@@ -1696,6 +1727,8 @@ workflow:
         release:
           inputs:
             - verification
+          approval:
+            automatic: when-ready
     spec-driven-standard:
       label: Spec-Driven Standard
       spec:
@@ -1746,6 +1779,9 @@ workflow:
         planning: spec-driven/plan.md
         convergence: spec-driven/convergence.md
       phaseOverrides:
+        specification:
+          approval:
+            automatic: when-ready
         planning:
           inputs:
             - phase: specification
@@ -1877,6 +1913,8 @@ workflow:
               maximumSummaryBytes: 24576
               expansion: hash-bound-reference
               fallback: block
+          approval:
+            automatic: when-ready
   phases:
     intake:
       label: Intake
@@ -1909,7 +1947,7 @@ workflow:
         kind: requirements
         minimumBytes: 300
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - scope
@@ -1933,7 +1971,7 @@ workflow:
         kind: design
         minimumBytes: 300
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - boundaries
@@ -1957,7 +1995,7 @@ workflow:
         kind: implementation-spec
         minimumBytes: 400
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - interfaces
@@ -1984,7 +2022,7 @@ workflow:
         kind: reproduction
         minimumBytes: 250
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - observed behavior
@@ -2008,7 +2046,7 @@ workflow:
         kind: fix-design
         minimumBytes: 250
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - root cause
@@ -2033,7 +2071,7 @@ workflow:
         kind: implementation-spec
         minimumBytes: 300
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - changed behavior
@@ -2125,7 +2163,7 @@ workflow:
         kind: design-inventory
         minimumBytes: 500
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - screen states
@@ -2149,7 +2187,7 @@ workflow:
         kind: component-mapping
         minimumBytes: 500
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - component ownership
@@ -2174,7 +2212,7 @@ workflow:
         kind: implementation-spec
         minimumBytes: 700
       clarification:
-        mode: required
+        mode: when-needed
         maxQuestions: 5
         topics:
           - behavior
