@@ -1,10 +1,10 @@
 format: singularity-flow-configuration-baseline/v2
 product:
   version: 0.9.0
-  revision: 8695900f6bb6b90ab586d9e2172ad44725c17ac2
+  revision: 6c7b0ecbf4f189ac2bdd2677ba9596639deb70eb
 build:
-  commit: 8695900f6bb6b90ab586d9e2172ad44725c17ac2
-  builtAt: 2026-11-22T06:24:43.000Z
+  commit: 6c7b0ecbf4f189ac2bdd2677ba9596639deb70eb
+  builtAt: 2026-11-27T02:09:52.000Z
 workflow:
   version: 4
   inputsMode: enforce
@@ -1439,7 +1439,7 @@ workflow:
             - poc-lite-verify
     benchmarking-a:
       label: Benchmark A — governed intelligence
-      description: Measures governed world-model, bounded AST, and approval-bound
+      description: Measures the Repository brief, bounded AST, and approval-bound
         agent-brief context; unavailable intelligence is a degraded benchmark
         run, not a lifecycle refusal.
       phases:
@@ -1572,7 +1572,7 @@ workflow:
               - conformance
     benchmarking-b:
       label: Benchmark B — generic context
-      description: Uses full approved artifacts without world-model, AST, or
+      description: Uses full approved artifacts without the Repository brief, AST, or
         agent-brief enrichment.
       phases:
         - intake
@@ -3775,7 +3775,7 @@ assets:
   singularity/agent-mappings.yml:
     sha256: 1b39a4f4caa3242749889a291e2259a361c815712bd762abde3db3cbe9f8a688
   singularity/agents/architect.agent.md:
-    sha256: 1a6832345721bb2530cba9e9da6944fb2a6714fddd73b0a8dd18a1d1140625e0
+    sha256: c47a150a2b7f0c34ba424c6fc65d649a6411f65873307fe2dc134e7a7aa659a0
   singularity/agents/careful-change.agent.md:
     sha256: 2c10baa768720e6eeed2d2ed34b00fed58d94959561a4b468b51221c113fd94c
   singularity/agents/demo-code-checker.agent.md:
@@ -3825,7 +3825,7 @@ assets:
   singularity/agents/product-designer.agent.md:
     sha256: 01b6714c5e933cbee9a53dbb680b6166d2b83caa15fd38f28500c5dcbd4e438e
   singularity/agents/product-owner.agent.md:
-    sha256: 781dbe6c8ce3c8cfdfc894b5796a6e5d5c62c8737d03364ad6459c2cf3b6fb8a
+    sha256: f66a322135acc15e739d8d9f201e061bb15e942ac49a39373e0f9cc2e9df1ddc
   singularity/agents/qa.agent.md:
     sha256: 0e255fe098bdf64629605d449db145d180e8a7f5c8c9da3efab956422a393018
   singularity/agents/scenario-developer.agent.md:
@@ -3983,7 +3983,7 @@ assets:
   singularity/templates/initiatives/epic-record.yml:
     sha256: 9ca4bdb695a7cd07633746cbe8245a2e170315e09b3dd10a252684a25671ad94
   singularity/templates/initiatives/epic/impact-analysis.yml:
-    sha256: 25a9ebf19c65ea0144ff23a0c2222380f0e61ef9c97c0b3cd4fde66ab9c46ca2
+    sha256: 466d296396b45fe8e314ca4638b0e925b357fc31afdb2bb7f63599063ef7fdc8
   singularity/templates/initiatives/epic/jira-write-plan.yml:
     sha256: 176c8c177d77e61df465472bdb5b9bfb67a9a3183e13e4704aafa1f4931e48e9
   singularity/templates/initiatives/epic/materialization-report.md:
@@ -3991,7 +3991,7 @@ assets:
   singularity/templates/initiatives/epic/parent-spec.md:
     sha256: 362a54994213a9a184b7f97d9df2a5294b61aebcfafe631e864be8eba96a949a
   singularity/templates/initiatives/epic/repository-map.yml:
-    sha256: fc948774dce5b0263cd0823cd71f446a7c9c165b8e68a7ea6a4588486adfd328
+    sha256: 6d3d04d1b4632228043c32349336d3e72ea2e047848841b96903271a0e09bad7
   singularity/templates/initiatives/epic/requirements-traceability.yml:
     sha256: 672a8ccb13f2945e9043e325f7fe0538bddfe8a43d3bf07864bee7937b680b73
   singularity/templates/initiatives/epic/requirements.md:
@@ -4005,7 +4005,7 @@ assets:
   singularity/templates/initiatives/eta-register.md:
     sha256: 5f4a3351e4d76a4808266cdbcdc33f4385f947251461e39383bfa2aa2daea4ec
   singularity/templates/initiatives/feasibility-report.md:
-    sha256: 53230c9ff2a3257f38ebd15550fae3fffc2868dbc5a879df80e01f0acc9e6bb5
+    sha256: fba99dbf8abd3aec982e0758c9abffc24bf55e90c67d7906a783f4b10acfe3e6
   singularity/templates/initiatives/functional-tests.md:
     sha256: 904937aeee28a10b4462269e7f2d1a3acbcc7402450194b9f7b381d40301200f
   singularity/templates/initiatives/generic-output.md:
@@ -4047,13 +4047,13 @@ assets:
   singularity/templates/initiatives/release-scope.md:
     sha256: 16c25bca5a462cc70285d8368297add5f3fadc6cc2e7d9b1fc026d794d3344cd
   singularity/templates/initiatives/requirement-impact.md:
-    sha256: 12bf724dd853cbcd510331a3ebc1520047314187a1119f9426e5efcd6996ae11
+    sha256: 6467bdf5d20f9b65fa29ac2157b402fc10e9b468b262286a5b807f2dc560c337
   singularity/templates/initiatives/sequencing-plan.md:
     sha256: f0af9d69da908444df53efad6d1da192c2b04f95969f4b44ebc6e9f1f816b506
   singularity/templates/initiatives/service-blueprint.md:
     sha256: e7a1e7b618ec241ab417b417309364656bacf1123021c87b9e6fc6375be1715e
   singularity/templates/initiatives/solution-architecture.md:
-    sha256: 261f098b927ee5967d102301c9eb2635d420cf907026353abfe18bb48e377290
+    sha256: c300574727a5fe0224e34d3038a759d16e931fe921cba44adee831ac921d5add
   singularity/templates/initiatives/solution-validation.md:
     sha256: a735f499342a87b5f6c3976b36d12f0c3a0bcb3b89d3624a2ae28dab4a7fe8b0
   singularity/templates/initiatives/stakeholder-raci.md:

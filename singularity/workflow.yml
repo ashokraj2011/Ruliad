@@ -934,7 +934,7 @@ workTypes:
 
   benchmarking-a:
     label: Benchmark A — governed intelligence
-    description: Measures governed world-model, bounded AST, and approval-bound agent-brief context; unavailable intelligence is a degraded benchmark run, not a lifecycle refusal.
+    description: Measures the Repository brief, bounded AST, and approval-bound agent-brief context; unavailable intelligence is a degraded benchmark run, not a lifecycle refusal.
     # Experimental arm: identical lifecycle, templates, agents, artifacts, and approvals to
     # Benchmark B. Only the pinned intelligence profile and input projection differ.
     phases: [intake, design, implementation, testing, conformance]
@@ -979,7 +979,7 @@ workTypes:
 
   benchmarking-b:
     label: Benchmark B — generic context
-    description: Uses full approved artifacts without world-model, AST, or agent-brief enrichment.
+    description: Uses full approved artifacts without the Repository brief, AST, or agent-brief enrichment.
     # Control arm: full approved upstream artifacts, with no world-model, AST, or agent-brief
     # enrichment. The lifecycle contract remains byte-for-byte comparable with Benchmark A.
     phases: [intake, design, implementation, testing, conformance]
